@@ -10,6 +10,7 @@ export interface BlogPost {
   image: string
   content: string
   readingTime: number
+  keywords?: string | string[]  // Added optional keywords property
 }
 
 // Hardcoded blog posts for development
@@ -72,7 +73,8 @@ Contact us today for a free security assessment:
 - Office: 110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008
 
 Stay secure!`,
-    readingTime: 3
+    readingTime: 3,
+    keywords: ['cybersecurity', 'Kolhapur', 'Maharashtra', 'business protection', 'digital security']  // Added keywords
   },
   {
     slug: 'importance-of-cybersecurity',
@@ -186,7 +188,8 @@ Contact Cybria Secure today to discuss your cybersecurity needs:
 - Phone: +91 80804 24274
 - Email: sales@cybriasecure.com
 - Location: Kolhapur, serving all Maharashtra`,
-    readingTime: 5
+    readingTime: 5,
+    keywords: ['small business security', 'cybersecurity tips', 'Maharashtra businesses', 'phishing protection']  // Added keywords
   },
   {
     slug: 'banking-security-guide',
@@ -339,7 +342,8 @@ Contact Information:
 - Phone: +91 80804 24274
 - Email: banking@cybriasecure.com
 - Office: Kolhapur, serving all Maharashtra banks`,
-    readingTime: 7
+    readingTime: 7,
+    keywords: ['banking security', 'RBI compliance', 'financial security', 'ATM protection', 'online banking safety']  // Added keywords
   }
 ]
 

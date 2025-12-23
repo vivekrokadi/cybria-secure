@@ -15,7 +15,6 @@ export default function BlogCard({ post }: BlogCardProps) {
     timeZone: 'Asia/Kolkata'
   })
 
-
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -44,7 +43,6 @@ export default function BlogCard({ post }: BlogCardProps) {
 
   return (
     <>
-      
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -55,7 +53,6 @@ export default function BlogCard({ post }: BlogCardProps) {
         itemType="https://schema.org/BlogPosting"
         className="group relative bg-[#1a2236] rounded-2xl overflow-hidden border border-gray-800 hover:border-transparent transition-all duration-300 hover:shadow-2xl hover:shadow-[#2B7BE4]/10 focus-within:ring-2 focus-within:ring-[#2B7BE4] focus-within:outline-none"
       >
-        
         <div className="relative h-48 bg-gradient-to-br from-[#2B7BE4]/20 to-[#7C3AED]/20 overflow-hidden" aria-hidden="true">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-16 h-16 bg-gradient-to-br from-[#2B7BE4] to-[#7C3AED] rounded-full flex items-center justify-center">
@@ -63,7 +60,6 @@ export default function BlogCard({ post }: BlogCardProps) {
             </div>
           </div>
           
-         
           {post.image && (
             <Image
               src={post.image}
@@ -77,14 +73,11 @@ export default function BlogCard({ post }: BlogCardProps) {
           )}
         </div>
 
-        
         <div className="p-6">
-          
           <span className="inline-block px-3 py-1 bg-[#2B7BE4]/10 text-[#2B7BE4] text-xs font-semibold rounded-full mb-4">
             {post.category}
           </span>
 
-          
           <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#2B7BE4] transition-colors">
             <Link 
               href={`/blog/${post.slug}`}
@@ -96,7 +89,6 @@ export default function BlogCard({ post }: BlogCardProps) {
             </Link>
           </h3>
 
-          
           <p 
             className="text-gray-400 text-sm mb-6 line-clamp-3"
             itemProp="description"
@@ -104,7 +96,6 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.excerpt}
           </p>
 
-         
           <div className="flex flex-col sm:flex-row sm:items-center justify-between text-sm text-gray-500 mb-6 gap-3">
             <div className="flex flex-wrap items-center gap-4">
               <div 
@@ -130,12 +121,11 @@ export default function BlogCard({ post }: BlogCardProps) {
             </div>
           </div>
 
-          
           <Link
             href={`/blog/${post.slug}`}
             className="inline-flex items-center px-4 py-2 text-[#2B7BE4] font-medium hover:text-[#FF5CA8] transition-colors group/link focus:outline-none focus:ring-2 focus:ring-[#2B7BE4] focus:ring-offset-2 focus:ring-offset-[#1a2236] rounded"
             aria-label={`Read full article: ${post.title}`}
-            prefetch={false} 
+            prefetch={false}
           >
             <span>Read Article</span>
             <FiArrowRight 
@@ -145,17 +135,24 @@ export default function BlogCard({ post }: BlogCardProps) {
           </Link>
         </div>
 
-       
         <div 
           className="absolute inset-0 bg-gradient-to-t from-[#1a2236] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
           aria-hidden="true"
         />
         
-       
         <meta itemProp="publisher" content="Cybria Secure" />
         <meta itemProp="inLanguage" content="en-IN" />
+        
+        {/* Fixed keywords check with proper type handling */}
         {post.keywords && (
-          <meta itemProp="keywords" content={post.keywords} />
+          <meta 
+            itemProp="keywords" 
+            content={
+              Array.isArray(post.keywords) 
+                ? post.keywords.join(', ') 
+                : post.keywords
+            } 
+          />
         )}
       </article>
     </>
