@@ -143,7 +143,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         <meta itemProp="publisher" content="Cybria Secure" />
         <meta itemProp="inLanguage" content="en-IN" />
         
-        {/* Fixed keywords check with proper type handling */}
+        
         {post.keywords && (
           <meta 
             itemProp="keywords" 

@@ -72,7 +72,7 @@ export default function Services() {
             <span className="text-white"> Services</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Comprehensive security solutions tailored for businesses in India.
+            Comprehensive cybersecurity solutions tailored to modern businesses—designed to scale, adapt, and protect in an evolving global threat landscape.
           </p>
         </div>
 

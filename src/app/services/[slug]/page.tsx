@@ -359,32 +359,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
           </div>
 
-          {/* Local Service Coverage */}
-          <div className="bg-gradient-to-r from-[#2B7BE4]/10 via-[#FF5CA8]/10 to-[#7C3AED]/10 rounded-2xl p-8 mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">
-              Available in Maharashtra Cities
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {[
-                { city: 'Kolhapur', desc: 'Primary Service Hub' },
-                { city: 'Ichalkaranji', desc: 'Textile Industry Focus' },
-                { city: 'Miraj', desc: 'Healthcare & Medical' },
-                { city: 'Sangli', desc: 'Banking & Finance' },
-                { city: 'Solapur', desc: 'Industrial Sector' },
-              ].map((location) => (
-                <div
-                  key={location.city}
-                  className="bg-[#1a2236]/50 rounded-xl p-4 text-center border border-gray-800 hover:border-[#2B7BE4] transition-colors"
-                >
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#2B7BE4] to-[#7C3AED] rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-white font-bold text-sm">{location.city[0]}</span>
-                  </div>
-                  <h4 className="font-bold text-white mb-1">{location.city}</h4>
-                  <p className="text-gray-400 text-xs">{location.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          
+          
 
           {/* CTA Section */}
           <div className="text-center">
@@ -392,7 +368,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               Ready to Implement {service.title}?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Contact our cybersecurity experts for a consultation tailored to your business needs.
+              Speak with our cybersecurity specialists to evaluate your risks, strengthen defenses, and future-proof your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

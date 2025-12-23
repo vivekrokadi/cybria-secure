@@ -53,7 +53,7 @@ export default function Testimonials() {
             <span className="text-gradient">Clients Say</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Trusted by businesses across Kolhapur, Sangli, Solapur, Ichalkaranji, and Miraj
+            Trusted by organizations ranging from fast-growing local enterprises to established businesses across multiple regions and sectors.
           </p>
         </div>
 

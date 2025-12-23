@@ -71,7 +71,7 @@ export default function ContactPage() {
               <span className="text-gradient">Touch</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Ready to secure your digital assets? Contact our cybersecurity experts in Kolhapur for a free consultation.
+              Ready to secure your digital assets? Contact our cybersecurity experts for a free consultation.
             </p>
           </div>
 
@@ -146,30 +146,6 @@ export default function ContactPage() {
                 </p>
                 
                 <ContactForm />
-              </div>
-
-              {/* Local SEO Content */}
-              <div className="mt-12 bg-gradient-to-r from-[#2B7BE4]/10 via-[#FF5CA8]/10 to-[#7C3AED]/10 rounded-2xl p-8 border border-[#2B7BE4]/20">
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Cybria Secure - Your Local Cybersecurity Partner
-                </h3>
-                <div className="prose prose-lg prose-invert max-w-none">
-                  <p className="text-gray-300">
-                    As the leading cybersecurity service provider in <strong>Kolhapur</strong>, we serve businesses across 
-                    <strong> Ichalkaranji, Miraj, Sangli, and Solapur</strong>. Our local presence allows us to provide 
-                    immediate on-site support and personalized security solutions tailored to the unique needs of 
-                    businesses in Maharashtra.
-                  </p>
-                  <p className="text-gray-300 mt-4">
-                    Whether you need <strong>incident response</strong> for a security breach, <strong>risk assessment</strong> 
-                    for regulatory compliance, or <strong>cybersecurity training</strong> for your employees, our team of 
-                    certified professionals is ready to help secure your digital infrastructure.
-                  </p>
-                  <p className="text-gray-300 mt-4">
-                    Contact us today for a <strong>free security audit</strong> and discover how we can protect your 
-                    business from evolving cyber threats.
-                  </p>
-                </div>
               </div>
             </div>
           </div>

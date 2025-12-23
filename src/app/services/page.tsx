@@ -31,7 +31,7 @@ const services = [
       "Vulnerability Assessment & Penetration Testing",
     ],
     gradient: "from-[#2B7BE4] to-[#3B82F6]",
-    slug: "cyber-security"
+    slug: "cyber-security",
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const services = [
       "Continuous Monitoring & Reporting",
     ],
     gradient: "from-[#FF5CA8] to-[#EC4899]",
-    slug: "governance-risk-assessment"
+    slug: "governance-risk-assessment",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const services = [
       "Custom Training Modules",
     ],
     gradient: "from-[#7C3AED] to-[#8B5CF6]",
-    slug: "training-awareness"
+    slug: "training-awareness",
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ const services = [
       "Secure Banking Applications",
     ],
     gradient: "from-[#2B7BE4] to-[#FF5CA8]",
-    slug: "banking-security"
+    slug: "banking-security",
   },
   {
     id: 5,
@@ -95,7 +95,7 @@ const services = [
       "Post-Incident Analysis",
     ],
     gradient: "from-[#FF5CA8] to-[#7C3AED]",
-    slug: "incident-response"
+    slug: "incident-response",
   },
 ];
 
@@ -134,8 +134,9 @@ export default function ServicesPage() {
               <span className="text-white"> Solutions</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Comprehensive protection services for businesses in India. From threat prevention
-              to incident response, we've got you covered.
+              End-to-end cybersecurity protection for modern businesses — from
+              proactive threat prevention to rapid incident response and
+              recovery.
             </p>
           </div>
 
@@ -227,70 +228,6 @@ export default function ServicesPage() {
               >
                 Call +91 80804 24274
               </a>
-            </div>
-          </div>
-
-          {/* Local SEO Section */}
-          <div className="mt-16">
-            <div className="prose prose-lg prose-invert max-w-none">
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Cybersecurity Services Across Maharashtra
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-xl font-bold text-white mb-4">
-                    Why Choose Local Cybersecurity?
-                  </h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-[#2B7BE4] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-300">
-                        Immediate on-site support in Kolhapur and surrounding
-                        areas
-                      </span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-[#FF5CA8] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-300">
-                        Understanding of local business requirements and
-                        regulations
-                      </span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-[#7C3AED] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-300">
-                        Cost-effective solutions tailored for Maharashtra
-                        businesses
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-white mb-4">
-                    Our Service Areas
-                  </h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-center">
-                      <div className="w-3 h-3 bg-gradient-to-r from-[#2B7BE4] to-[#FF5CA8] rounded-full mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-300">
-                        Kolhapur: Manufacturing & Educational Institutions
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-3 h-3 bg-gradient-to-r from-[#FF5CA8] to-[#7C3AED] rounded-full mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-300">
-                        Ichalkaranji: Textile & Small Industries
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-3 h-3 bg-gradient-to-r from-[#7C3AED] to-[#2B7BE4] rounded-full mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-300">
-                        Miraj, Sangli, Solapur: Healthcare, Banking & Commercial
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </div>

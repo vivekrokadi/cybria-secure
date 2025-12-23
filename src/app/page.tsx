@@ -295,8 +295,8 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center justify-center mt-6 text-gray-500 text-sm">
                     <FiCheckCircle className="w-4 h-4 mr-2" />
-                    Serving businesses across India with uniform security
-                    standards and localized expertise
+                    Serving businesses across Globe with uniform security
+                    standards and expertise
                   </div>
                 </div>
               </div>
