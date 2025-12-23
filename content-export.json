@@ -1,0 +1,133 @@
+{
+  "company": {
+    "name": "Cybria Secure",
+    "tagline": "Defending your digital existence.",
+    "heroLine": "From Threats to Trust – We Secure It All.",
+    "description": "We are problem-solvers! Cybria Secure, a leading cyber security risk advisory firm that helps organizations reduce risk & enhance competitive advantage. With a core team of experienced domain experts and certified professionals, we offer economically viable solutions to all our valued customers."
+  },
+  "contact": {
+    "address": "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008",
+    "email": "sales@cybriasecure.com",
+    "phones": [
+      "+91 80804 24274",
+      "+91 75591 35608"
+    ],
+    "social": {
+      "instagram": "https://instagram.com/cybriasecure",
+      "linkedin": "https://linkedin.com/company/cybriasecure"
+    }
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "Cyber Security",
+      "slug": "cyber-security",
+      "description": "Protect systems, networks and data from cyber threats.",
+      "details": "Comprehensive security solutions including network security, endpoint protection, data encryption, and threat monitoring to safeguard your digital infrastructure from evolving cyber threats."
+    },
+    {
+      "id": 2,
+      "title": "Governance Risk Assessment",
+      "slug": "governance-risk-assessment",
+      "description": "Identify, assess and manage cybersecurity risks.",
+      "details": "Regular security audits, compliance checks, risk assessment frameworks, and governance structures to ensure your business meets industry standards and regulations."
+    },
+    {
+      "id": 3,
+      "title": "Training and Awareness",
+      "slug": "training-awareness",
+      "description": "Empower your team with cybersecurity awareness.",
+      "details": "Customized training programs, phishing simulations, security workshops, and ongoing awareness campaigns to educate employees and prevent security breaches."
+    },
+    {
+      "id": 4,
+      "title": "Banking Security",
+      "slug": "banking-security",
+      "description": "Specialized security for financial institutions.",
+      "details": "Bank-grade security solutions including fraud detection, transaction monitoring, secure banking applications, and regulatory compliance for financial institutions."
+    },
+    {
+      "id": 5,
+      "title": "Incident Response",
+      "slug": "incident-response",
+      "description": "24/7 incident response services.",
+      "details": "Rapid response team, forensic investigation, breach containment, recovery planning, and post-incident analysis to minimize damage from security incidents."
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Ashok Patil",
+      "role": "CEO, Manufacturing Company",
+      "content": "Cybria Secure transformed our cybersecurity posture. Their team in Kolhapur provided excellent on-site support and helped us achieve compliance with industry standards.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "name": "Harshad More",
+      "role": "IT Manager, Banking Sector",
+      "content": "The banking security solutions provided by Cybria Secure are exceptional. Their understanding of financial sector requirements in Maharashtra is impressive.",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "name": "Asmita Khamkar",
+      "role": "Director, Healthcare Facility",
+      "content": "Our patient data security was a major concern. Cybria Secure implemented robust protection measures and provided excellent training to our staff in Miraj.",
+      "rating": 5
+    }
+  ],
+  "locations": [
+    {
+      "name": "Kolhapur",
+      "slug": "kolhapur",
+      "description": "Cybersecurity services for manufacturing, education, and business sectors in Kolhapur.",
+      "keySectors": ["Manufacturing", "Education", "Healthcare", "Retail"]
+    },
+    {
+      "name": "Ichalkaranji",
+      "slug": "ichalkaranji",
+      "description": "Security solutions for textile industries and small businesses in Ichalkaranji.",
+      "keySectors": ["Textile", "Small Industries", "Manufacturing"]
+    },
+    {
+      "name": "Miraj",
+      "slug": "miraj",
+      "description": "Healthcare cybersecurity and medical data protection services in Miraj.",
+      "keySectors": ["Healthcare", "Medical", "Pharmaceutical"]
+    },
+    {
+      "name": "Sangli",
+      "slug": "sangli",
+      "description": "Banking security and agricultural business protection in Sangli.",
+      "keySectors": ["Banking", "Agriculture", "Financial Services"]
+    },
+    {
+      "name": "Solapur",
+      "slug": "solapur",
+      "description": "Industrial and commercial cybersecurity solutions in Solapur.",
+      "keySectors": ["Industrial", "Commercial", "Manufacturing"]
+    }
+  ],
+  "seo": {
+    "primaryKeywords": [
+      "cybersecurity Kolhapur",
+      "security services Maharashtra",
+      "cyber protection",
+      "incident response",
+      "risk assessment",
+      "banking security",
+      "data protection",
+      "network security"
+    ],
+    "localKeywords": [
+      "cybersecurity services in Kolhapur",
+      "cyber security company Ichalkaranji",
+      "Miraj cybersecurity experts",
+      "Sangli security services",
+      "Solapur cyber protection",
+      "Maharashtra cybersecurity firm"
+    ],
+    "metaDescription": "Cybria Secure provides professional cybersecurity services in Kolhapur, Ichalkaranji, Miraj, Sangli, and Solapur. Protect your business from cyber threats with our expert solutions."
+  }
+}

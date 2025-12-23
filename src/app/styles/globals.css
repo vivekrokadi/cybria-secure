@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+
+html, body {
+  @apply bg-black text-white antialiased;
+}
+
+
+:root{
+  --brand-grad: linear-gradient(90deg, #2B7BE4 0%, #FF5CA8 50%, #7C3AED 100%);
+  --brand-primary: #0b1220;
+}
+
+/* Basic element defaults to match Tailwind utility expectations */
+html, body {
+  height: 100%;
+  background: var(--brand-primary);
+}
+
+/* tiny helper for visually-hidden / skip link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* For focus-visible outlines using tailwind utilities is preferred; this is just fallback */
+:focus {
+  outline: 2px solid rgba(43,123,228,0.9);
+  outline-offset: 2px;
+}
