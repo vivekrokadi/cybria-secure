@@ -101,7 +101,7 @@ export default function RootLayout({
         
       </head>
       <body 
-        className="min-h-screen bg-[#0b1220] text-white font-sans antialiased overflow-hidden"
+        className="min-h-screen bg-[#0b1220] text-white font-sans antialiased overflow-x-hiddenhidden"
         suppressHydrationWarning
       >
         <Header />
