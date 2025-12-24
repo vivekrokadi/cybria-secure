@@ -10,7 +10,7 @@ const GSAPHero = dynamic(() => import("./GSAPHero"), { ssr: false });
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url('/cybriasecure-logo.png')] bg-no-repeat bg-center">
-       <div className="absolute inset-0 bg-[#0F1729]/90"></div>
+       <div className="absolute inset-0 bg-[#0F1729]/60"></div>
 
       {/* Animated Background */}
       <div className="absolute inset-0">
