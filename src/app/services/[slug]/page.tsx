@@ -178,7 +178,7 @@ const serviceDetails = {
       },
       {
         icon: FiSettings,
-        title: 'Configuration Review/System Admin',
+        title: 'Configuration Review',
         description: 'Evaluates and manages system settings to ensure security, efficiency, and best practices alignment.',
         subPoints: [
           'System configuration auditing',

@@ -30,7 +30,7 @@ export default function HomePage() {
       <Services />
       <Testimonials />
 
-      <section className="py-20 bg-[#0b1220]">
+      <section className="py-20 bg-[#0b1220] overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="bg-gradient-to-r from-[#2B7BE4]/10 via-[#FF5CA8]/10 to-[#7C3AED]/10 rounded-3xl p-8 md:p-12">
