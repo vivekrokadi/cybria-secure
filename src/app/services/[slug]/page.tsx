@@ -8,7 +8,25 @@ import {
   FiCreditCard, 
   FiAlertTriangle,
   FiCheckCircle,
-  FiArrowLeft
+  FiArrowLeft,
+  FiSearch,
+  FiLock,
+  FiGlobe,
+  FiSmartphone,
+  FiWifi,
+  FiCloud,
+  FiCode,
+  FiCpu,
+  FiSettings,
+  FiTarget,
+  FiMonitor,
+  FiFileText,
+  FiUsers,
+  FiMail,
+  FiAlertCircle,
+  FiClipboard,
+  FiTrendingUp,
+  FiShieldOff
 } from 'react-icons/fi'
 
 interface ServicePageProps {
@@ -46,6 +64,140 @@ const serviceDetails = {
       { step: 3, title: 'Implementation', desc: 'Deployment of security solutions' },
       { step: 4, title: 'Monitoring', desc: '24/7 threat detection and response' },
       { step: 5, title: 'Optimization', desc: 'Continuous improvement and updates' }
+    ],
+    detailedContent: [
+      {
+        icon: FiSearch,
+        title: 'Vulnerability Assessment',
+        description: 'Vulnerability assessment is used to identify, quantify, and analyze security vulnerabilities in the IT infrastructure and applications.',
+        subPoints: [
+          'Uses various tools, techniques, and methodologies',
+          'Analyzes potential weaknesses and security flaws',
+          'Identifies exploitable vulnerabilities before attackers do',
+          'Provides actionable remediation recommendations'
+        ]
+      },
+      {
+        icon: FiLock,
+        title: 'Penetration Testing',
+        description: 'Ethical hacking to find and fix security holes before real attackers can exploit them.',
+        subPoints: [
+          'Proactive security testing by certified ethical hackers',
+          'Simulates real-world cyber attacks',
+          'Identifies exploitable vulnerabilities in systems',
+          'Provides detailed remediation guidance'
+        ]
+      },
+      {
+        icon: FiGlobe,
+        title: 'Web Application Security Assessment (SAST/DAST)',
+        description: 'Identifies and prioritizes highest severity risks affecting web applications and supporting infrastructure.',
+        subPoints: [
+          'Static Application Security Testing (SAST)',
+          'Dynamic Application Security Testing (DAST)',
+          'Application logic and design analysis',
+          'Automated and manual testing combination'
+        ]
+      },
+      {
+        icon: FiSmartphone,
+        title: 'Mobile Application Security Testing',
+        description: 'Evaluates security of mobile applications to identify and address vulnerabilities.',
+        subPoints: [
+          'iOS and Android application testing',
+          'Secure coding practices verification',
+          'Data storage and transmission security',
+          'Authentication and authorization testing'
+        ]
+      },
+      {
+        icon: FiMonitor,
+        title: 'Network Security Assessment',
+        description: 'Discovers and identifies risks in network environments to prevent data leakage and intrusions.',
+        subPoints: [
+          'Network architecture review',
+          'Firewall and router configuration analysis',
+          'Intrusion detection system evaluation',
+          'Data leakage prevention assessment'
+        ]
+      },
+      {
+        icon: FiCode,
+        title: 'Secure Code Review',
+        description: 'Manual and automatic review of application source code to uncover hidden vulnerabilities.',
+        subPoints: [
+          'Injection flaws detection',
+          'Cross-site scripting bug identification',
+          'Weak cryptography analysis',
+          'Insecure coding practices detection'
+        ]
+      },
+      {
+        icon: FiCloud,
+        title: 'Cloud Security Assessment',
+        description: 'Comprehensive evaluation of cloud environment to identify and address security risks.',
+        subPoints: [
+          'Cloud infrastructure analysis',
+          'Multi-cloud security assessment',
+          'Data protection in cloud',
+          'Compliance with cloud security standards'
+        ]
+      },
+      {
+        icon: FiCpu,
+        title: 'IoT Security',
+        description: 'Protects Internet of Things devices, networks, and data from cyber threats.',
+        subPoints: [
+          'IoT device vulnerability assessment',
+          'Network communication security',
+          'Firmware security analysis',
+          'IoT protocol security evaluation'
+        ]
+      },
+      {
+        icon: FiSettings,
+        title: 'VMDR (Vulnerability Management, Detection, and Response)',
+        description: 'Integrated approach to identifying, managing, detecting, and responding to security vulnerabilities.',
+        subPoints: [
+          'Continuous vulnerability scanning',
+          'Real-time threat detection',
+          'Automated response mechanisms',
+          'Remediation workflow management'
+        ]
+      },
+      {
+        icon: FiTarget,
+        title: 'Threat Modelling',
+        description: 'Structured approach to identify, assess, and prioritize potential threats and vulnerabilities.',
+        subPoints: [
+          'Attack surface analysis',
+          'Threat identification and categorization',
+          'Risk assessment and prioritization',
+          'Countermeasure design'
+        ]
+      },
+      {
+        icon: FiSettings,
+        title: 'Configuration Review/System Admin',
+        description: 'Evaluates and manages system settings to ensure security, efficiency, and best practices alignment.',
+        subPoints: [
+          'System configuration auditing',
+          'Security baseline compliance',
+          'Performance optimization',
+          'Patch management review'
+        ]
+      },
+      {
+        icon: FiWifi,
+        title: 'Wireless Security',
+        description: 'Measures and protocols to protect wireless networks and transmitted data from unauthorized access.',
+        subPoints: [
+          'Wireless network penetration testing',
+          'Wi-Fi security configuration review',
+          'Wireless intrusion detection',
+          'Encryption protocol analysis'
+        ]
+      }
     ]
   },
   'governance-risk-assessment': {
@@ -76,6 +228,107 @@ const serviceDetails = {
       { step: 3, title: 'Risk Evaluation', desc: 'Prioritize risks based on impact' },
       { step: 4, title: 'Risk Treatment', desc: 'Implement risk mitigation strategies' },
       { step: 5, title: 'Monitoring', desc: 'Continuous risk assessment' }
+    ],
+    detailedContent: [
+      {
+        icon: FiShield,
+        title: 'ISO 27001',
+        description: 'International standard for Information Security Management System (ISMS) implementation.',
+        subPoints: [
+          'Systematic approach to information security',
+          'Confidentiality, integrity, and availability assurance',
+          'Best practices framework implementation',
+          'ISMS development and maintenance'
+        ]
+      },
+      {
+        icon: FiCreditCard,
+        title: 'PCI DSS',
+        description: 'Security standards for companies handling credit card information.',
+        subPoints: [
+          'Cardholder data protection',
+          'Secure payment processing environment',
+          'Regular security testing requirements',
+          'Access control measures implementation'
+        ]
+      },
+      {
+        icon: FiFileText,
+        title: 'GDPR',
+        description: 'European Union data protection regulation for personal data privacy.',
+        subPoints: [
+          'Data protection impact assessments',
+          'Privacy by design implementation',
+          'Data breach notification compliance',
+          'Individual rights management'
+        ]
+      },
+      {
+        icon: FiSettings,
+        title: 'IT General Controls (ITGC)',
+        description: 'Fundamental controls for IT infrastructure integrity, security, and reliability.',
+        subPoints: [
+          'Access control management',
+          'Change management processes',
+          'IT operations monitoring',
+          'Backup and recovery procedures'
+        ]
+      },
+      {
+        icon: FiAlertCircle,
+        title: 'IT Risk Assessment',
+        description: 'Process of identifying, evaluating, and prioritizing IT infrastructure risks.',
+        subPoints: [
+          'Threat and vulnerability identification',
+          'Risk impact and likelihood evaluation',
+          'Mitigation strategy development',
+          'Continuous risk monitoring'
+        ]
+      },
+      {
+        icon: FiUsers,
+        title: 'Third-Party Risk Assessment',
+        description: 'Evaluates risks associated with external vendors and service providers.',
+        subPoints: [
+          'Vendor security posture assessment',
+          'Contractual compliance verification',
+          'Data protection agreement review',
+          'Service level agreement monitoring'
+        ]
+      },
+      {
+        icon: FiLock,
+        title: 'Personal Data Protection Act',
+        description: 'Ensures compliance with data protection regulations.',
+        subPoints: [
+          'Gap analysis and compliance assessment',
+          'Privacy policy development',
+          'Data classification and protection',
+          'Employee training and awareness'
+        ]
+      },
+      {
+        icon: FiGlobe,
+        title: 'Social Media Risk Assessment',
+        description: 'Identifies risks associated with social media platforms.',
+        subPoints: [
+          'Brand reputation risk analysis',
+          'Account security review',
+          'Privacy compliance audit',
+          'Incident response planning'
+        ]
+      },
+      {
+        icon: FiClipboard,
+        title: 'HIPAA',
+        description: 'US federal law for protecting sensitive patient health information.',
+        subPoints: [
+          'Patient data privacy protection',
+          'Electronic health transaction security',
+          'Healthcare compliance management',
+          'Data breach prevention measures'
+        ]
+      }
     ]
   },
   'training-awareness': {
@@ -106,6 +359,44 @@ const serviceDetails = {
       { step: 3, title: 'Implementation', desc: 'Conduct training sessions' },
       { step: 4, title: 'Testing', desc: 'Phishing simulations and assessments' },
       { step: 5, title: 'Evaluation', desc: 'Measure effectiveness and improve' }
+    ],
+    detailedContent: [
+      {
+        icon: FiShield,
+        title: 'Cyber Security Training',
+        description: 'Enhances team operational skills for preventing, detecting, and responding to cyber attacks.',
+        subPoints: [
+          'Email protection best practices',
+          'Web protection techniques',
+          'Social engineering awareness',
+          'Threat landscape overview',
+          'Password policy implementation'
+        ]
+      },
+      {
+        icon: FiMail,
+        title: 'Phishing Simulation',
+        description: 'Comprehensive strategy to transform organizational culture through awareness and ownership.',
+        subPoints: [
+          'Realistic phishing campaign simulations',
+          'Behavioral change tracking',
+          'Risk reduction through awareness',
+          'Customized phishing scenarios',
+          'Detailed reporting and analytics'
+        ]
+      },
+      {
+        icon: FiUsers,
+        title: 'Awareness Campaigns',
+        description: 'Tailored educational campaigns focusing on organization-specific threats.',
+        subPoints: [
+          'End-user security training',
+          'Phishing awareness programs',
+          'USB safety protocols',
+          'Social media security',
+          'Mobile device security'
+        ]
+      }
     ]
   },
   'banking-security': {
@@ -136,6 +427,56 @@ const serviceDetails = {
       { step: 3, title: 'Solution Design', desc: 'Design bank-specific security measures' },
       { step: 4, title: 'Implementation', desc: 'Deploy security solutions' },
       { step: 5, title: 'Continuous Audit', desc: 'Regular security audits and updates' }
+    ],
+    detailedContent: [
+      {
+        icon: FiSearch,
+        title: 'System Audits',
+        description: 'Comprehensive audit services to identify vulnerabilities and ensure regulatory compliance.',
+        subPoints: [
+          'Security and risk assessment',
+          'Regulatory compliance verification',
+          'IT infrastructure audit',
+          'Access control evaluation',
+          'Operational efficiency review'
+        ]
+      },
+      {
+        icon: FiClipboard,
+        title: 'Compliance Assessment Services',
+        description: 'Helps businesses meet industry-specific regulatory requirements.',
+        subPoints: [
+          'Regulatory compliance audits',
+          'Gap analysis and risk assessment',
+          'Policy and procedure review',
+          'Security control implementation',
+          'Compliance documentation'
+        ]
+      },
+      {
+        icon: FiTrendingUp,
+        title: 'Assurance & Strategy Services',
+        description: 'Provides confidence in processes and strategies through risk management.',
+        subPoints: [
+          'Risk assurance programs',
+          'Internal controls evaluation',
+          'Strategic planning support',
+          'Performance management',
+          'Governance and compliance'
+        ]
+      },
+      {
+        icon: FiShieldOff,
+        title: 'Cyber Policy',
+        description: 'Procedures and guidelines for maintaining robust cybersecurity practices.',
+        subPoints: [
+          'Data protection policies',
+          'Access control guidelines',
+          'Incident response procedures',
+          'Compliance framework',
+          'Security awareness protocols'
+        ]
+      }
     ]
   },
   'incident-response': {
@@ -167,10 +508,47 @@ const serviceDetails = {
       { step: 4, title: 'Eradication', desc: 'Remove threat from systems' },
       { step: 5, title: 'Recovery', desc: 'Restore systems and operations' },
       { step: 6, title: 'Lessons Learned', desc: 'Improve security measures' }
+    ],
+    detailedContent: [
+      {
+        icon: FiSearch,
+        title: 'Incident Detection and Investigation',
+        description: 'Proactive threat identification using advanced monitoring tools and techniques.',
+        subPoints: [
+          'Real-time threat monitoring',
+          'Suspicious activity detection',
+          'Root cause investigation',
+          'Minimal disruption operations',
+          'Advanced analytics integration'
+        ]
+      },
+      {
+        icon: FiAlertTriangle,
+        title: 'Incident Response and Malware Analysis',
+        description: 'Rapid containment and eradication of security threats with malware analysis.',
+        subPoints: [
+          'Immediate threat containment',
+          'Malware behavior analysis',
+          'Threat eradication strategies',
+          'Preventive measure development',
+          'Expert forensic analysis'
+        ]
+      },
+      {
+        icon: FiFileText,
+        title: 'Post-Incident Analysis and Reporting',
+        description: 'Comprehensive review of security incidents to strengthen future defenses.',
+        subPoints: [
+          'Incident impact assessment',
+          'Weakness identification',
+          'Detailed reporting',
+          'Security measure enhancement',
+          'Recurrence prevention strategies'
+        ]
+      }
     ]
   }
 } as const
-
 
 type ServiceKey = keyof typeof serviceDetails
 type ServiceDetail = typeof serviceDetails[ServiceKey]
@@ -331,6 +709,58 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
           </div>
 
+          {/* Detailed Service Content */}
+          {service.detailedContent && (
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-white mb-8 text-center">
+                Comprehensive {service.title} Services
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {service.detailedContent.map((item, index) => {
+                  const ItemIcon = item.icon
+                  return (
+                    <div
+                      key={index}
+                      className="bg-[#1a2236] rounded-2xl p-6 border border-gray-800 hover:border-[#2B7BE4]/50 transition-all duration-300 group"
+                    >
+                      <div className="flex items-start space-x-4 mb-4">
+                        <div className={`p-3 rounded-xl bg-gradient-to-br ${
+                          index % 3 === 0 ? 'from-[#2B7BE4] to-[#3B82F6]' :
+                          index % 3 === 1 ? 'from-[#FF5CA8] to-[#EC4899]' :
+                          'from-[#7C3AED] to-[#8B5CF6]'
+                        }`}>
+                          <ItemIcon className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                          <p className="text-gray-400 text-sm">{item.description}</p>
+                        </div>
+                      </div>
+                      
+                      {item.subPoints && (
+                        <div className="mt-4 space-y-2">
+                          {item.subPoints.map((point, pointIndex) => (
+                            <div
+                              key={pointIndex}
+                              className="flex items-start space-x-2 text-sm"
+                            >
+                              <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${
+                                pointIndex % 3 === 0 ? 'bg-[#2B7BE4]' :
+                                pointIndex % 3 === 1 ? 'bg-[#FF5CA8]' :
+                                'bg-[#7C3AED]'
+                              }`} />
+                              <span className="text-gray-300">{point}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Process */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
@@ -338,14 +768,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </h2>
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-linear-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] transform -translate-y-1/2 hidden lg:block " />
+              <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-linear-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] transform -translate-y-1/2 hidden lg:block" />
               
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative">
                 {service.process.map((item) => (
                   <div key={item.step} className="relative">
                     {/* Step Indicator */}
                     <div className="w-12 h-12 bg-[#1a2236] border-2 border-[#2B7BE4] rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
-                      <span className="text-white font-bold ">{item.step}</span>
+                      <span className="text-white font-bold">{item.step}</span>
                     </div>
                     
                     {/* Step Content */}
@@ -358,9 +788,6 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               </div>
             </div>
           </div>
-
-          
-          
 
           {/* CTA Section */}
           <div className="text-center">

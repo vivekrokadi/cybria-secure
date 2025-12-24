@@ -7,6 +7,7 @@ import {
   FiInstagram,
   FiLinkedin,
 } from "react-icons/fi";
+import { FaWhatsapp } from 'react-icons/fa';
 
 const services = [
   { name: "Cyber Security", href: "/services/cyber-security" },
@@ -51,24 +52,42 @@ export default function Footer() {
               Defending your digital existence. Leading cybersecurity services
               provider serving businesses across Globe.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-6">
               <a
                 href="https://www.linkedin.com/company/cybria-secure"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-[#1a2236] rounded-lg hover:bg-[#2B7BE4] transition-colors"
+                className="p-3 bg-[#1a2236] rounded-lg hover:bg-[#2B7BE4] transition-colors"
                 aria-label="LinkedIn"
               >
-                <FiLinkedin className="w-5 h-5" />
+                <FiLinkedin className="w-6 h-6" />
               </a>
               <a
                 href="https://instagram.com/cybria_secure"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-[#1a2236] rounded-lg hover:bg-gradient-to-r hover:from-[#2B7BE4] hover:via-[#FF5CA8] hover:to-[#7C3AED] transition-all duration-300"
+                className="p-3 bg-[#1a2236] rounded-lg hover:bg-gradient-to-r hover:from-[#2B7BE4] hover:via-[#FF5CA8] hover:to-[#7C3AED] transition-all duration-300"
                 aria-label="Instagram"
               >
-                <FiInstagram className="w-5 h-5" />
+                <FiInstagram className="w-6 h-6" />
+              </a>
+              <a
+                href="https://wa.me/918080424274?text=Hello%20Cybria%20Secure%2C%20I%20need%20cybersecurity%20assistance."
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="p-3 bg-gradient-to-r from-[#1a2236] to-[#2B7BE4]/10 rounded-lg hover:bg-gradient-to-r hover:from-[#25D366] hover:to-[#128C7E] transition-all duration-300 group relative overflow-hidden"
+                aria-label="Start WhatsApp chat with Cybria Secure"
+                title="Message us on WhatsApp for immediate help"
+              >
+                {/* WhatsApp gradient background effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#25D366]/0 via-[#25D366]/10 to-[#128C7E]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                <FaWhatsapp className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform" />
+
+                {/* Tooltip on hover (optional) */}
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                  Chat on WhatsApp
+                </div>
               </a>
             </div>
           </div>
