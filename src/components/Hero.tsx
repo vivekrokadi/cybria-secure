@@ -9,8 +9,11 @@ const GSAPHero = dynamic(() => import("./GSAPHero"), { ssr: false });
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url('/cybriasecure-logo.png')] bg-no-repeat bg-center">
-       <div className="absolute inset-0 bg-[#0F1729]/60"></div>
+    <section
+      className="relative min-h-[calc(100vh-68px)]
+ flex items-center justify-center overflow-hidden bg-[url('/cybriasecure-logo.png')] bg-no-repeat bg-center"
+    >
+      <div className="absolute inset-0 bg-[#0F1729]/60"></div>
 
       {/* Animated Background */}
       <div className="absolute inset-0">
@@ -26,9 +29,9 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-        
-
-          <h1 className="text-3xl sm:text-5xl text-gray-300 mb-2 leading-relaxed font-bold">From Threats to Trust – We Secure It All</h1>
+        <h1 className="text-3xl sm:text-5xl text-gray-300 mb-2 leading-relaxed font-bold">
+          From Threats to Trust – We Secure It All
+        </h1>
         <div className="mt-12 max-w-3xl mx-auto">
           <p className="text-[15px] sm:text-xl text-gray-300 mb-8 leading-relaxed font-medium ">
             We are problem-solvers! Cybria Secure, a leading cyber security risk
@@ -53,8 +56,6 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-
-        
       </div>
     </section>
   );

@@ -11,7 +11,7 @@ export default function ScrollReveal({ children, delay = 0 }: ScrollRevealProps)
   const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Only run GSAP if user hasn't opted for reduced motion
+    
     if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (elementRef.current) {
         elementRef.current.style.opacity = '1'
