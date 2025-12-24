@@ -7,6 +7,7 @@ import {
   FiBookOpen,
   FiCreditCard,
   FiAlertTriangle,
+  FiTarget
 } from "react-icons/fi";
 
 const services = [
@@ -55,6 +56,14 @@ const services = [
     gradient: "from-[#FF5CA8] to-[#7C3AED]",
     slug: "incident-response",
   },
+  {
+  id: 6,
+  title: "Red Teaming",
+  description: "We simulate real-world attacks to test your defenses and strengthen your response to real cyber threats.",
+  icon: FiTarget,
+  gradient: "from-[#10B981] to-[#059669]",
+  slug: "red-teaming",
+},
 ];
 
 export default function Services() {

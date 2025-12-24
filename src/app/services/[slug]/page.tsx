@@ -545,9 +545,141 @@ const serviceDetails = {
           'Security measure enhancement',
           'Recurrence prevention strategies'
         ]
-      }
+      },
+      
     ]
-  }
+  },
+  'red-teaming': {
+  title: 'Red Teaming',
+  icon: FiTarget,
+  description: 'We simulate live attack conditions to test your defense mechanisms, providing insights that help your team detect, respond to, and strengthen against actual cyber threats.',
+  gradient: 'from-[#10B981] to-[#059669]',
+  features: [
+    'Real-World Attack Simulation',
+    'Advanced Persistent Threat (APT) Emulation',
+    'Social Engineering Attacks',
+    'Physical Security Breach Testing',
+    'Network Penetration Testing',
+    'Application Security Testing',
+    'Wireless Network Attacks',
+    'Cloud Infrastructure Attacks'
+  ],
+  benefits: [
+    'Test detection and response capabilities in real-world scenarios',
+    'Identify security gaps before attackers do',
+    'Improve incident response team effectiveness',
+    'Validate security controls and configurations',
+    'Enhance overall security posture'
+  ],
+  process: [
+    { step: 1, title: 'Planning', desc: 'Define scope, rules of engagement, and objectives' },
+    { step: 2, title: 'Reconnaissance', desc: 'Gather intelligence about target environment' },
+    { step: 3, title: 'Initial Access', desc: 'Gain foothold using various attack vectors' },
+    { step: 4, title: 'Persistence', desc: 'Maintain access and avoid detection' },
+    { step: 5, title: 'Lateral Movement', desc: 'Expand access within the network' },
+    { step: 6, title: 'Data Exfiltration', desc: 'Simulate data theft scenarios' },
+    { step: 7, title: 'Reporting', desc: 'Detailed findings and recommendations' },
+    { step: 8, title: 'Remediation', desc: 'Assist with fixing identified vulnerabilities' }
+  ],
+  detailedContent: [
+    {
+      icon: FiTarget,
+      title: 'Advanced Persistent Threat (APT) Simulation',
+      description: 'Emulate sophisticated, long-term cyber attacks similar to nation-state actors.',
+      subPoints: [
+        'Multi-vector attack campaigns',
+        'Custom malware development',
+        'Command and control infrastructure',
+        'Data exfiltration simulation',
+        'Evasion technique testing'
+      ]
+    },
+    {
+      icon: FiUsers,
+      title: 'Social Engineering Attacks',
+      description: 'Test human vulnerabilities through psychological manipulation techniques.',
+      subPoints: [
+        'Spear phishing campaigns',
+        'Vishing (voice phishing) attacks',
+        'Physical tailgating attempts',
+        'USB drop attacks',
+        'Impersonation scenarios'
+      ]
+    },
+    {
+      icon: FiShield,
+      title: 'Physical Security Testing',
+      description: 'Assess physical security controls and access prevention mechanisms.',
+      subPoints: [
+        'Facility perimeter testing',
+        'Access control bypass attempts',
+        'Surveillance system evaluation',
+        'Social engineering at premises',
+        'Asset protection testing'
+      ]
+    },
+    {
+      icon: FiGlobe,
+      title: 'External Network Assessment',
+      description: 'Simulate external attacker attempting to breach network defenses.',
+      subPoints: [
+        'External perimeter scanning',
+        'Vulnerability exploitation',
+        'Firewall rule testing',
+        'VPN and remote access attacks',
+        'DDoS simulation testing'
+      ]
+    },
+    {
+      icon: FiMonitor,
+      title: 'Internal Network Penetration',
+      description: 'Simulate insider threats and compromised internal accounts.',
+      subPoints: [
+        'Privilege escalation attempts',
+        'Active Directory attacks',
+        'Internal lateral movement',
+        'Credential harvesting simulation',
+        'Data breach scenarios'
+      ]
+    },
+    {
+      icon: FiSmartphone,
+      title: 'Mobile & Wireless Attacks',
+      description: 'Test mobile device security and wireless network vulnerabilities.',
+      subPoints: [
+        'Wi-Fi network penetration',
+        'Bluetooth security testing',
+        'Mobile application attacks',
+        'Rogue access point deployment',
+        'Mobile device management bypass'
+      ]
+    },
+    {
+      icon: FiCloud,
+      title: 'Cloud Infrastructure Attacks',
+      description: 'Assess security of cloud environments and configurations.',
+      subPoints: [
+        'Cloud misconfiguration exploitation',
+        'Container security testing',
+        'Serverless function attacks',
+        'Cloud storage bucket testing',
+        'Identity and access management attacks'
+      ]
+    },
+    {
+      icon: FiCode,
+      title: 'Web Application Attacks',
+      description: 'Simulate advanced web application attacks and API security testing.',
+      subPoints: [
+        'OWASP Top 10 exploitation',
+        'API security testing',
+        'Business logic flaws',
+        'Authentication bypass attempts',
+        'Session management attacks'
+      ]
+    }
+  ]
+},
 } as const
 
 type ServiceKey = keyof typeof serviceDetails

@@ -25,15 +25,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <div className="w-full h-[70vh] sm:h-[100vh] flex mx-auto">
-        <video
-          src="/video.mp4"
-          autoPlay
-          muted
-          loop
-          className="w-full h-full  object-cover"
-        ></video>
-      </div>
+     
       <Hero />
       <Services />
       <Testimonials />
@@ -135,148 +127,20 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                <div className="bg-[#1a2236]/30 rounded-2xl p-6 border border-gray-800">
-                  <div className="flex items-center mb-6">
-                    <div className="p-3 bg-gradient-to-br from-[#2B7BE4]/20 to-[#FF5CA8]/20 rounded-lg mr-4">
-                      <FiMap className="w-6 h-6 text-[#2B7BE4]" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white">
-                      Our Global Reach
-                    </h3>
-                  </div>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        label: "Cities Covered",
-                        value: "100+",
-                        icon: FiGlobe,
-                        color: "from-[#2B7BE4] to-[#3B82F6]",
-                      },
-                      {
-                        label: "Businesses Protected",
-                        value: "500+",
-                        icon: FiUsers,
-                        color: "from-[#FF5CA8] to-[#EC4899]",
-                      },
-                      {
-                        label: "Response Time",
-                        value: "< 2 Hours",
-                        icon: FiClock,
-                        color: "from-[#7C3AED] to-[#8B5CF6]",
-                      },
-                      {
-                        label: "Uptime Guarantee",
-                        value: "99.9%",
-                        icon: FiCheckCircle,
-                        color: "from-[#10B981] to-[#34D399]",
-                      },
-                    ].map((stat, index) => {
-                      const Icon = stat.icon;
-                      return (
-                        <div
-                          key={index}
-                          className="flex items-center justify-between p-4 bg-[#0b1220]/50 rounded-lg hover:bg-[#0b1220]/70 transition-colors"
-                        >
-                          <div className="flex items-center">
-                            <div className="p-2 bg-[#1a2236] rounded-lg mr-4">
-                              <Icon className="w-5 h-5 text-gray-400" />
-                            </div>
-                            <span className="text-gray-300">{stat.label}</span>
-                          </div>
-                          <div
-                            className={`px-4 py-2 bg-gradient-to-r ${stat.color} text-white font-bold rounded-full`}
-                          >
-                            {stat.value}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="bg-[#1a2236]/30 rounded-2xl p-6 border border-gray-800">
-                  <div className="flex items-center mb-6">
-                    <div className="p-3 bg-gradient-to-br from-[#FF5CA8]/20 to-[#7C3AED]/20 rounded-lg mr-4">
-                      <FiTarget className="w-6 h-6 text-[#FF5CA8]" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white">
-                      How We Serve Globally
-                    </h3>
-                  </div>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        step: "01",
-                        title: "Centralized Strategy",
-                        description:
-                          "Unified security framework designed for global deployment",
-                        icon: FiGlobe,
-                      },
-                      {
-                        step: "02",
-                        title: "Implementation",
-                        description:
-                          "Customized deployment considering regional requirements",
-                        icon: FiMap,
-                      },
-                      {
-                        step: "03",
-                        title: "Continuous Monitoring",
-                        description:
-                          "24/7 security operations center covering all locations",
-                        icon: FiShield,
-                      },
-                      {
-                        step: "04",
-                        title: "Standardized Excellence",
-                        description:
-                          "Consistent service quality across every location",
-                        icon: FiCheckCircle,
-                      },
-                    ].map((item, index) => {
-                      const Icon = item.icon;
-                      return (
-                        <div
-                          key={index}
-                          className="flex items-start space-x-4 p-4 hover:bg-[#0b1220]/30 rounded-lg transition-colors group"
-                        >
-                          <div className="w-10 h-10 bg-gradient-to-br from-[#2B7BE4] to-[#7C3AED] rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                            <span className="text-white font-bold text-sm">
-                              {item.step}
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center mb-1">
-                              <div className="p-1.5 bg-[#1a2236] rounded mr-3">
-                                <Icon className="w-4 h-4 text-[#2B7BE4]" />
-                              </div>
-                              <h4 className="text-lg font-semibold text-white">
-                                {item.title}
-                              </h4>
-                            </div>
-                            <p className="text-gray-400 text-sm ml-9">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+             
 
               <div className="mt-12 pt-8 border-t border-gray-800">
                 <div className="text-center">
                   <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#2B7BE4]/10 to-[#7C3AED]/10 mb-6">
-                    <FiShield className="w-8 h-8 text-[#2B7BE4]" />
+                    {/* <FiShield className="w-8 h-8 text-[#2B7BE4]" /> */}
+                    <img src="/cybriasecure-logo.png" alt="Cybria Secure Logo" className="w-12" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">
-                    Ready to Secure Your Business Nationwide?
+                    Ready to Secure Your Business worldwide?
                   </h3>
                   <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Whether you operate in one city or multiple locations across
-                    India, we provide consistent, reliable cybersecurity
+                    Whether you operate in one contry or multiple contries across
+                    the Globe, we provide consistent, reliable cybersecurity
                     protection.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">

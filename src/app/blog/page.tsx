@@ -45,7 +45,7 @@ export default function BlogPage() {
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Expert articles, security tips, and industry updates from Cybria Secure professionals. 
-              Stay informed about the latest threats and protection strategies for businesses in Maharashtra.
+              Stay informed about the latest threats and protection strategies for businesses across the Globe.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function BlogPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Coming Soon</h3>
                 <p className="text-gray-400 mb-8">
-                  Our cybersecurity experts are preparing valuable insights and tips for businesses in Maharashtra.
+                  Our cybersecurity experts are preparing valuable insights and tips for businesses across the Globe 
                   Check back soon for our first blog posts!
                 </p>
                 <Link

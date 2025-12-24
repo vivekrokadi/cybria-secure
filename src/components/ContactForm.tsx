@@ -2,19 +2,31 @@
 
 import { useState, FormEvent } from 'react'
 import toast from 'react-hot-toast'
+import { FiUser, FiMail, FiPhone, FiMessageSquare } from 'react-icons/fi'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    service: '',
     message: '',
-    _honeypot: '', 
-    _timestamp: Date.now().toString(), 
+    _honeypot: '',
+    _timestamp: Date.now().toString(),
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [lastSubmitTime, setLastSubmitTime] = useState(0)
+
+  const services = [
+    'Cyber Security',
+    'Governance Risk Assessment',
+    'Training and Awareness',
+    'Banking Security',
+    'Incident Response',
+    'Red Teaming',
+    'Other Service'
+  ]
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -31,13 +43,18 @@ export default function ContactForm() {
       newErrors.email = 'Please enter a valid email address'
     }
 
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required'
+    } else if (!/^[\+]?[1-9][\d\s\-\(\)]{8,}$/.test(formData.phone.replace(/\s/g, ''))) {
+      newErrors.phone = 'Please enter a valid phone number'
+    }
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required'
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters'
     }
 
-   
     const now = Date.now()
     if (now - lastSubmitTime < 2000) {
       newErrors._form = 'Please wait a moment before submitting again'
@@ -62,7 +79,6 @@ export default function ContactForm() {
     setIsSubmitting(true)
     setLastSubmitTime(Date.now())
 
-    // Update timestamp for this submission
     const updatedFormData = {
       ...formData,
       _timestamp: Date.now().toString(),
@@ -90,13 +106,13 @@ export default function ContactForm() {
           name: '',
           email: '',
           phone: '',
+          service: '',
           message: '',
           _honeypot: '',
           _timestamp: Date.now().toString(),
         })
         setErrors({})
       } else {
-        // Handle specific errors from API
         if (data.message?.toLowerCase().includes('too fast')) {
           toast.error('Please wait a moment before submitting again')
         } else if (data.message?.toLowerCase().includes('rate limit') || data.message?.toLowerCase().includes('too many')) {
@@ -129,13 +145,11 @@ export default function ContactForm() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target
     
-    
     if ((name === '_honeypot' || name === '_timestamp') && value) {
-      
       console.warn('Hidden field modified - possible bot activity')
       return
     }
@@ -144,7 +158,6 @@ export default function ContactForm() {
       ...prev,
       [name]: value,
     }))
-    
     
     if (errors[name]) {
       setErrors((prev) => ({
@@ -155,8 +168,8 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      
+    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      {/* Honeypot Fields */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor="_honeypot" className="sr-only">Leave this field empty</label>
         <input
@@ -177,129 +190,170 @@ export default function ContactForm() {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-       
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+      {/* Compact Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Name Field */}
+        <div className="space-y-1">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-300">
             Full Name *
           </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className={`w-full px-4 py-3 bg-[#1a2236] border ${
-              errors.name ? 'border-red-500' : 'border-gray-700'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B7BE4] focus:border-transparent transition-colors`}
-            placeholder="Enter your full name"
-            required
-            disabled={isSubmitting}
-            minLength={2}
-            maxLength={100}
-          />
+          <div className="relative">
+            <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className={`w-full pl-10 pr-3 py-2 bg-[#1a2236] border ${
+                errors.name ? 'border-red-500' : 'border-gray-700'
+              } rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2B7BE4] focus:border-transparent transition-colors text-sm`}
+              placeholder="John Doe"
+              required
+              disabled={isSubmitting}
+              minLength={2}
+              maxLength={50}
+            />
+          </div>
           {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+            <p className="text-xs text-red-500">{errors.name}</p>
           )}
         </div>
 
-        
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-            Email Address *
+        {/* Email Field */}
+        <div className="space-y-1">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+            Email *
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className={`w-full px-4 py-3 bg-[#1a2236] border ${
-              errors.email ? 'border-red-500' : 'border-gray-700'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B7BE4] focus:border-transparent transition-colors`}
-            placeholder="Enter your email address"
-            required
-            disabled={isSubmitting}
-          />
+          <div className="relative">
+            <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={`w-full pl-10 pr-3 py-2 bg-[#1a2236] border ${
+                errors.email ? 'border-red-500' : 'border-gray-700'
+              } rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2B7BE4] focus:border-transparent transition-colors text-sm`}
+              placeholder="john@example.com"
+              required
+              disabled={isSubmitting}
+            />
+          </div>
           {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+            <p className="text-xs text-red-500">{errors.email}</p>
           )}
+        </div>
+
+        {/* Phone Field - Now Required */}
+        <div className="space-y-1">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
+            Phone Number *
+          </label>
+          <div className="relative">
+            <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className={`w-full pl-10 pr-3 py-2 bg-[#1a2236] border ${
+                errors.phone ? 'border-red-500' : 'border-gray-700'
+              } rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2B7BE4] focus:border-transparent transition-colors text-sm`}
+              placeholder="+91 98765 43210"
+              required
+              disabled={isSubmitting}
+              pattern="^[\+]?[1-9][\d\s\-\(\)]{8,}$"
+              maxLength={15}
+            />
+          </div>
+          {errors.phone && (
+            <p className="text-xs text-red-500">{errors.phone}</p>
+          )}
+          <p className="text-xs text-gray-500 mt-1">Include country code</p>
+        </div>
+
+        {/* Service Selection */}
+        <div className="space-y-1">
+          <label htmlFor="service" className="block text-sm font-medium text-gray-300">
+            Interested Service (Optional)
+          </label>
+          <select
+            id="service"
+            name="service"
+            value={formData.service}
+            onChange={handleChange}
+            className="w-full px-3 py-2 bg-[#1a2236] border border-gray-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2B7BE4] focus:border-transparent transition-colors text-sm"
+            disabled={isSubmitting}
+          >
+            <option value="">Select a service</option>
+            {services.map((service) => (
+              <option key={service} value={service}>
+                {service}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
-      
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-          Phone Number (Optional)
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className="w-full px-4 py-3 bg-[#1a2236] border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B7BE4] focus:border-transparent transition-colors"
-          placeholder="+91 00000 00000"
-          disabled={isSubmitting}
-          pattern="^[+]?[\d\s\-()]+$"
-          maxLength={20}
-        />
-        <p className="mt-1 text-xs text-gray-500">Include country code if outside India</p>
-      </div>
-
-      {/* Message Field */}
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+      {/* Message Field - More Compact */}
+      <div className="space-y-1">
+        <label htmlFor="message" className="block text-sm font-medium text-gray-300">
           Message *
         </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          rows={6}
-          className={`w-full px-4 py-3 bg-[#1a2236] border ${
-            errors.message ? 'border-red-500' : 'border-gray-700'
-          } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B7BE4] focus:border-transparent transition-colors resize-none`}
-          placeholder="Tell us about your security needs..."
-          required
-          disabled={isSubmitting}
-          minLength={10}
-          maxLength={1000}
-        />
+        <div className="relative">
+          <FiMessageSquare className="absolute left-3 top-3 text-gray-500 w-4 h-4" />
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={4}
+            className={`w-full pl-10 pr-3 py-2 bg-[#1a2236] border ${
+              errors.message ? 'border-red-500' : 'border-gray-700'
+            } rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2B7BE4] focus:border-transparent transition-colors text-sm resize-none`}
+            placeholder="Briefly describe your security needs..."
+            required
+            disabled={isSubmitting}
+            minLength={10}
+            maxLength={500}
+          />
+        </div>
         {errors.message && (
-          <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+          <p className="text-xs text-red-500">{errors.message}</p>
         )}
-        <div className="mt-1 flex justify-between text-xs">
-          <span className="text-gray-500">Minimum 10 characters</span>
-          <span className={`${formData.message.length > 1000 ? 'text-red-500' : 'text-gray-500'}`}>
-            {formData.message.length}/1000
+        <div className="flex justify-between text-xs mt-1">
+          <span className="text-gray-500">Min. 10 characters</span>
+          <span className={`${formData.message.length > 500 ? 'text-red-500' : 'text-gray-500'}`}>
+            {formData.message.length}/500
           </span>
         </div>
       </div>
 
-      {/* Submit Button */}
-      <div>
+      {/* Compact Submit Button */}
+      <div className="pt-2">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-lg hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-lg hover:shadow-xl hover:shadow-[#2B7BE4]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center">
-              <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
+              <svg className="animate-spin h-4 w-4 mr-2 text-white" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              Sending Message...
+              Sending...
             </span>
           ) : (
             'Send Message'
           )}
         </button>
-        <div className="mt-2 text-sm text-gray-400">
-          <p>* Required fields</p>
-          <p className="text-xs mt-1">By submitting, you agree to our privacy policy and consent to be contacted.</p>
+        <div className="mt-2 text-xs text-gray-400 text-center">
+          <p>* Required fields | Response within 24 hours</p>
+          <p className="mt-1">By submitting, you agree to our privacy policy</p>
         </div>
       </div>
     </form>

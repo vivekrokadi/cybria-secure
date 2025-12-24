@@ -330,9 +330,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">About Cybria Secure</h3>
                 <p className="text-gray-400">
-                  Leading cybersecurity services provider in Kolhapur, serving businesses across Maharashtra. 
-                  Our team of certified professionals is dedicated to protecting your digital assets and ensuring 
-                  your business stays secure in today's threat landscape.
+                 A trusted cybersecurity services provider helping organizations strengthen their security posture and protect critical digital assets in an increasingly complex threat landscape.
                 </p>
               </div>
             </div>
