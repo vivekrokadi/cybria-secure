@@ -6,6 +6,7 @@ import {
   FiBookOpen,
   FiCreditCard,
   FiAlertTriangle,
+  FiTarget
 } from "react-icons/fi";
 
 export const metadata: Metadata = {
@@ -97,6 +98,22 @@ const services = [
     gradient: "from-[#FF5CA8] to-[#7C3AED]",
     slug: "incident-response",
   },
+  {
+  id: 6,
+  title: "Red Teaming",
+  icon: FiTarget,
+  description:
+    "Simulate live attack conditions to test defense mechanisms, providing insights that help your team detect, respond to, and strengthen against actual cyber threats.",
+  features: [
+    "Advanced Persistent Threat (APT) Simulation",
+    "Social Engineering Attacks",
+    "Physical Security Testing",
+    "External & Internal Network Penetration",
+    "Cloud Infrastructure Attacks",
+  ],
+  gradient: "from-[#10B981] to-[#059669]",
+  slug: "red-teaming",
+},
 ];
 
 export default function ServicesPage() {

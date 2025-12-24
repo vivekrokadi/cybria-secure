@@ -51,7 +51,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       <article 
         itemScope
         itemType="https://schema.org/BlogPosting"
-        className="group relative bg-[#1a2236] rounded-2xl overflow-hidden border border-gray-800 hover:border-transparent transition-all duration-300 hover:shadow-2xl hover:shadow-[#2B7BE4]/10 focus-within:ring-2 focus-within:ring-[#2B7BE4] focus-within:outline-none"
+        className="group relative bg-[#1a2236] rounded-2xl overflow-hidden border border-gray-800 hover:border-transparent transition-all duration-300   focus-within:ring-2 focus-within:ring-[#2B7BE4] focus-within:outline-none"
       >
         <div className="relative h-48 bg-gradient-to-br from-[#2B7BE4]/20 to-[#7C3AED]/20 overflow-hidden" aria-hidden="true">
           <div className="absolute inset-0 flex items-center justify-center">
@@ -136,7 +136,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
 
         <div 
-          className="absolute inset-0 bg-gradient-to-t from-[#1a2236] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+          className="absolute inset-0 bg-gradient-to-t from-[#1a2236] to-transparent opacity-0 transition-opacity duration-300 pointer-events-none" 
           aria-hidden="true"
         />
         

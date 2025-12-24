@@ -190,9 +190,9 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Compact Grid Layout */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Name Field */}
+        
         <div className="space-y-1">
           <label htmlFor="name" className="block text-sm font-medium text-gray-300">
             Full Name *
@@ -246,7 +246,7 @@ export default function ContactForm() {
           )}
         </div>
 
-        {/* Phone Field - Now Required */}
+        
         <div className="space-y-1">
           <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
             Phone Number *
@@ -332,7 +332,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Compact Submit Button */}
+      
       <div className="pt-2">
         <button
           type="submit"
