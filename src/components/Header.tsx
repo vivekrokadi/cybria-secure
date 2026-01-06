@@ -18,6 +18,9 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
+  // Always show background on pages other than home
+  const isHomePage = pathname === '/'
+  
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30)
@@ -31,16 +34,29 @@ export default function Header() {
     setIsOpen(false)
   }, [pathname])
 
+  // Determine header background
+  const shouldShowBackground = !isHomePage || scrolled || isOpen
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-[#0b1220]/95 backdrop-blur-lg border-b border-gray-800' : 'bg-transparent'
+      shouldShowBackground ? 'bg-[#0b1220]/95 backdrop-blur-lg border-b border-gray-800' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="relative">
-              <img src="/cybriasecure-logo.png" className="w-16" alt="Cybria Secure Logo" />
+              {/* Added white logo version that works on dark backgrounds */}
+              <img 
+                src="/cybriasecure-logo.png" 
+                className="w-16" 
+                alt="Cybria Secure Logo"
+                style={{
+                  filter: shouldShowBackground 
+                    ? 'none' 
+                    : 'brightness(1) invert(0)' // Makes logo white on transparent header
+                }}
+              />
             </div>
           </Link>
 
@@ -53,7 +69,9 @@ export default function Header() {
                 className={`relative text-sm font-medium transition-colors hover:text-[#2B7BE4] ${
                   pathname === item.path 
                     ? 'text-[#2B7BE4]' 
-                    : 'text-gray-300'
+                    : shouldShowBackground 
+                      ? 'text-gray-300' 
+                      : 'text-white/90'
                 }`}
               >
                 {item.name}
@@ -65,7 +83,11 @@ export default function Header() {
 
             <Link
               href="/contact"
-              className="px-6 py-2 bg-linear-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-medium rounded-full hover:shadow-lg hover:shadow-[#2B7BE4]/20 transition-all duration-300"
+              className={`px-6 py-2 text-white font-medium rounded-full transition-all duration-300 ${
+                shouldShowBackground
+                  ? 'bg-linear-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] hover:shadow-lg hover:shadow-[#2B7BE4]/20'
+                  : 'bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:shadow-lg hover:shadow-white/10 border border-white/20'
+              }`}
             >
               Get Started
             </Link>
@@ -74,10 +96,15 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors"
+            className="lg:hidden p-2 rounded-lg transition-colors"
+            
             aria-label="Toggle menu"
           >
-            {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            {isOpen ? (
+              <FiX className="w-6 h-6" style={{ color: shouldShowBackground ? '#fff' : '#fff' }} />
+            ) : (
+              <FiMenu className="w-6 h-6" style={{ color: shouldShowBackground ? '#fff' : '#fff' }} />
+            )}
           </button>
         </div>
 
