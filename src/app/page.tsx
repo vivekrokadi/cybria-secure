@@ -50,9 +50,9 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 {[
                   {
-                    title: "Pan-India Coverage",
+                    title: "Pan-World Coverage",
                     description:
-                      "Unified security solutions available across all regions of India",
+                      "Unified security solutions available across all regions of the globe",
                     icon: FiGlobe,
                     features: [
                       "Service in 100+ cities",

@@ -18,7 +18,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
-  // Always show background on pages other than home
   const isHomePage = pathname === '/'
   
   useEffect(() => {
