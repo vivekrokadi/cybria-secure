@@ -61,7 +61,7 @@ const services = [
   title: "Red Teaming",
   description: "We simulate real-world attacks to test your defenses and strengthen your response to real cyber threats.",
   icon: FiTarget,
-  gradient: "from-[#10B981] to-[#059669]",
+  gradient: "from-[#EF4444] to-[#B91C1C]",
   slug: "red-teaming",
 },
 ];
@@ -88,10 +88,10 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
             <Link
-              key={service.id} // Move key prop here to the first element
+              key={service.id} 
               href={`/services/${service.slug}`}
               onClick={() => handleClick(service.slug)}
-              className="block group" // Added class for styling
+              className="block group"
             >
               <div className="relative bg-[#1a2236] rounded-2xl p-8 border border-gray-800 hover:border-transparent transition-all duration-300 hover:shadow-2xl hover:shadow-[#2B7BE4]/10 overflow-hidden h-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>

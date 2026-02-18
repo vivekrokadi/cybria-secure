@@ -111,7 +111,7 @@ const services = [
     "External & Internal Network Penetration",
     "Cloud Infrastructure Attacks",
   ],
-  gradient: "from-[#10B981] to-[#059669]",
+  gradient: "from-[#EF4444] to-[#B91C1C]",
   slug: "red-teaming",
 },
 ];
@@ -151,9 +151,7 @@ export default function ServicesPage() {
               <span className="text-white"> Solutions</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              End-to-end cybersecurity protection for modern businesses — from
-              proactive threat prevention to rapid incident response and
-              recovery.
+              End-to-end cybersecurity services that secure, strengthen, and scale your business in an ever-evolving digital threat environment.
             </p>
           </div>
 
