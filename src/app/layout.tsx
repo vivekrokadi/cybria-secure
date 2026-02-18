@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Toaster } from 'react-hot-toast'
 
-const inter = Inter({ 
+const outfit = Outfit({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-outfit ',
 })
 
 export const metadata: Metadata = {
@@ -92,16 +93,26 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={outfit.variable}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        
+        {/* Add font preload for better performance */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </head>
       <body 
-        className="min-h-screen bg-[#0b1220] text-white font-sans antialiased overflow-x-hiddenhidden"
+        className="min-h-screen bg-[#0b1220] text-white font-sans antialiased overflow-x-hidden"
+        style={{ fontFamily: 'var(--font-outfit), Roboto, system-ui, sans-serif' }}
         suppressHydrationWarning
       >
         <Header />
@@ -115,6 +126,7 @@ export default function RootLayout({
               background: '#1e293b',
               color: '#fff',
               border: '1px solid #334155',
+              fontFamily: 'var(--font-roboto), Roboto, system-ui, sans-serif',
             },
             success: {
               iconTheme: {

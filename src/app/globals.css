@@ -98,7 +98,7 @@ body{
   color: #D1D5DB;     /* gray-300 */
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-family:"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
   font-size: 0.875rem;
 }
 
