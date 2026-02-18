@@ -34,7 +34,7 @@ export default function Hero() {
         </h1>
         <div className="mt-12 max-w-3xl mx-auto">
           <p className="text-[15px] sm:text-xl text-gray-300 mb-8 leading-relaxed font-medium ">
-            We are problem-solvers! Cybria Secure, a leading cyber security risk
+            Cybria Secure, a leading cyber security risk
             advisory firm that helps organizations reduce risk & enhance
             competitive advantage. With a core team of experienced domain
             experts and certified professionals, we offer economically viable
