@@ -49,8 +49,7 @@ export default function Footer() {
               <img src="/logorm.png" className="w-24" alt="" />
             </div>
             <p className="text-gray-400 mb-6">
-              Defending your digital existence. Leading cybersecurity services
-              provider serving businesses across Globe.
+              
             </p>
             <div className="flex space-x-6">
               <a
