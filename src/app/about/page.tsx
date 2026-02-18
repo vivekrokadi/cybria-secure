@@ -72,10 +72,10 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold text-white">Our Mission</h2>
               </div>
               <p className="text-2xl text-center text-white mb-6">
-                "From Threats to Trust – We Secure It All."
+                From Threats to Trust – We Secure It All.
               </p>
               <p className="text-xl text-gray-300 text-center">
-                We are problem-solvers! Cybria Secure, a leading cyber security risk advisory firm that helps organizations reduce risk & enhance competitive advantage. With a core team of experienced domain experts and certified professionals, we offer economically viable solutions to all our valued customers.
+                Our mission is to empower organizations to overcome modern cybersecurity challenges by delivering integrated security solutions that combine advanced technology, strategic expertise, and continuous awareness. We aim to reduce risk arising from skill gaps, budget constraints, evolving threats, and human error through proactive protection and education
               </p>
             </div>
           </div>
