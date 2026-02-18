@@ -59,7 +59,7 @@ export default function Clients() {
     const scrollElement = scrollRef.current;
     if (!scrollElement) return;
 
-    const scrollSpeed = 0.4;
+    const scrollSpeed = 0.6;
 
     const smoothScroll = () => {
       if (!scrollElement) return;
