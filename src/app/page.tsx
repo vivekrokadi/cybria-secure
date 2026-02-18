@@ -13,6 +13,7 @@ import {
   FiClock,
   FiCheckCircle,
 } from "react-icons/fi";
+import Clients from "../components/Clients";
 
 export const metadata: Metadata = {
   title: "Cybria Secure | Leading Cybersecurity Services in Kolhapur",
@@ -27,6 +28,7 @@ export default function HomePage() {
     <>
      
       <Hero />
+      <Clients />
       <Services />
       <Testimonials />
 
