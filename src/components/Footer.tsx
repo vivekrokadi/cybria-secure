@@ -46,7 +46,7 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-6">
-              <img src="/logorm.png" className="w-24" alt="" />
+              <img src="/cybriasecure-logo.png" className="w-16" alt="" />
             </div>
             <p className="text-gray-400 mb-6">
               
