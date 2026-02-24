@@ -274,7 +274,11 @@ const serviceDetails = {
         desc: "Implement risk mitigation strategies",
       },
       { step: 5, title: "Monitoring", desc: "Continuous risk assessment" },
-      { step: 6, title: "Reporting", desc: "Regular risk reporting and updates" },
+      {
+        step: 6,
+        title: "Reporting",
+        desc: "Regular risk reporting and updates",
+      },
     ],
     detailedContent: [
       {
@@ -936,9 +940,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* Service Header */}
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-12">
-            <div className="flex items-center space-x-4 mb-6 lg:mb-0">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 space-x-0 lg:space-x-4 mb-6 lg:mb-0">
               <div
-                className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient}`}
+                className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient} self-start`}
               >
                 <Icon className="w-8 h-8 text-white" />
               </div>
