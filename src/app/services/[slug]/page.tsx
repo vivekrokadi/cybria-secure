@@ -1075,32 +1075,79 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
           )}
 
-          {/* Process */}
+          {/* process */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">
               Our Implementation Process
             </h2>
+
             <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-linear-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] transform -translate-y-1/2 hidden lg:block" />
+              <div className="absolute left-0 right-0 top-[2.5rem] h-1 hidden lg:block z-0">
+                <div className="w-full h-full bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] rounded-full"></div>
+              </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative">
-                {service.process.map((item) => (
-                  <div key={item.step} className="relative">
-                    {/* Step Indicator */}
-                    <div className="w-12 h-12 bg-[#1a2236] border-2 border-[#2B7BE4] rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
-                      <span className="text-white font-bold">{item.step}</span>
-                    </div>
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 lg:hidden z-0">
+                <div className="w-full h-full bg-gradient-to-b from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED]"></div>
+              </div>
 
-                    {/* Step Content */}
-                    <div className="text-center">
-                      <h3 className="text-xl font-bold text-white mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm">{item.desc}</p>
+              <div className="relative z-10">
+                <div className="block lg:hidden space-y-6 ml-8">
+                  {service.process.map((item) => (
+                    <div key={item.step} className="relative flex gap-4">
+                      {/* Step Circle */}
+                      <div className="absolute -left-8 top-0">
+                        <div className="w-10 h-10 bg-[#1a2236] border-2 border-[#2B7BE4] rounded-full flex items-center justify-center shadow-lg">
+                          <span className="text-white font-bold text-sm">
+                            {item.step}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Content Card */}
+                      <div className="flex-1 bg-[#1a2236] rounded-lg p-4 border border-gray-800 ml-4">
+                        <h3 className="text-lg font-bold text-white mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm">{item.desc}</p>
+                      </div>
                     </div>
+                  ))}
+                </div>
+
+                <div className="hidden lg:block relative">
+                  <div className="flex justify-between items-start gap-4">
+                    {service.process.map((item, index) => {
+                      const stepCount = service.process.length;
+                      const widthPercentage = `${100 / stepCount}%`;
+
+                      return (
+                        <div
+                          key={item.step}
+                          className="relative flex flex-col items-center"
+                          style={{ width: widthPercentage }}
+                        >
+                          {/* Step Circle */}
+                          <div className="relative mb-4">
+                            <div className="absolute inset-0 bg-[#0b1220] rounded-full -m-1"></div>
+                            <div className="relative w-14 h-14 bg-[#1a2236] border-2 border-[#2B7BE4] rounded-full flex items-center justify-center shadow-lg">
+                              <span className="text-white font-bold">
+                                {item.step}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Content */}
+                          <div className="text-center bg-[#1a2236]/30 p-3 rounded-lg border border-gray-800 w-full">
+                            <h3 className="text-sm font-bold text-white mb-1">
+                              {item.title}
+                            </h3>
+                            <p className="text-gray-400 text-xs">{item.desc}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>
