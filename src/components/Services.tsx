@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import {
   FiShield,
   FiBarChart2,
@@ -11,7 +12,7 @@ import {
 } from "react-icons/fi";
 
 const services = [
-  {
+   {
     id: 1,
     title: "Cyber Security",
     description:
@@ -103,9 +104,36 @@ const services = [
 ];
 
 export default function Services() {
-  const handleClick = (slug: string) => {
-    console.log("Service clicked:", slug);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  const handleLinkClick = (e: React.MouseEvent, serviceId: number, slug: string) => {
+    if (!isTouch) return; // Desktop – normal navigation
+
+    e.preventDefault(); // Mobile – first tap
+    if (activeCard === serviceId) {
+      // Second tap: navigate
+      window.location.href = `/services/${slug}`;
+    } else {
+      setActiveCard(serviceId);
+    }
   };
+
+  // Reset active card when tapping outside
+  useEffect(() => {
+    if (!isTouch) return;
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!(e.target as Element).closest('.service-card')) {
+        setActiveCard(null);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [isTouch]);
 
   return (
     <section className="py-20 bg-[#0b1220]">
@@ -122,79 +150,83 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <Link
-              key={service.id}
-              href={`/services/${service.slug}`}
-              onClick={() => handleClick(service.slug)}
-              className="block group relative h-[380px]"
-            >
-              {/* Card container */}
-              <div
-                className="relative h-full rounded-2xl p-8 border border-gray-800 overflow-hidden
-                          transition-all duration-500 ease-out
-                          group-hover:border-transparent group-hover:shadow-2xl
-                          group-hover:scale-[1.02] group-hover:-translate-y-1"
-                style={{ backgroundColor: '#1a2236' }}
+          {services.map((service) => {
+            const isActive = activeCard === service.id;
+
+            return (
+              <Link
+                key={service.id}
+                href={`/services/${service.slug}`}
+                onClick={(e) => handleLinkClick(e, service.id, service.slug)}
+                className="service-card block group relative h-[380px]"
               >
-                {/* Color fill overlay - animated from bottom to top */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} 
-                              opacity-90 transform scale-y-0 group-hover:scale-y-100 
-                              transition-transform duration-500 ease-in-out origin-bottom`}
-                />
+                  className="relative h-full rounded-2xl p-8 border border-gray-800 overflow-hidden
+                            transition-all duration-500 ease-out
+                            group-hover:border-transparent group-hover:shadow-2xl
+                            group-hover:scale-[1.02] group-hover:-translate-y-1"
+                  style={{ backgroundColor: '#1a2236' }}
+                >
+                  {/* Color fill overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} 
+                                opacity-90 transform scale-y-0 
+                                ${(isTouch ? (isActive ? 'scale-y-100' : '') : 'group-hover:scale-y-100')}
+                                transition-transform duration-500 ease-in-out origin-bottom`}
+                  />
 
-                {/* Content container - two layers that fade in/out */}
-                <div className="relative z-10 h-full flex flex-col">
-                  {/* Default content (visible when not hovered) */}
-                  <div className="transition-opacity duration-300 group-hover:opacity-0">
-                    <div
-                      className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.gradient} mb-6`}
-                    >
-                      <service.icon className="w-8 h-8 text-white" />
+                  <div className="relative z-10 h-full flex flex-col">
+                    {/* Default content */}
+                    <div className={`transition-opacity duration-300 ${(isTouch ? (isActive ? 'opacity-0' : '') : 'group-hover:opacity-0')}`}>
+                      <div
+                        className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.gradient} mb-6`}
+                      >
+                        <service.icon className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-4">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-400">{service.description}</p>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-400">{service.description}</p>
-                  </div>
 
-                  {/* Hover content (features) - hidden by default, appears on hover */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                      {service.title}
-                    </h3>
-                    <ul className="space-y-3">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-white">
-                          <span className="w-1.5 h-1.5 bg-white rounded-full mr-3" />
-                          <span className="text-sm font-medium">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-6 text-center">
-                      <span className="inline-flex items-center text-white/90 text-sm font-medium">
-                        Click to learn more
-                        <svg
-                          className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </span>
+                    {/* Hover content */}
+                    <div className={`absolute inset-0 p-8 flex flex-col justify-center transition-opacity duration-500 delay-100 
+                                    ${(isTouch ? (isActive ? 'opacity-100' : 'opacity-0') : 'opacity-0 group-hover:opacity-100')}`}>
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                        {service.title}
+                      </h3>
+                      <ul className="space-y-3">
+                        {service.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-center text-white">
+                            <span className="w-1.5 h-1.5 bg-white rounded-full mr-3" />
+                            <span className="text-sm font-medium">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-6 text-center">
+                        <span className="inline-flex items-center text-white/90 text-sm font-medium">
+                          {isTouch ? (isActive ? 'Tap again to learn more' : 'Tap to see features') : 'Click to learn more'}
+                          <svg
+                            className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {/* CTA */}
