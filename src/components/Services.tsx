@@ -19,6 +19,12 @@ const services = [
     icon: FiShield,
     gradient: "from-[#2B7BE4] to-[#3B82F6]",
     slug: "cyber-security",
+    features: [
+      "Network Security",
+      "Endpoint Protection",
+      "Threat Monitoring",
+      "Penetration Testing",
+    ],
   },
   {
     id: 2,
@@ -28,6 +34,12 @@ const services = [
     icon: FiBarChart2,
     gradient: "from-[#FF5CA8] to-[#EC4899]",
     slug: "governance-risk-assessment",
+    features: [
+      "Risk Assessment",
+      "Compliance Management",
+      "Policy Development",
+      "Third-Party Risk",
+    ],
   },
   {
     id: 3,
@@ -37,6 +49,12 @@ const services = [
     icon: FiBookOpen,
     gradient: "from-[#7C3AED] to-[#8B5CF6]",
     slug: "training-awareness",
+    features: [
+      "Phishing Simulation",
+      "Workshops",
+      "Incident Drills",
+      "Custom Training",
+    ],
   },
   {
     id: 4,
@@ -46,6 +64,12 @@ const services = [
     icon: FiCreditCard,
     gradient: "from-[#2B7BE4] to-[#FF5CA8]",
     slug: "banking-security",
+    features: [
+      "Fraud Detection",
+      "Transaction Monitoring",
+      "RBI Compliance",
+      "Secure Apps",
+    ],
   },
   {
     id: 5,
@@ -55,15 +79,27 @@ const services = [
     icon: FiAlertTriangle,
     gradient: "from-[#FF5CA8] to-[#7C3AED]",
     slug: "incident-response",
+    features: [
+      "Rapid Response",
+      "Forensics",
+      "Breach Containment",
+      "Data Recovery",
+    ],
   },
   {
-  id: 6,
-  title: "Red Teaming",
-  description: "We simulate real-world attacks to test your defenses and strengthen your response to real cyber threats.",
-  icon: FiTarget,
-  gradient: "from-[#EF4444] to-[#B91C1C]",
-  slug: "red-teaming",
-},
+    id: 6,
+    title: "Red Teaming",
+    description: "We simulate real-world attacks to test your defenses.",
+    icon: FiTarget,
+    gradient: "from-[#EF4444] to-[#B91C1C]",
+    slug: "red-teaming",
+    features: [
+      "APT Simulation",
+      "Social Engineering",
+      "Physical Security",
+      "Cloud Attacks",
+    ],
+  },
 ];
 
 export default function Services() {
@@ -81,50 +117,79 @@ export default function Services() {
             <span className="text-white"> Services</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Comprehensive cybersecurity solutions tailored to modern businesses—designed to scale, adapt, and protect in an evolving global threat landscape.
+            Comprehensive cybersecurity solutions tailored to modern businesses.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
             <Link
-              key={service.id} 
+              key={service.id}
               href={`/services/${service.slug}`}
               onClick={() => handleClick(service.slug)}
-              className="block group"
+              className="block group relative h-[380px]"
             >
-              <div className="relative bg-[#1a2236] rounded-2xl p-8 border border-gray-800 hover:border-transparent transition-all duration-300 hover:shadow-2xl hover:shadow-[#2B7BE4]/10 overflow-hidden h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>
-
+              {/* Card container */}
+              <div
+                className="relative h-full rounded-2xl p-8 border border-gray-800 overflow-hidden
+                          transition-all duration-500 ease-out
+                          group-hover:border-transparent group-hover:shadow-2xl
+                          group-hover:scale-[1.02] group-hover:-translate-y-1"
+                style={{ backgroundColor: '#1a2236' }}
+              >
+                {/* Color fill overlay - animated from bottom to top */}
                 <div
-                  className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.gradient} mb-6 relative z-10`}
-                >
-                  <service.icon className="w-8 h-8 text-white" />
-                </div>
+                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} 
+                              opacity-90 transform scale-y-0 group-hover:scale-y-100 
+                              transition-transform duration-500 ease-in-out origin-bottom`}
+                />
 
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 mb-6">{service.description}</p>
+                {/* Content container - two layers that fade in/out */}
+                <div className="relative z-10 h-full flex flex-col">
+                  {/* Default content (visible when not hovered) */}
+                  <div className="transition-opacity duration-300 group-hover:opacity-0">
+                    <div
+                      className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.gradient} mb-6`}
+                    >
+                      <service.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-400">{service.description}</p>
+                  </div>
 
-                  <div className="relative z-20">
-                    <span className="inline-flex items-center text-sm font-medium text-[#2B7BE4] hover:text-[#FF5CA8] transition-colors group/link relative z-30">
-                      Learn More
-                      <svg
-                        className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </span>
+                  {/* Hover content (features) - hidden by default, appears on hover */}
+                  <div className="absolute inset-0 p-8 flex flex-col justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                      {service.title}
+                    </h3>
+                    <ul className="space-y-3">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center text-white">
+                          <span className="w-1.5 h-1.5 bg-white rounded-full mr-3" />
+                          <span className="text-sm font-medium">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6 text-center">
+                      <span className="inline-flex items-center text-white/90 text-sm font-medium">
+                        Click to learn more
+                        <svg
+                          className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -136,11 +201,12 @@ export default function Services() {
         <div className="text-center mt-16">
           <Link
             href="/services"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full
+                       transition-all duration-300 hover:shadow-2xl hover:shadow-[#2B7BE4]/30 hover:scale-105 hover:gap-3"
           >
             View All Services
             <svg
-              className="w-5 h-5 ml-2"
+              className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
