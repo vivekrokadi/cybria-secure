@@ -1,5 +1,9 @@
+"use client";
+
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 import {
   FiShield,
   FiUsers,
@@ -11,13 +15,7 @@ import {
   FiGlobe,
 } from "react-icons/fi";
 
-export const metadata: Metadata = {
-  title: "About Cybria Secure | Cybersecurity Experts in Maharashtra",
-  description:
-    "Learn about Cybria Secure - leading cybersecurity risk advisory firm in Kolhapur. Our team of certified professionals protects businesses across Maharashtra.",
-  keywords:
-    "about cybria secure, cybersecurity company, security experts, Maharashtra cybersecurity",
-};
+
 
 export default function AboutPage() {
   const jsonLd = {
@@ -50,6 +48,37 @@ export default function AboutPage() {
       },
       areaServed: ["Kolhapur", "Ichalkaranji", "Miraj", "Sangli", "Solapur"],
     },
+  };
+
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
+
+  const teamMembers = [
+    {
+      name: "Sameer Nejkar",
+      role: "Founder & CEO",
+      description:
+        "OT Security Engineer with 5+ years Cyber Security experience in banking and enterprise security",
+      gradient: "from-[#2B7BE4] to-[#3B82F6]",
+      image: "/images/team/sameer.jpeg",
+    },
+    {
+      name: "Tanvi Dhatrak",
+      role: "CO-Founder & Managing Director",
+      description: "Sales and Marketing leader with 5+ years experience in IT services and cybersecurity",
+      gradient: "from-[#FF5CA8] to-[#EC4899]",
+      image: "/images/team/tanvi.jpeg",
+    },
+    // {
+    //   name: "Vikram Desai",
+    //   role: "Lead Penetration Tester",
+    //   description: "OSCP, CEH, specializing in red teaming and cloud security",
+    //   gradient: "from-[#7C3AED] to-[#8B5CF6]",
+    //   image: "/images/team/vikram-desai.jpg",
+    // },
+  ];
+
+  const handleImageError = (name: string) => {
+    setImageErrors((prev) => new Set(prev).add(name));
   };
 
   // Benefits data for "Why Choose Us" section
@@ -251,70 +280,79 @@ export default function AboutPage() {
             })}
           </div>
 
-          {/* CTA */}
-          {/* <div className="text-center mt-12">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a2236] border border-gray-800 rounded-lg text-gray-300 hover:border-[#2B7BE4] hover:text-white transition-all duration-300"
-            >
-              <FiShield className="w-4 h-4" />
-              <span>Get Protected</span>
-              <FiCheckCircle className="w-4 h-4" />
-            </Link>
-          </div> */}
-
           {/* Team Section */}
           <div className="mb-16 mt-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
               Our Leadership Team
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Security Experts",
-                  role: "Certified Professionals",
-                  description:
-                    "Team of CISSP, CEH, CISM certified experts with 10+ years experience",
-                  gradient: "from-[#2B7BE4] to-[#3B82F6]",
-                },
-                {
-                  name: "Domain Specialists",
-                  role: "Industry Experts",
-                  description:
-                    "Specialists in banking, healthcare, manufacturing, and education sectors",
-                  gradient: "from-[#FF5CA8] to-[#EC4899]",
-                },
-                {
-                  name: "Support Team",
-                  role: "24/7 Operations",
-                  description:
-                    "Dedicated support team for incident response and ongoing monitoring",
-                  gradient: "from-[#7C3AED] to-[#8B5CF6]",
-                },
-              ].map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-[#1a2236] rounded-2xl p-8 text-center border border-gray-800 hover:border-transparent transition-all duration-300"
-                >
+            <p className="text-gray-400 mb-12 max-w-4xl mx-auto text-center">
+              Founded with a vision to strengthen digital security, CYBRIA SECURE is led by a team that blends strategic business insight with deep cybersecurity expertise to help organizations identify risks, strengthen defenses, and build resilient digital infrastructure
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {teamMembers.map((member) => {
+                const hasImageError = imageErrors.has(member.name);
+                const initials = member.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("");
+
+                return (
                   <div
-                    className={`w-20 h-20 bg-gradient-to-br ${member.gradient} rounded-full flex items-center justify-center mx-auto mb-6`}
+                    key={member.name}
+                    className="bg-[#1a2236] rounded-2xl p-8 text-center border border-gray-800 hover:border-transparent transition-all duration-300 group"
                   >
-                    <span className="text-white text-2xl font-bold">
-                      {member.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </span>
+                    {/* Image with gradient border */}
+                    <div
+                      className={`relative w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br ${member.gradient} p-1`}
+                    >
+                      <div className="w-full h-full rounded-full overflow-hidden bg-[#1a2236]">
+                        {!hasImageError ? (
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            width={96}
+                            height={96}
+                            className="object-cover object-top w-full h-full"
+                            onError={() => handleImageError(member.name)}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-[#0b1220] text-2xl font-bold text-white">
+                            {initials}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#2B7BE4] font-medium mb-4">
+                      {member.role}
+                    </p>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {member.description}
+                    </p>
+
+                    {/* Optional social links or contact */}
+                    {/* <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a
+                        href={`https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(member.name)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-gray-500 hover:text-[#2B7BE4] transition-colors"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.204 0 22.225 0z" />
+                        </svg>
+                      </a>
+                    </div> */}
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-[#2B7BE4] font-medium mb-4">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-400">{member.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
