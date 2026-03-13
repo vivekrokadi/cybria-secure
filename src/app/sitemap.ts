@@ -17,11 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/incident-response',
     '/blog',
     '/contact',
-    '/kolhapur',
-    '/ichalkaranji',
-    '/miraj',
-    '/sangli',
-    '/solapur',
   ]
 
   const routes: MetadataRoute.Sitemap = staticRoutes.map((route) => ({

@@ -18,6 +18,7 @@ const services = [
   { name: "Training and Awareness", href: "/services/training-awareness" },
   { name: "Banking Security", href: "/services/banking-security" },
   { name: "Incident Response", href: "/services/incident-response" },
+  { name: "Red Teaming", href: "/services/red-teaming" },
 ];
 
 const locations = [

@@ -16,7 +16,7 @@ import {
 import Clients from "../components/Clients";
 
 export const metadata: Metadata = {
-  title: "Cybria Secure | Leading Cybersecurity Services in Kolhapur",
+  title: "Cyber Security Company in Kolhapur | Cybria Secure",
   description:
     "From Threats to Trust – We Secure It All. Professional cybersecurity services in Kolhapur, Ichalkaranji, Miraj, Sangli, Solapur. Defending your digital existence.",
   keywords:

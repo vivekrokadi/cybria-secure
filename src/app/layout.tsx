@@ -3,26 +3,27 @@ import { Outfit } from 'next/font/google'
 import './globals.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import WhatsAppWidget from '../components/WhatsAppWidget'
 import { Toaster } from 'react-hot-toast'
 
 const outfit = Outfit({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
   display: 'swap',
-  variable: '--font-outfit ',
+  variable: '--font-outfit',
 })
 
 export const metadata: Metadata = {
   title: 'Cybria Secure - Leading Cybersecurity Services in Kolhapur',
-  description: 'Defending your digital existence. Professional cybersecurity services in Kolhapur, Ichalkaranji, Miraj, Sangli, Solapur.',
-  keywords: 'cybersecurity, security services, Kolhapur, Ichalkaranji, Miraj, Sangli, Solapur, incident response, risk assessment',
+  description: 'Defending your digital existence. Professional cybersecurity services in Kolhapur, Ichalkaranji, Miraj, Sangli.',
+  keywords: 'cybersecurity, security services, Kolhapur, Ichalkaranji, Miraj, Sangli, incident response, risk assessment',
   authors: [{ name: 'Cybria Secure' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: 'https://www.cybriasecure.com',
-    title: 'Cybria Secure - Leading Cybersecurity Services',
+    title: 'Cyber Security Company in Kolhapur | Cybria Secure',
     description: 'Defending your digital existence in Maharashtra',
     siteName: 'Cybria Secure',
     images: [
@@ -78,11 +79,8 @@ const jsonLd = {
     geoRadius: '100000',
   },
   areaServed: [
-    'Kolhapur',
-    'Ichalkaranji', 
-    'Miraj',
-    'Sangli',
-    'Solapur'
+    'All Over India',
+    'All over The World',
   ],
   priceRange: '₹₹₹',
 }
@@ -99,25 +97,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Add font preload for better performance */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body 
         className="min-h-screen bg-[#0b1220] text-white font-sans antialiased overflow-x-hidden"
-        style={{ fontFamily: 'var(--font-outfit), Roboto, system-ui, sans-serif' }}
+        style={{ fontFamily: 'var(--font-outfit), system-ui, sans-serif' }}
         suppressHydrationWarning
       >
         <Header />
         <main className="pt-16">{children}</main>
         <Footer />
+        <WhatsAppWidget />
         <Toaster 
           position="top-right"
           toastOptions={{
@@ -126,7 +117,7 @@ export default function RootLayout({
               background: '#1e293b',
               color: '#fff',
               border: '1px solid #334155',
-              fontFamily: 'var(--font-roboto), Roboto, system-ui, sans-serif',
+              fontFamily: 'var(--font-outfit), system-ui, sans-serif',
             },
             success: {
               iconTheme: {
