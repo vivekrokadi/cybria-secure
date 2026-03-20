@@ -11,13 +11,11 @@ html, body {
   --brand-primary: #0b1220;
 }
 
-/* Basic element defaults to match Tailwind utility expectations */
 html, body {
   height: 100%;
   background: var(--brand-primary);
 }
 
-/* tiny helper for visually-hidden / skip link */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -30,7 +28,6 @@ html, body {
   border: 0;
 }
 
-/* For focus-visible outlines using tailwind utilities is preferred; this is just fallback */
 :focus {
   outline: 2px solid rgba(43,123,228,0.9);
   outline-offset: 2px;

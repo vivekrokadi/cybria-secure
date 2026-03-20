@@ -45,8 +45,7 @@ export default function AboutPage() {
       numberOfEmployees: {
         "@type": "QuantitativeValue",
         value: "50+",
-      },
-      areaServed: ["Kolhapur", "Ichalkaranji", "Miraj", "Sangli", "Solapur"],
+      }
     },
   };
 
@@ -67,21 +66,13 @@ export default function AboutPage() {
       description: "Sales and Marketing leader with 5+ years experience in IT services and cybersecurity",
       gradient: "from-[#FF5CA8] to-[#EC4899]",
       image: "/images/team/tanvi.jpeg",
-    },
-    // {
-    //   name: "Vikram Desai",
-    //   role: "Lead Penetration Tester",
-    //   description: "OSCP, CEH, specializing in red teaming and cloud security",
-    //   gradient: "from-[#7C3AED] to-[#8B5CF6]",
-    //   image: "/images/team/vikram-desai.jpg",
-    // },
+    }
   ];
 
   const handleImageError = (name: string) => {
     setImageErrors((prev) => new Set(prev).add(name));
   };
 
-  // Benefits data for "Why Choose Us" section
   const benefits = [
     {
       icon: FiShield,
@@ -230,7 +221,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Benefits Grid */}
+          {/* Benefits */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {benefits.map((item, index) => {
               const Icon = item.icon;
@@ -257,7 +248,7 @@ export default function AboutPage() {
             })}
           </div>
 
-          {/* Stats Row */}
+          {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
             {[
               { number: "50+", label: "Experts", icon: FiUsers },
@@ -301,7 +292,6 @@ export default function AboutPage() {
                     key={member.name}
                     className="bg-[#1a2236] rounded-2xl p-8 text-center border border-gray-800 hover:border-transparent transition-all duration-300 group"
                   >
-                    {/* Image with gradient border */}
                     <div
                       className={`relative w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br ${member.gradient} p-1`}
                     >
@@ -332,31 +322,13 @@ export default function AboutPage() {
                     <p className="text-gray-400 text-sm leading-relaxed">
                       {member.description}
                     </p>
-
-                    {/* Optional social links or contact */}
-                    {/* <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <a
-                        href={`https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(member.name)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block text-gray-500 hover:text-[#2B7BE4] transition-colors"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.204 0 22.225 0z" />
-                        </svg>
-                      </a>
-                    </div> */}
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Final CTA Section */}
+          
           <div className="text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Partner with Cybersecurity Experts

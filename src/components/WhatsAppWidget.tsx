@@ -7,19 +7,15 @@ import { FiMessageCircle } from "react-icons/fi";
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showMessage, setShowMessage] = useState(false); // Start as false
+  const [showMessage, setShowMessage] = useState(false); 
   const [isHovered, setIsHovered] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
-  // Solution 1: Use useEffect to handle client-only logic
   useEffect(() => {
     setIsClient(true);
-
-    // Only show message after hydration is complete
     const timer = setTimeout(() => {
       setShowMessage(true);
-    }, 5000); // Show after 5 seconds
-
+    }, 5000); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -40,7 +36,6 @@ export default function WhatsAppWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      {/* Chat Message Bubble */}
       {(showMessage || isOpen) && (
         <div
           className={`mb-4 transition-all duration-300 transform ${
@@ -109,7 +104,6 @@ export default function WhatsAppWidget() {
         </div>
       )}
 
-      {/* Initial Hover Message - Only show on client */}
       {!isOpen && showMessage && (
         <div
           className="mb-4 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-4 py-2 rounded-full shadow-lg animate-bounce cursor-pointer"
@@ -125,7 +119,6 @@ export default function WhatsAppWidget() {
         </div>
       )}
 
-      {/* Main WhatsApp Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsHovered(true)}
@@ -133,10 +126,8 @@ export default function WhatsAppWidget() {
         className="relative group"
         aria-label="WhatsApp chat"
       >
-        {/* Ripple Effect */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20"></span>
 
-        {/* Main Button */}
         <div
           className={`
           relative w-16 h-16 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] 
@@ -152,7 +143,6 @@ export default function WhatsAppWidget() {
           )}
         </div>
 
-        {/* Tooltip */}
         <div
           className={`
           absolute bottom-full right-0 mb-2 px-3 py-1.5 bg-gray-900 text-white text-sm rounded-lg
@@ -165,12 +155,6 @@ export default function WhatsAppWidget() {
         </div>
       </button>
 
-      
-      {/* {!isOpen && isClient && (
-        <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold text-white animate-pulse">
-          1
-        </div>
-      )} */}
     </div>
   );
 }

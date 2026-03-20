@@ -28,12 +28,10 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
 
-  // Determine header background
   const shouldShowBackground = !isHomePage || scrolled || isOpen
 
   return (
@@ -45,7 +43,6 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="relative">
-              {/* Added white logo version that works on dark backgrounds */}
               <img 
                 src="/cybriasecure-logo.png" 
                 className="w-16" 
@@ -53,13 +50,12 @@ export default function Header() {
                 style={{
                   filter: shouldShowBackground 
                     ? 'none' 
-                    : 'brightness(1) invert(0)' // Makes logo white on transparent header
+                    : 'brightness(1) invert(0)'
                 }}
               />
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
@@ -92,7 +88,6 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-lg transition-colors"
@@ -107,10 +102,9 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation - Fixed with proper background */}
         {isOpen && (
           <div className="lg:hidden mt-4 pb-4 pt-4">
-            {/* Backdrop overlay - covers the entire screen behind menu */}
+            
             <div 
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               onClick={() => setIsOpen(false)}

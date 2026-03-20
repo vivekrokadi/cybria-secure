@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getBlogPostBySlug, getAllBlogPosts, isValidSlug } from '../../../../lib/markdown'
 import { FiCalendar, FiUser, FiClock, FiArrowLeft } from 'react-icons/fi'
 import ShareButton from '../../../components/ShareButton'
-import React from 'react' // Add this import
+import React from 'react'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -61,7 +61,6 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   
-  // Validate slug before processing
   if (!slug || typeof slug !== 'string') {
     console.error('Invalid slug parameter:', slug)
     notFound()
@@ -100,7 +99,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
   }
 
-  // Function to render markdown content
   const renderMarkdown = (content: string) => {
     const lines = content.split('\n')
     const elements: React.ReactNode[] = [] // Use React.ReactNode instead
@@ -111,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       // Handle headings
       if (line.startsWith('# ')) {
         if (inList && listItems.length > 0) {
-          // Close previous list
+          
           elements.push(
             <ul key={`ul-${index}`} className="list-disc pl-6 mb-4">
               {listItems.map((item, i) => (
@@ -162,21 +160,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </h3>
         )
       } 
-      // Handle unordered list
+      
       else if (line.startsWith('- ')) {
         if (!inList) {
           inList = true
         }
         listItems.push(line.substring(2))
       }
-      // Handle numbered list
+     
       else if (/^\d+\.\s/.test(line)) {
         if (!inList) {
           inList = true
         }
         listItems.push(line.replace(/^\d+\.\s/, ''))
       }
-      // Handle empty lines
+      
       else if (line.trim() === '') {
         if (inList && listItems.length > 0) {
           elements.push(
@@ -191,7 +189,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         }
         elements.push(<div key={index} className="mb-4" />)
       }
-      // Handle regular paragraphs
+      
       else {
         if (inList && listItems.length > 0) {
           elements.push(
@@ -205,12 +203,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           inList = false
         }
         
-        // Simple bold text handling
+        
         const renderLineWithBold = (text: string) => {
           const parts = text.split('**')
           return parts.map((part, partIndex) => {
             if (partIndex % 2 === 1) {
-              // Bold text
+              
               return <strong key={partIndex} className="text-white font-semibold">{part}</strong>
             }
             return part
@@ -225,7 +223,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       }
     })
 
-    // Handle any remaining list items
     if (inList && listItems.length > 0) {
       elements.push(
         <ul key="final-list" className="list-disc pl-6 mb-4">

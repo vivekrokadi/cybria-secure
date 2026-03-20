@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 // Rate limiting configuration
-const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; 
 const MAX_REQUESTS_PER_WINDOW = 5;
 const ipRequestCounts = new Map<string, { count: number; resetTime: number }>();
 
-// Simple rate limiting function
 function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
   const now = Date.now();
   const userData = ipRequestCounts.get(ip);
@@ -16,13 +15,11 @@ function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
     return { allowed: true };
   }
 
-  // Reset if window has passed
   if (now > userData.resetTime) {
     ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
     return { allowed: true };
   }
 
-  // Check if user has exceeded limit
   if (userData.count >= MAX_REQUESTS_PER_WINDOW) {
     return { 
       allowed: false, 
@@ -30,19 +27,18 @@ function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
     };
   }
 
-  // Increment count
   userData.count++;
   return { allowed: true };
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // Get client IP for rate limiting
+  
     const ip = request.headers.get('x-forwarded-for') || 
                request.headers.get('x-real-ip') || 
                'unknown';
 
-    // Check rate limit
+
     const rateLimit = checkRateLimit(ip);
     if (!rateLimit.allowed) {
       return NextResponse.json(
@@ -56,10 +52,9 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
     
-    // Validate required fields
+ 
     const { name, email, phone, message, _honeypot, _timestamp } = body;
 
-    // Check honeypot field (should be empty for humans)
     if (_honeypot && _honeypot.trim() !== '') {
       console.warn(`Bot detected: honeypot field was filled from IP: ${ip}`);
       return NextResponse.json(
@@ -68,7 +63,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate required fields
     if (!name || !email || !phone) {
       return NextResponse.json(
         { success: false, message: 'Name, email, and phone are required fields.' },
@@ -76,7 +70,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -85,7 +78,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate phone format (basic check)
     const phoneRegex = /^[\+]?[1-9][\d\s\-\(\)]{8,}$/;
     const cleanedPhone = phone.replace(/[\s\-\(\)]/g, '');
     if (!phoneRegex.test(cleanedPhone)) {
@@ -95,18 +87,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create nodemailer transporter
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false, // true for 465, false for other ports
+      secure: false, 
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
 
-    // Email content
     const mailOptions = {
       from: `"Cybria Secure Contact Form" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_TO || process.env.SMTP_USER,
@@ -217,7 +207,6 @@ This email was sent from the contact form on Cybria Secure website.
   }
 }
 
-// Also handle OPTIONS for CORS
 export async function OPTIONS() {
   return NextResponse.json({}, {
     status: 200,

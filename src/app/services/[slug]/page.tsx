@@ -840,10 +840,8 @@ const serviceDetails = {
 type ServiceKey = keyof typeof serviceDetails;
 type ServiceDetail = (typeof serviceDetails)[ServiceKey];
 
-// Get all valid slugs
 const validSlugs = Object.keys(serviceDetails) as ServiceKey[];
 
-// Validate if a slug is valid
 function isValidSlug(slug: string | undefined): slug is ServiceKey {
   return !!slug && validSlugs.includes(slug as ServiceKey);
 }
@@ -904,7 +902,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         addressCountry: "IN",
       },
       telephone: "+918080424274",
-      areaServed: ["Kolhapur", "Ichalkaranji", "Miraj", "Sangli", "Solapur"],
+      areaServed: "India",
     },
     serviceType: "Cybersecurity",
     areaServed: {

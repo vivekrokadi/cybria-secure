@@ -48,7 +48,6 @@ export default function ScrollReveal({ children, delay = 0 }: ScrollRevealProps)
         }
       } catch (error) {
         console.error('Failed to load GSAP ScrollTrigger:', error)
-        // Fallback: show content immediately
         if (elementRef.current) {
           elementRef.current.style.opacity = '1'
           elementRef.current.style.transform = 'translateY(0)'

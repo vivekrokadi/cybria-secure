@@ -151,12 +151,10 @@ export default function ContactPage() {
                       aria-label="Start WhatsApp chat with Cybria Secure"
                       title="Message us on WhatsApp for immediate help"
                     >
-                      {/* WhatsApp gradient background effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-[#25D366]/0 via-[#25D366]/10 to-[#128C7E]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                       <FaWhatsapp className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform" />
 
-                      {/* Tooltip on hover (optional) */}
                       <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                         Chat on WhatsApp
                       </div>

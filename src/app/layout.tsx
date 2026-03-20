@@ -78,10 +78,7 @@ const jsonLd = {
     },
     geoRadius: '100000',
   },
-  areaServed: [
-    'All Over India',
-    'All over The World',
-  ],
+  areaServed: "India",
   priceRange: '₹₹₹',
 }
 
