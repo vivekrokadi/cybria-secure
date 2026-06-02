@@ -274,7 +274,7 @@ export default function AboutPage() {
           {/* Team Section */}
           <div className="mb-16 mt-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              Our Leadership Team
+              Meet the Visionaries Behind CYBRIA SECURE
             </h2>
             <p className="text-gray-400 mb-12 max-w-4xl mx-auto text-center">
               Founded by Sameer Nejkar (Founder & CEO) and Tanvi Dhatrak (Founder & Managing Director), CYBRIA SECURE brings together cybersecurity expertise and strategic leadership. United by a commitment to trust, innovation, and resilience, they are dedicated to helping organizations navigate the digital landscape with confidence and security.
