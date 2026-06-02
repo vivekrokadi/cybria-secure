@@ -8,12 +8,12 @@ const clients = [
   {
     id: 1,
     name: "Client 1",
-    logo: "/images/client1.png",
+    logo: "/images/client9.webp",
   },
   {
     id: 2,
     name: "Client 2",
-    logo: "/images/client2.webp",
+    logo: "/images/client5.webp",
   },
   {
     id: 3,
@@ -23,12 +23,12 @@ const clients = [
   {
     id: 4,
     name: "Client 4",
-    logo: "/images/client9.webp",
+    logo: "/images/client1.png",
   },
   {
     id: 5,
     name: "Client 5",
-    logo: "/images/client5.webp",
+    logo: "/images/client2.webp",
   },
   {
     id: 6,
@@ -48,7 +48,7 @@ const clients = [
   {
     id: 8,
     name: "Client 8",
-    logo: "/images/client4.png",
+    logo: "/images/client10.jpg",
   },
 ];
 

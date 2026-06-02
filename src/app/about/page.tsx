@@ -62,7 +62,7 @@ export default function AboutPage() {
     },
     {
       name: "Tanvi Dhatrak",
-      role: "CO-Founder & Managing Director",
+      role: "Founder & Managing Director",
       description: "Sales and Marketing leader with 5+ years experience in IT services and cybersecurity",
       gradient: "from-[#FF5CA8] to-[#EC4899]",
       image: "/images/team/tanvi.jpeg",
@@ -277,7 +277,7 @@ export default function AboutPage() {
               Our Leadership Team
             </h2>
             <p className="text-gray-400 mb-12 max-w-4xl mx-auto text-center">
-              Founded with a vision to strengthen digital security, CYBRIA SECURE is led by a team that blends strategic business insight with deep cybersecurity expertise to help organizations identify risks, strengthen defenses, and build resilient digital infrastructure
+              Founded by Sameer Nejkar (Founder & CEO) and Tanvi Dhatrak (Founder & Managing Director), CYBRIA SECURE brings together cybersecurity expertise and strategic leadership. United by a commitment to trust, innovation, and resilience, they are dedicated to helping organizations navigate the digital landscape with confidence and security.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {teamMembers.map((member) => {
@@ -319,10 +319,8 @@ export default function AboutPage() {
                     <p className="text-[#2B7BE4] font-medium mb-4">
                       {member.role}
                     </p>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {member.description}
-                    </p>
                   </div>
+                  
                 );
               })}
             </div>
