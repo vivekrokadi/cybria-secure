@@ -13,22 +13,22 @@ const clients = [
   {
     id: 2,
     name: "Client 2",
-    logo: "/images/client2.png",
+    logo: "/images/client2.webp",
   },
   {
     id: 3,
     name: "Client 3",
-    logo: "/images/client3.png",
+    logo: "/images/client3.jpeg",
   },
   {
     id: 4,
     name: "Client 4",
-    logo: "/images/client4.png",
+    logo: "/images/client9.webp",
   },
   {
     id: 5,
     name: "Client 5",
-    logo: "/images/client5.png",
+    logo: "/images/client5.webp",
   },
   {
     id: 6,
@@ -38,12 +38,17 @@ const clients = [
   {
     id: 7,
     name: "Client 7",
-    logo: "/images/client7.png",
+    logo: "/images/client7.jpg",
   },
   {
     id: 8,
     name: "Client 8",
     logo: "/images/client8.png",
+  },
+  {
+    id: 8,
+    name: "Client 8",
+    logo: "/images/client4.png",
   },
 ];
 
@@ -153,11 +158,7 @@ export default function Clients() {
                   onMouseEnter={() => handleLogoMouseEnter(client.id)}
                   onMouseLeave={handleLogoMouseLeave}
                 >
-                  <div className={`relative w-32 h-20 transition-all duration-300 ${
-                    isThisLogoHovered 
-                      ? 'opacity-100 grayscale-0 scale-110' 
-                      : 'opacity-60 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-110'
-                  }`}>
+                  <div className={`relative w-44 h-28 transition-all duration-300`}>
                     {!hasError ? (
                       <Image
                         src={client.logo}
