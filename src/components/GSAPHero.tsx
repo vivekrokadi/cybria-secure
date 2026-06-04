@@ -7,11 +7,15 @@ interface ScrollRevealProps {
   delay?: number
 }
 
-export default function ScrollReveal({ children, delay = 0 }: ScrollRevealProps) {
+// This file is kept for backward compatibility.
+// It is identical to ScrollReveal.tsx — use ScrollReveal going forward.
+export default function GSAPHero({ children, delay = 0 }: ScrollRevealProps) {
   const elementRef = useRef<HTMLDivElement>(null)
+  const animatedRef = useRef(false)
 
   useEffect(() => {
-   
+    if (typeof window === 'undefined') return
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (elementRef.current) {
         elementRef.current.style.opacity = '1'
@@ -20,34 +24,41 @@ export default function ScrollReveal({ children, delay = 0 }: ScrollRevealProps)
       return
     }
 
-    const loadScrollTrigger = async () => {
-      const gsapModule = await import('gsap')
-      const { gsap } = gsapModule
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
+    const load = async () => {
+      try {
+        const { gsap } = await import('gsap')
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+        gsap.registerPlugin(ScrollTrigger)
 
-      if (elementRef.current) {
-        gsap.fromTo(elementRef.current,
-          {
-            y: 50,
-            opacity: 0,
-          },
+        if (!elementRef.current || animatedRef.current) return
+
+        gsap.fromTo(
+          elementRef.current,
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            duration: 0.7,
             delay,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: elementRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              once: true,
             },
           }
         )
+        animatedRef.current = true
+      } catch {
+        if (elementRef.current) {
+          elementRef.current.style.opacity = '1'
+          elementRef.current.style.transform = 'translateY(0)'
+        }
       }
     }
 
-    loadScrollTrigger()
+    load()
   }, [delay])
 
   return (

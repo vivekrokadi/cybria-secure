@@ -3,100 +3,65 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
-  FiShield,
-  FiBarChart2,
-  FiBookOpen,
-  FiCreditCard,
-  FiAlertTriangle,
-  FiTarget,
-  FiArrowRight,
+  FiShield, FiBarChart2, FiBookOpen, FiCreditCard,
+  FiAlertTriangle, FiTarget, FiArrowRight,
 } from "react-icons/fi";
 
 const services = [
   {
     id: 1,
     title: "Cyber Security",
-    description:
-      "Protect systems, networks and data from cyber threats with our comprehensive security solutions.",
+    description: "Protect systems, networks and data from cyber threats with our comprehensive security solutions.",
     icon: FiShield,
     gradient: "from-blue-500 to-blue-600",
     glowColor: "rgba(43, 123, 228, 0.35)",
     accentColor: "#2B7BE4",
     slug: "cyber-security",
-    features: [
-      "Network Security",
-      "Endpoint Protection",
-      "Threat Monitoring",
-      "Penetration Testing",
-    ],
+    features: ["Network Security", "Endpoint Protection", "Threat Monitoring", "Penetration Testing"],
   },
   {
     id: 2,
     title: "Governance Risk Assessment",
-    description:
-      "Identify, assess and manage cybersecurity risks with our expert governance framework.",
+    description: "Identify, assess and manage cybersecurity risks with our expert governance framework.",
     icon: FiBarChart2,
     gradient: "from-pink-500 to-pink-600",
     glowColor: "rgba(255, 92, 168, 0.35)",
     accentColor: "#FF5CA8",
     slug: "governance-risk-assessment",
-    features: [
-      "Risk Assessment",
-      "Compliance Management",
-      "Policy Development",
-      "Third-Party Risk",
-    ],
+    features: ["Risk Assessment", "Compliance Management", "Policy Development", "Third-Party Risk"],
   },
   {
     id: 3,
     title: "Training and Awareness",
-    description:
-      "Empower your team with cybersecurity awareness training to prevent security breaches.",
+    description: "Empower your team with cybersecurity awareness training to prevent security breaches.",
     icon: FiBookOpen,
     gradient: "from-violet-600 to-violet-700",
     glowColor: "rgba(124, 58, 237, 0.35)",
     accentColor: "#7C3AED",
     slug: "training-awareness",
-    features: [
-      "Phishing Simulation",
-      "Security Workshops",
-      "Incident Drills",
-      "Custom Training",
-    ],
+    features: ["Phishing Simulation", "Security Workshops", "Incident Drills", "Custom Training"],
   },
   {
     id: 4,
     title: "Banking Security",
-    description:
-      "Specialized security solutions for banking and financial institutions.",
+    description: "Specialized security solutions for banking and financial institutions.",
     icon: FiCreditCard,
     gradient: "from-blue-500 to-pink-500",
     glowColor: "rgba(43, 123, 228, 0.3)",
     accentColor: "#3B9EFF",
     slug: "banking-security",
-    features: [
-      "Fraud Detection",
-      "Transaction Monitoring",
-      "RBI Compliance",
-      "Secure Apps",
-    ],
+    features: ["Fraud Detection", "Transaction Monitoring", "RBI Compliance", "Secure Apps"],
   },
   {
     id: 5,
     title: "Incident Response",
-    description:
-      "24/7 incident response services to quickly mitigate and recover from security incidents.",
+    description: "24/7 incident response services to quickly mitigate and recover from security incidents.",
     icon: FiAlertTriangle,
     gradient: "from-pink-500 to-violet-600",
     glowColor: "rgba(255, 92, 168, 0.3)",
     accentColor: "#FF5CA8",
     slug: "incident-response",
-    features: [
-      "Rapid Response",
-      "Digital Forensics",
-      "Breach Containment",
-      "Data Recovery",
-    ],
+    features: ["Rapid Response", "Digital Forensics", "Breach Containment", "Data Recovery"],
   },
   {
     id: 6,
@@ -107,29 +72,25 @@ const services = [
     glowColor: "rgba(239, 68, 68, 0.35)",
     accentColor: "#EF4444",
     slug: "red-teaming",
-    features: [
-      "APT Simulation",
-      "Social Engineering",
-      "Physical Security",
-      "Cloud Attacks",
-    ],
+    features: ["APT Simulation", "Social Engineering", "Physical Security", "Cloud Attacks"],
   },
 ];
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({ service }: { service: typeof services[0] }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link
-      href={`/services/${service.slug}`}
-      className="block h-[380px]"
+    // FIXED: perspective on a wrapper div, not on the Link itself.
+    // Link is now INSIDE the card so it works on both faces.
+    <div
+      className="h-[380px] relative"
       style={{ perspective: "1500px" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Outer glow */}
       <div
-        className="absolute inset-0 rounded-2xl transition-opacity duration-500 pointer-events-none -z-10"
+        className="absolute inset-0 rounded-2xl -z-10 pointer-events-none transition-opacity duration-500"
         style={{
           background: `radial-gradient(ellipse at center, ${service.glowColor}, transparent 70%)`,
           opacity: hovered ? 1 : 0,
@@ -151,43 +112,41 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
           className="absolute inset-0 rounded-2xl border border-white/[0.07] bg-[#141d2e] p-8 flex flex-col"
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             boxShadow: hovered
               ? `0 20px 60px -10px ${service.glowColor}`
               : "0 4px 24px -4px rgba(0,0,0,0.5)",
             transition: "box-shadow 0.5s ease",
           }}
         >
-          {/* Top accent line */}
-         
-
           <div
             className={`inline-flex p-3.5 rounded-xl bg-gradient-to-br ${service.gradient} mb-6 w-fit`}
             style={{ boxShadow: `0 8px 24px -4px ${service.glowColor}` }}
           >
             <service.icon className="w-7 h-7 text-white" />
           </div>
-
           <h3 className="text-xl font-bold text-white mb-3 leading-tight">
             {service.title}
           </h3>
           <p className="text-gray-400 text-sm leading-relaxed flex-1">
             {service.description}
           </p>
-
           <div
             className="mt-5 flex items-center gap-1.5 text-sm font-medium"
             style={{ color: service.accentColor }}
           >
             <span>Hover to see features</span>
-            <FiArrowRight className="w-3.5 h-3.5 translate-x-0 transition-transform duration-300" />
+            <FiArrowRight className="w-3.5 h-3.5" />
           </div>
         </div>
 
-        {/* Back Face */}
-        <div
+        {/* Back Face — Link wraps the entire back */}
+        <Link
+          href={`/services/${service.slug}`}
           className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.gradient} p-8 flex flex-col justify-center`}
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
             boxShadow: `0 20px 60px -10px ${service.glowColor}`,
           }}
@@ -216,16 +175,15 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
               Click to learn more <FiArrowRight className="w-3 h-3" />
             </span>
           </div>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
 
 export default function Services() {
   return (
     <section className="py-24 bg-[#0b1220] relative overflow-hidden">
-      {/* Subtle background grid */}
       <div
         className="absolute inset-0 opacity-[0.025]"
         style={{
@@ -233,13 +191,10 @@ export default function Services() {
           backgroundSize: "60px 60px",
         }}
       />
-
-      {/* Ambient blobs */}
       <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-pink-600/8 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-blue-400 border border-blue-400/20 rounded-full px-4 py-2 mb-6 bg-blue-400/5">
             <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
@@ -264,16 +219,12 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div key={service.id} className="relative">
-              <ServiceCard service={service} index={index} />
-            </div>
+          {services.map((service) => (
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
 
-        {/* CTA */}
         <div className="text-center mt-16">
           <Link
             href="/services"
@@ -285,7 +236,6 @@ export default function Services() {
           >
             <span className="relative z-10">View All Services</span>
             <FiArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-          
           </Link>
         </div>
       </div>
