@@ -864,6 +864,15 @@ export async function generateMetadata({
     title: `${service.title} | Cybria Secure - Cybersecurity Services`,
     description: service.description,
     keywords: `${service.title.toLowerCase()}, cybersecurity services, ${slug} Kolhapur, Maharashtra security`,
+    openGraph: {
+      title: `${service.title} | Cybria Secure`,
+      description: service.description,
+      url: `https://www.cybriasecure.com/services/${slug}`,
+      type: 'website',
+    },
+    alternates: {
+      canonical: `https://www.cybriasecure.com/services/${slug}`,
+    },
   };
 }
 

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     "Get in touch with Cybria Secure for cybersecurity solutions in Kolhapur, Ichalkaranji, Miraj, Sangli, Solapur. Call +91 80804 24274",
   keywords:
     "contact cybersecurity, Kolhapur security services, cybersecurity consultation, incident response contact",
+  alternates: {
+    canonical: "https://www.cybriasecure.com/contact",
+  },
 };
 
 const contactInfo = [

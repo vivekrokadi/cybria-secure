@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/training-awareness',
     '/services/banking-security',
     '/services/incident-response',
+    '/services/red-teaming',
     '/blog',
     '/contact',
   ]

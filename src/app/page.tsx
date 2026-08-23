@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     "From Threats to Trust – We Secure It All. Professional cybersecurity services in Kolhapur, Ichalkaranji, Miraj, Sangli, Solapur. Defending your digital existence.",
   keywords:
     "cybersecurity Kolhapur, security services Maharashtra, cyber protection, incident response, risk assessment",
+  alternates: {
+    canonical: "https://www.cybriasecure.com",
+  },
 };
 
 export default function HomePage() {
@@ -141,14 +144,14 @@ export default function HomePage() {
                     Ready to Secure Your Business worldwide?
                   </h3>
                   <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Whether you operate in one contry or multiple contries across
+                    Whether you operate in one country or multiple countries across
                     the Globe, we provide consistent, reliable cybersecurity
                     protection.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
                       href="/contact"
-                      className="px-8 py-4 bg-linear-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300 transform hover:-translate-y-1"
+                      className="px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300 transform hover:-translate-y-1"
                     >
                       Get Free Consultation
                     </Link>

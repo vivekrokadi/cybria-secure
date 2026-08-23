@@ -1,117 +1,103 @@
-"use client";
-
+// SERVER COMPONENT — enables metadata export for SEO
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
 import {
   FiShield,
   FiUsers,
   FiTarget,
   FiAward,
-  FiCheckCircle,
   FiClock,
   FiTrendingUp,
   FiGlobe,
 } from "react-icons/fi";
+import TeamSection from "../../components/TeamSection";
 
+export const metadata: Metadata = {
+  title: "About Cybria Secure | Cybersecurity Experts in Kolhapur",
+  description:
+    "Learn about Cybria Secure — a leading cybersecurity risk advisory firm in Kolhapur, Maharashtra. Founded by certified experts with 5+ years experience protecting businesses across India.",
+  keywords:
+    "about Cybria Secure, cybersecurity company Kolhapur, cybersecurity experts Maharashtra, Sameer Nejkar, Tanvi Dhatrak",
+  openGraph: {
+    title: "About Cybria Secure | Cybersecurity Experts in Kolhapur",
+    description:
+      "A leading cybersecurity risk advisory firm helping organizations reduce risk and enhance competitive advantage.",
+    url: "https://www.cybriasecure.com/about",
+    type: "website",
+  },
+};
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Cybria Secure",
+  description:
+    "Cybria Secure is a leading cybersecurity risk advisory firm based in Kolhapur, Maharashtra",
+  url: "https://www.cybriasecure.com/about",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Cybria Secure",
+    description:
+      "We are problem-solvers! Cybria Secure, a leading cyber security risk advisory firm that helps organizations reduce risk & enhance competitive advantage.",
+    foundingDate: "2020",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress:
+        "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008",
+      addressLocality: "Kolhapur",
+      addressRegion: "Maharashtra",
+      postalCode: "416008",
+      addressCountry: "IN",
+    },
+    telephone: "+918080424274",
+    email: "sales@cybriasecure.com",
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      value: "50+",
+    },
+  },
+};
+
+const benefits = [
+  {
+    icon: FiShield,
+    title: "Certified Experts",
+    description:
+      "Our team holds CISSP, CEH, CISM certifications with years of hands-on experience.",
+  },
+  {
+    icon: FiUsers,
+    title: "Client Partnership",
+    description:
+      "We build long-term relationships based on trust, transparency, and mutual success.",
+  },
+  {
+    icon: FiTarget,
+    title: "Tailored Solutions",
+    description:
+      "Customized security strategies that fit your unique business needs and budget.",
+  },
+  {
+    icon: FiAward,
+    title: "Proven Track Record",
+    description:
+      "200+ successful projects and 98% client satisfaction across industries.",
+  },
+  {
+    icon: FiClock,
+    title: "24/7 Support",
+    description:
+      "Round-the-clock incident response and monitoring to keep you protected.",
+  },
+  {
+    icon: FiTrendingUp,
+    title: "Proactive Approach",
+    description:
+      "We don't just react; we anticipate threats and stay ahead of risks.",
+  },
+];
 
 export default function AboutPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    name: "About Cybria Secure",
-    description:
-      "Cybria Secure is a leading cybersecurity risk advisory firm based in Kolhapur, Maharashtra",
-    url: "https://www.cybriasecure.com/about",
-    mainEntity: {
-      "@type": "Organization",
-      name: "Cybria Secure",
-      description:
-        "We are problem-solvers! Cybria Secure, a leading cyber security risk advisory firm that helps organizations reduce risk & enhance competitive advantage.",
-      foundingDate: "2020",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress:
-          "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008",
-        addressLocality: "Kolhapur",
-        addressRegion: "Maharashtra",
-        postalCode: "416110",
-        addressCountry: "IN",
-      },
-      telephone: "+918080424274",
-      email: "sales@cybriasecure.com",
-      numberOfEmployees: {
-        "@type": "QuantitativeValue",
-        value: "50+",
-      }
-    },
-  };
-
-  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
-
-  const teamMembers = [
-    {
-      name: "Sameer Nejkar",
-      role: "Founder & CEO",
-      description:
-        "OT Security Engineer with 5+ years Cyber Security experience in banking and enterprise security",
-      gradient: "from-[#2B7BE4] to-[#3B82F6]",
-      image: "/images/team/sameer.jpeg",
-    },
-    {
-      name: "Tanvi Dhatrak",
-      role: "Founder & Managing Director",
-      description: "Sales and Marketing leader with 5+ years experience in IT services and cybersecurity",
-      gradient: "from-[#FF5CA8] to-[#EC4899]",
-      image: "/images/team/tanvi.jpeg",
-    }
-  ];
-
-  const handleImageError = (name: string) => {
-    setImageErrors((prev) => new Set(prev).add(name));
-  };
-
-  const benefits = [
-    {
-      icon: FiShield,
-      title: "Certified Experts",
-      description:
-        "Our team holds CISSP, CEH, CISM certifications with years of hands-on experience.",
-    },
-    {
-      icon: FiUsers,
-      title: "Client Partnership",
-      description:
-        "We build long-term relationships based on trust, transparency, and mutual success.",
-    },
-    {
-      icon: FiTarget,
-      title: "Tailored Solutions",
-      description:
-        "Customized security strategies that fit your unique business needs and budget.",
-    },
-    {
-      icon: FiAward,
-      title: "Proven Track Record",
-      description:
-        "200+ successful projects and 98% client satisfaction across industries.",
-    },
-    {
-      icon: FiClock,
-      title: "24/7 Support",
-      description:
-        "Round-the-clock incident response and monitoring to keep you protected.",
-    },
-    {
-      icon: FiTrendingUp,
-      title: "Proactive Approach",
-      description:
-        "We don't just react; we anticipate threats and stay ahead of risks.",
-    },
-  ];
-
   return (
     <>
       <script
@@ -121,7 +107,7 @@ export default function AboutPage() {
 
       <div className="min-h-screen py-20 bg-[#0b1220]">
         <div className="container mx-auto px-4">
-          {/* Hero Section */}
+          {/* Hero */}
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               <span className="text-white">About </span>
@@ -133,7 +119,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Mission Statement */}
+          {/* Mission */}
           <div className="max-w-4xl mx-auto mb-16">
             <div className="bg-gradient-to-r from-[#2B7BE4]/10 via-[#FF5CA8]/10 to-[#7C3AED]/10 rounded-2xl p-8 md:p-12">
               <div className="flex items-center justify-center mb-8">
@@ -221,13 +207,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Benefits */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {benefits.map((item, index) => {
+            {benefits.map((item) => {
               const Icon = item.icon;
               return (
                 <div
-                  key={index}
+                  key={item.title}
                   className="group bg-[#1a2236] rounded-xl p-6 border border-gray-800 hover:border-[#2B7BE4] transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
@@ -255,78 +240,24 @@ export default function AboutPage() {
               { number: "200+", label: "Projects", icon: FiTarget },
               { number: "24/7", label: "Support", icon: FiClock },
               { number: "100+", label: "Clients", icon: FiGlobe },
-            ].map((stat, index) => {
+            ].map((stat) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className="text-center">
+                <div key={stat.label} className="text-center">
                   <div className="inline-flex justify-center items-center w-16 h-16 bg-[#1a2236] rounded-lg mb-2">
                     <Icon className="w-10 h-10 text-[#2B7BE4]" />
                   </div>
-                  <div className="text-xl font-bold text-white">
-                    {stat.number}
-                  </div>
+                  <div className="text-xl font-bold text-white">{stat.number}</div>
                   <div className="text-xs text-gray-500">{stat.label}</div>
                 </div>
               );
             })}
           </div>
 
-          {/* Team Section */}
-          <div className="mb-16 mt-16">
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              Meet the Visionaries Behind CYBRIA SECURE
-            </h2>
-            <p className="text-gray-400 mb-12 max-w-4xl mx-auto text-center">
-              Founded by Sameer Nejkar (Founder & CEO) and Tanvi Dhatrak (Founder & Managing Director), CYBRIA SECURE brings together cybersecurity expertise and strategic leadership. United by a commitment to trust, innovation, and resilience, they are dedicated to helping organizations navigate the digital landscape with confidence and security.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {teamMembers.map((member) => {
-                const hasImageError = imageErrors.has(member.name);
-                const initials = member.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("");
+          {/* Team — client component for image error handling */}
+          <TeamSection />
 
-                return (
-                  <div
-                    key={member.name}
-                    className="bg-[#1a2236] rounded-2xl p-8 text-center border border-gray-800 hover:border-transparent transition-all duration-300 group"
-                  >
-                    <div
-                      className={`relative w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br ${member.gradient} p-1`}
-                    >
-                      <div className="w-full h-full rounded-full overflow-hidden bg-[#1a2236]">
-                        {!hasImageError ? (
-                          <Image
-                            src={member.image}
-                            alt={member.name}
-                            width={96}
-                            height={96}
-                            className="object-cover object-top w-full h-full"
-                            onError={() => handleImageError(member.name)}
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-[#0b1220] text-2xl font-bold text-white">
-                            {initials}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#2B7BE4] font-medium mb-4">
-                      {member.role}
-                    </p>
-                  </div>
-                  
-                );
-              })}
-            </div>
-          </div>
-
-          
+          {/* CTA */}
           <div className="text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Partner with Cybersecurity Experts

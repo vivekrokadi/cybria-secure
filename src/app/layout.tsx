@@ -14,6 +14,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.cybriasecure.com'),
   title: 'Cybria Secure - Leading Cybersecurity Services in Kolhapur',
   description: 'Defending your digital existence. Professional cybersecurity services in Kolhapur, Ichalkaranji, Miraj, Sangli.',
   keywords: 'cybersecurity, security services, Kolhapur, Ichalkaranji, Miraj, Sangli, incident response, risk assessment',
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     siteName: 'Cybria Secure',
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://www.cybriasecure.com/cybriasecure-logo.png',
         width: 1200,
         height: 630,
         alt: 'Cybria Secure',
@@ -39,10 +40,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Cybria Secure - Leading Cybersecurity Services',
     description: 'Defending your digital existence',
-    images: ['/og-image.png'],
+    images: ['/cybriasecure-logo.png'],
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'REPLACE_WITH_ACTUAL_GOOGLE_VERIFICATION_CODE',
   },
 }
 
@@ -52,13 +53,13 @@ const jsonLd = {
   name: 'Cybria Secure',
   description: 'Leading cybersecurity services company in Kolhapur, Maharashtra',
   url: 'https://www.cybriasecure.com',
-  logo: 'https://www.cybriasecure.com/logo.svg',
+  logo: 'https://www.cybriasecure.com/cybriasecure-logo.png',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008',
     addressLocality: 'Kolhapur',
     addressRegion: 'Maharashtra',
-    postalCode: '416110',
+    postalCode: '416008',
     addressCountry: 'IN',
   },
   geo: {
@@ -66,7 +67,7 @@ const jsonLd = {
     latitude: '16.6919',
     longitude: '74.2314',
   },
-  openingHours: 'Mo-Fr 09:00-18:00',
+  openingHours: 'Mo-Fr 09:30-18:30',
   telephone: '+918080424274',
   email: 'sales@cybriasecure.com',
   serviceArea: {

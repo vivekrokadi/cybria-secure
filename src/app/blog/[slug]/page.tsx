@@ -248,11 +248,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Back Button */}
           <div className="mb-8">
             <Link
-              href="/blog"
+              href="/resources"
               className="inline-flex items-center text-gray-400 hover:text-white transition-colors group"
             >
               <FiArrowLeft className="mr-2 transform group-hover:-translate-x-1 transition-transform" />
-              Back to Blog
+              Back to Resources
             </Link>
           </div>
 

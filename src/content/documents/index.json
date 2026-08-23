@@ -1,0 +1,68 @@
+[
+  {
+    "id": "rbi-cybersecurity-checklist",
+    "title": "RBI Cybersecurity Compliance Checklist 2025",
+    "description": "A practical checklist for cooperative banks, UCBs, and NBFCs to self-assess against RBI Master Directions on IT Risk & Cybersecurity Framework.",
+    "category": "Compliance",
+    "fileType": "PDF",
+    "fileSize": "1.2 MB",
+    "downloadUrl": "/documents/rbi-cybersecurity-checklist-2025.pdf",
+    "date": "2025-01-10",
+    "tags": ["RBI", "Compliance", "Banking", "Checklist"]
+  },
+  {
+    "id": "vapt-buyers-guide",
+    "title": "VAPT Buyer's Guide for Indian Businesses",
+    "description": "Everything you need to know before commissioning a VAPT — what to ask, what to expect, red flags to avoid, and how to evaluate reports.",
+    "category": "Guide",
+    "fileType": "PDF",
+    "fileSize": "0.9 MB",
+    "downloadUrl": "/documents/vapt-buyers-guide-india.pdf",
+    "date": "2025-01-20",
+    "tags": ["VAPT", "Guide", "Security Testing"]
+  },
+  {
+    "id": "incident-response-plan-template",
+    "title": "Cyber Incident Response Plan Template",
+    "description": "A ready-to-use IRP template for Indian SMEs and cooperative banks, aligned with RBI notification requirements and CERT-In guidelines.",
+    "category": "Template",
+    "fileType": "PDF",
+    "fileSize": "0.7 MB",
+    "downloadUrl": "/documents/incident-response-plan-template.pdf",
+    "date": "2025-02-01",
+    "tags": ["Incident Response", "Template", "RBI", "CERT-In"]
+  },
+  {
+    "id": "cybersecurity-awareness-poster",
+    "title": "Cybersecurity Awareness Poster Pack",
+    "description": "Printable security awareness posters for your office — covering phishing, password hygiene, and safe browsing. Available in English, Hindi, and Marathi.",
+    "category": "Awareness",
+    "fileType": "ZIP",
+    "fileSize": "4.5 MB",
+    "downloadUrl": "/documents/security-awareness-posters.zip",
+    "date": "2025-02-10",
+    "tags": ["Awareness", "Training", "Marathi", "Hindi"]
+  },
+  {
+    "id": "ot-security-overview",
+    "title": "OT/ICS Security Overview for Indian Manufacturers",
+    "description": "Introduction to operational technology security risks for Indian manufacturing, foundry, and textile businesses with OT/SCADA systems.",
+    "category": "Guide",
+    "fileType": "PDF",
+    "fileSize": "1.1 MB",
+    "downloadUrl": "/documents/ot-security-overview-india.pdf",
+    "date": "2025-02-15",
+    "tags": ["OT Security", "Manufacturing", "SCADA", "ICS"]
+  },
+  {
+    "id": "red-team-vs-pentest",
+    "title": "Red Teaming vs Penetration Testing: What's Right for You?",
+    "description": "A concise comparison to help security decision-makers understand the difference and choose the right engagement for their maturity level.",
+    "category": "Guide",
+    "fileType": "PDF",
+    "fileSize": "0.5 MB",
+    "downloadUrl": "/documents/red-team-vs-pentest-guide.pdf",
+    "date": "2025-03-01",
+    "tags": ["Red Teaming", "VAPT", "Guide"]
+  }
+]

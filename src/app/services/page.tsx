@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     "Comprehensive cybersecurity services in Kolhapur: Cyber Security, Risk Assessment, Training, Banking Security, Incident Response. Protect your business today.",
   keywords:
     "cybersecurity services, security solutions, risk assessment, incident response, banking security",
+  alternates: {
+    canonical: "https://www.cybriasecure.com/services",
+  },
 };
 
 const services = [

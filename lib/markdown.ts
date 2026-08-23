@@ -15,195 +15,194 @@ export interface BlogPost {
 
 // Hardcoded blog posts for development
 const blogPosts: BlogPost[] = [
-  {
-    slug: 'welcome-to-cybria-secure',
-    title: 'Welcome to Cybria Secure - Your Cybersecurity Partner in Maharashtra',
-    date: '2024-01-15',
-    author: 'Cybria Secure Team',
-    excerpt: 'Discover how Cybria Secure is protecting businesses across Kolhapur, Ichalkaranji, Miraj, Sangli, and Solapur from cyber threats.',
-    category: 'Cybersecurity',
-    image: '/images/blog/welcome.png',
-    content: `# Welcome to Cybria Secure
+//   {
+//     slug: 'welcome-to-cybria-secure',
+//     title: 'Welcome to Cybria Secure - Your Cybersecurity Partner in Maharashtra',
+//     date: '2024-01-15',
+//     author: 'Cybria Secure Team',
+//     excerpt: 'Discover how Cybria Secure is protecting businesses across Kolhapur, Ichalkaranji, Miraj, Sangli, and Solapur from cyber threats.',
+//     category: 'Cybersecurity',
+//     image: '/images/blog/welcome.png',
+//     content: `# Welcome to Cybria Secure
 
-Welcome to the official blog of Cybria Secure, your trusted cybersecurity partner in Maharashtra. We're excited to share insights, tips, and updates about cybersecurity that matter to businesses in our region.
+// Welcome to the official blog of Cybria Secure, your trusted cybersecurity partner in Maharashtra. We're excited to share insights, tips, and updates about cybersecurity that matter to businesses in our region.
 
-## Who We Are
+// ## Who We Are
 
-Cybria Secure is a leading cybersecurity risk advisory firm based in Kolhapur, serving businesses across Maharashtra including:
+// Cybria Secure is a leading cybersecurity risk advisory firm based in Kolhapur, serving businesses across Maharashtra including:
 
-- Kolhapur: Manufacturing & Educational Institutions
-- Ichalkaranji: Textile & Small Industries
-- Miraj: Healthcare & Medical Facilities
-- Sangli: Banking & Agricultural Businesses
-- Solapur: Industrial & Commercial Enterprises
+// - Kolhapur: Manufacturing & Educational Institutions
+// - Ichalkaranji: Textile & Small Industries
+// - Miraj: Healthcare & Medical Facilities
+// - Sangli: Banking & Agricultural Businesses
+// - Solapur: Industrial & Commercial Enterprises
 
-## Our Mission
+// ## Our Mission
 
-Our mission is simple: "From Threats to Trust – We Secure It All." We believe that every business, regardless of size, deserves enterprise-grade security protection.
+// Our mission is simple: "From Threats to Trust – We Secure It All." We believe that every business, regardless of size, deserves enterprise-grade security protection.
 
-## Why Cybersecurity Matters in Maharashtra
+// ## Why Cybersecurity Matters in Maharashtra
 
-As businesses in Maharashtra increasingly embrace digital transformation, they become targets for cybercriminals. Common threats include:
+// As businesses in Maharashtra increasingly embrace digital transformation, they become targets for cybercriminals. Common threats include:
 
-1. Phishing Attacks: Targeting financial and personal information
-2. Ransomware: Encrypting critical business data
-3. Data Breaches: Stealing sensitive customer information
-4. Insider Threats: Accidental or intentional data leaks
+// 1. Phishing Attacks: Targeting financial and personal information
+// 2. Ransomware: Encrypting critical business data
+// 3. Data Breaches: Stealing sensitive customer information
+// 4. Insider Threats: Accidental or intentional data leaks
 
-## Our Approach
+// ## Our Approach
 
-We take a comprehensive approach to cybersecurity:
+// We take a comprehensive approach to cybersecurity:
 
-1. Assessment: Understanding your current security posture
-2. Protection: Implementing appropriate security measures
-3. Monitoring: Continuous threat detection and response
-4. Training: Educating your team about security best practices
+// 1. Assessment: Understanding your current security posture
+// 2. Protection: Implementing appropriate security measures
+// 3. Monitoring: Continuous threat detection and response
+// 4. Training: Educating your team about security best practices
 
-## Stay Connected
+// ## Stay Connected
 
-Follow our blog for regular updates on:
-- Cybersecurity best practices
-- Threat intelligence specific to Maharashtra
-- Industry compliance requirements
-- Success stories from our clients
+// Follow our blog for regular updates on:
+// - Cybersecurity best practices
+// - Threat intelligence specific to Maharashtra
+// - Industry compliance requirements
+// - Success stories from our clients
 
-Contact us today for a free security assessment:
-- Phone: +91 80804 24274
-- Email: sales@cybriasecure.com
-- Office: 110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008
+// Contact us today for a free security assessment:
+// - Phone: +91 80804 24274
+// - Email: sales@cybriasecure.com
+// - Office: 110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008
 
-Stay secure!`,
-    readingTime: 3,
-    keywords: ['cybersecurity', 'Kolhapur', 'Maharashtra', 'business protection', 'digital security']  // Added keywords
-  },
-  {
-    slug: 'importance-of-cybersecurity',
-    title: 'Why Cybersecurity is Critical for Small Businesses in Maharashtra',
-    date: '2024-01-20',
-    author: 'Rajesh Kumar',
-    excerpt: 'Learn why cybersecurity is essential for small and medium businesses in Kolhapur, Sangli, and Solapur, and how to protect your digital assets.',
-    category: 'Business Security',
-    image: '/images/blog/cybersecurity-importance.png',
-    content: `# The Critical Importance of Cybersecurity for Maharashtra's Small Businesses
+// Stay secure!`,
+//     readingTime: 3,
+//     keywords: ['cybersecurity', 'Kolhapur', 'Maharashtra', 'business protection', 'digital security']  // Added keywords
+//   },
+//   {
+//     slug: 'importance-of-cybersecurity',
+//     title: 'Why Cybersecurity is Critical for Small Businesses in Maharashtra',
+//     date: '2024-01-20',
+//     author: 'Rajesh Kumar',
+//     excerpt: 'Learn why cybersecurity is essential for small and medium businesses in Kolhapur, Sangli, and Solapur, and how to protect your digital assets.',
+//     category: 'Business Security',
+//     image: '/images/blog/cybersecurity-importance.png',
+//     content: `# The Critical Importance of Cybersecurity for Maharashtra's Small Businesses
 
-In the digital transformation era, businesses in Kolhapur, Sangli, Solapur, Ichalkaranji, and Miraj are increasingly moving online. While this opens new opportunities, it also exposes businesses to cyber threats that can cripple operations overnight.
+// In the digital transformation era, businesses in Kolhapur, Sangli, Solapur, Ichalkaranji, and Miraj are increasingly moving online. While this opens new opportunities, it also exposes businesses to cyber threats that can cripple operations overnight.
 
-## The Reality of Cyber Threats in Maharashtra
+// ## The Reality of Cyber Threats in Maharashtra
 
-Recent data shows that 43% of cyber attacks target small businesses. Why? Because many small businesses in our region:
+// Recent data shows that 43% of cyber attacks target small businesses. Why? Because many small businesses in our region:
 
-1. Lack dedicated IT security teams
-2. Use outdated software
-3. Have limited security budgets
-4. Assume they're too small to be targeted
+// 1. Lack dedicated IT security teams
+// 2. Use outdated software
+// 3. Have limited security budgets
+// 4. Assume they're too small to be targeted
 
-This misconception makes them attractive targets for cybercriminals.
+// This misconception makes them attractive targets for cybercriminals.
 
-## Common Threats Facing Local Businesses
+// ## Common Threats Facing Local Businesses
 
-### 1. Phishing Attacks
-Especially targeting financial institutions in Sangli and banking sectors. Employees receive fraudulent emails pretending to be from legitimate sources.
+// ### 1. Phishing Attacks
+// Especially targeting financial institutions in Sangli and banking sectors. Employees receive fraudulent emails pretending to be from legitimate sources.
 
-### 2. Ransomware
-Manufacturing units in Kolhapur and Ichalkaranji are particularly vulnerable. Attackers encrypt critical files and demand payment for release.
+// ### 2. Ransomware
+// Manufacturing units in Kolhapur and Ichalkaranji are particularly vulnerable. Attackers encrypt critical files and demand payment for release.
 
-### 3. Data Breaches
-Customer data theft from retail businesses and healthcare facilities in Miraj.
+// ### 3. Data Breaches
+// Customer data theft from retail businesses and healthcare facilities in Miraj.
 
-### 4. Insider Threats
-Accidental or intentional data leaks from within the organization.
+// ### 4. Insider Threats
+// Accidental or intentional data leaks from within the organization.
 
-## The Cost of Cyber Attacks
+// ## The Cost of Cyber Attacks
 
-For a small business in Maharashtra, a cyber attack can mean:
+// For a small business in Maharashtra, a cyber attack can mean:
 
-- Financial Loss: Average cost of ₹15-20 lakhs for small businesses
-- Reputation Damage: 60% of small businesses close within 6 months of a major breach
-- Legal Consequences: Non-compliance with data protection regulations
-- Operational Downtime: Days or weeks of disrupted business operations
+// - Financial Loss: Average cost of ₹15-20 lakhs for small businesses
+// - Reputation Damage: 60% of small businesses close within 6 months of a major breach
+// - Legal Consequences: Non-compliance with data protection regulations
+// - Operational Downtime: Days or weeks of disrupted business operations
 
-## Essential Cybersecurity Measures
+// ## Essential Cybersecurity Measures
 
-### 1. Employee Training
-Regular cybersecurity awareness training for all staff members. This is the most cost-effective security measure.
+// ### 1. Employee Training
+// Regular cybersecurity awareness training for all staff members. This is the most cost-effective security measure.
 
-### 2. Regular Updates
-Keep all software and systems updated with the latest security patches.
+// ### 2. Regular Updates
+// Keep all software and systems updated with the latest security patches.
 
-### 3. Data Backup
-Maintain regular backups of critical data, stored securely off-site.
+// ### 3. Data Backup
+// Maintain regular backups of critical data, stored securely off-site.
 
-### 4. Access Control
-Implement strict access controls and use multi-factor authentication.
+// ### 4. Access Control
+// Implement strict access controls and use multi-factor authentication.
 
-### 5. Network Security
-Use firewalls, encryption, and secure Wi-Fi networks.
+// ### 5. Network Security
+// Use firewalls, encryption, and secure Wi-Fi networks.
 
-## How Cybria Secure Can Help
+// ## How Cybria Secure Can Help
 
-Based in Kolhapur, we offer tailored solutions for Maharashtra businesses:
+// Based in Kolhapur, we offer tailored solutions for Maharashtra businesses:
 
-### Basic Security Package
-For startups and small businesses:
-- Security assessment
-- Basic employee training
-- Essential protection setup
+// ### Basic Security Package
+// For startups and small businesses:
+// - Security assessment
+// - Basic employee training
+// - Essential protection setup
 
-### Advanced Protection
-For growing businesses:
-- 24/7 monitoring
-- Regular security audits
-- Incident response planning
+// ### Advanced Protection
+// For growing businesses:
+// - 24/7 monitoring
+// - Regular security audits
+// - Incident response planning
 
-### Enterprise Security
-For larger organizations:
-- Complete security infrastructure
-- Compliance management
-- Executive protection
+// ### Enterprise Security
+// For larger organizations:
+// - Complete security infrastructure
+// - Compliance management
+// - Executive protection
 
-## Local Case Study: Kolhapur Manufacturing Company
+// ## Local Case Study: Kolhapur Manufacturing Company
 
-A mid-sized manufacturing company in Kolhapur faced repeated ransomware attacks. After implementing our cybersecurity framework:
+// A mid-sized manufacturing company in Kolhapur faced repeated ransomware attacks. After implementing our cybersecurity framework:
 
-- Zero successful attacks in 12 months
-- 40% reduction in phishing attempts
-- Full regulatory compliance achieved
-- Employee confidence significantly improved
+// - Zero successful attacks in 12 months
+// - 40% reduction in phishing attempts
+// - Full regulatory compliance achieved
+// - Employee confidence significantly improved
 
-## Action Steps for Your Business
+// ## Action Steps for Your Business
 
-1. Assess Your Current Security: Contact us for a free security assessment
-2. Train Your Team: Schedule cybersecurity awareness training
-3. Implement Basic Protections: Start with essential security measures
-4. Develop a Response Plan: Prepare for potential incidents
-5. Stay Updated: Regular security reviews and updates
+// 1. Assess Your Current Security: Contact us for a free security assessment
+// 2. Train Your Team: Schedule cybersecurity awareness training
+// 3. Implement Basic Protections: Start with essential security measures
+// 4. Develop a Response Plan: Prepare for potential incidents
+// 5. Stay Updated: Regular security reviews and updates
 
-## Conclusion
+// ## Conclusion
 
-Cybersecurity isn't an expense—it's an investment in your business's future. In today's connected world, every business in Maharashtra needs professional cybersecurity protection.
+// Cybersecurity isn't an expense—it's an investment in your business's future. In today's connected world, every business in Maharashtra needs professional cybersecurity protection.
 
-Don't wait for an attack to happen. Proactive protection is always more effective and less costly than reactive measures.
+// Don't wait for an attack to happen. Proactive protection is always more effective and less costly than reactive measures.
 
-Contact Cybria Secure today to discuss your cybersecurity needs:
-- Phone: +91 80804 24274
-- Email: sales@cybriasecure.com
-- Location: Kolhapur, serving all Maharashtra`,
-    readingTime: 5,
-    keywords: ['small business security', 'cybersecurity tips', 'Maharashtra businesses', 'phishing protection']  // Added keywords
-  },
+// Contact Cybria Secure today to discuss your cybersecurity needs:
+// - Phone: +91 80804 24274
+// - Email: sales@cybriasecure.com
+// - Location: Kolhapur, serving all Maharashtra`,
+//     readingTime: 5,
+//     keywords: ['small business security', 'cybersecurity tips', 'Maharashtra businesses', 'phishing protection']  // Added keywords
+//   },
   {
     slug: 'banking-security-guide',
-    title: 'Banking Security Guide for Financial Institutions in Maharashtra',
+    title: 'Banking Security Guide for Financial Institutions',
     date: '2024-01-25',
     author: 'Priya Sharma',
     excerpt: 'Essential security measures for banking and financial institutions in Sangli, Kolhapur, and across Maharashtra to prevent fraud and data breaches.',
     category: 'Banking Security',
     image: '/images/blog/banking-security.png',
-    content: `# Banking Security Guide for Financial Institutions in Maharashtra
+    content: `# Banking Security Guide for Financial Institutions
+In the financial sector, security is not just important—it's everything. Banks and financial institutions across India face unique cybersecurity challenges that require specialized solutions.
 
-In the financial sector, security is not just important—it's everything. Banks and financial institutions in Sangli, Kolhapur, and across Maharashtra face unique cybersecurity challenges that require specialized solutions.
-
-## The Banking Security Landscape in Maharashtra
+## The Banking Security Landscape in India
 
 Financial institutions in Maharashtra are prime targets for cybercriminals due to:
 
