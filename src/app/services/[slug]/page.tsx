@@ -2,1188 +2,421 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
-  FiShield,
-  FiBarChart2,
-  FiBookOpen,
-  FiCreditCard,
-  FiAlertTriangle,
-  FiCheckCircle,
-  FiArrowLeft,
-  FiSearch,
-  FiLock,
-  FiGlobe,
-  FiSmartphone,
-  FiWifi,
-  FiCloud,
-  FiCode,
-  FiCpu,
-  FiSettings,
-  FiTarget,
-  FiMonitor,
-  FiFileText,
-  FiUsers,
-  FiMail,
-  FiAlertCircle,
-  FiClipboard,
-  FiTrendingUp,
-  FiShieldOff,
+  FiShield, FiGlobe, FiSmartphone, FiCloud, FiCode, FiCpu,
+  FiTarget, FiAlertTriangle, FiClipboard, FiBarChart2,
+  FiUsers, FiBookOpen, FiServer, FiArrowRight, FiPhone,
+  FiCheck, FiChevronDown, FiArrowLeft,
 } from "react-icons/fi";
+import { services, categories, getServiceBySlug } from "@/lib/servicesData";
 
-interface ServicePageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+const iconMap: Record<string, React.ElementType> = {
+  FiGlobe: FiGlobe,
+  FiServer: FiServer,
+  FiSmartphone: FiSmartphone,
+  FiCloud: FiCloud,
+  FiCode: FiCode,
+  FiCpu: FiCpu,
+  FiTarget: FiTarget,
+  FiAlertTriangle: FiAlertTriangle,
+  FiClipboard: FiClipboard,
+  FiShield: FiShield,
+  FiBarChart2: FiBarChart2,
+  FiUsers: FiUsers,
+  FiBookOpen: FiBookOpen,
+};
 
-const serviceDetails = {
-  "cyber-security": {
-    title: "Cyber Security",
-    icon: FiShield,
-    description:
-      "Protect systems, networks and data from cyber threats with our comprehensive security solutions.",
-    gradient: "from-[#2B7BE4] to-[#3B82F6]",
-    features: [
-      "Network Security & Firewall Management",
-      "Endpoint Protection & Antivirus Solutions",
-      "Data Encryption & Backup Solutions",
-      "24/7 Threat Monitoring & Detection",
-      "Vulnerability Assessment & Penetration Testing",
-      "Email Security & Spam Protection",
-      "Mobile Device Security Management",
-      "Cloud Security Configuration",
-    ],
-    benefits: [
-      "Prevent data breaches and unauthorized access",
-      "Ensure business continuity and data availability",
-      "Meet compliance and regulatory requirements",
-      "Protect customer and business data",
-      "Reduce risk of financial losses",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Planning",
-        desc: "Custom security strategy development",
-      },
-      {
-        step: 2,
-        title: "Assessment",
-        desc: "Comprehensive security evaluation",
-      },
-      {
-        step: 3,
-        title: "Implementation",
-        desc: "Deployment of security solutions",
-      },
-      {
-        step: 4,
-        title: "Monitoring",
-        desc: "24/7 threat detection and response",
-      },
-      {
-        step: 5,
-        title: "Optimization",
-        desc: "Continuous improvement and updates",
-      },
-    ],
-    detailedContent: [
-      {
-        icon: FiSearch,
-        title: "Vulnerability Assessment",
-        description:
-          "Vulnerability assessment is used to identify, quantify, and analyze security vulnerabilities in the IT infrastructure and applications.",
-        subPoints: [
-          "Uses various tools, techniques, and methodologies",
-          "Analyzes potential weaknesses and security flaws",
-          "Identifies exploitable vulnerabilities before attackers do",
-          "Provides actionable remediation recommendations",
-        ],
-      },
-      {
-        icon: FiLock,
-        title: "Penetration Testing",
-        description:
-          "Ethical hacking to find and fix security holes before real attackers can exploit them.",
-        subPoints: [
-          "Proactive security testing by certified ethical hackers",
-          "Simulates real-world cyber attacks",
-          "Identifies exploitable vulnerabilities in systems",
-          "Provides detailed remediation guidance",
-        ],
-      },
-      {
-        icon: FiGlobe,
-        title: "Web Application Security Assessment (SAST/DAST)",
-        description:
-          "Identifies and prioritizes highest severity risks affecting web applications and supporting infrastructure.",
-        subPoints: [
-          "Static Application Security Testing (SAST)",
-          "Dynamic Application Security Testing (DAST)",
-          "Application logic and design analysis",
-          "Automated and manual testing combination",
-        ],
-      },
-      {
-        icon: FiSmartphone,
-        title: "Mobile Application Security Testing",
-        description:
-          "Evaluates security of mobile applications to identify and address vulnerabilities.",
-        subPoints: [
-          "iOS and Android application testing",
-          "Secure coding practices verification",
-          "Data storage and transmission security",
-          "Authentication and authorization testing",
-        ],
-      },
-      {
-        icon: FiMonitor,
-        title: "Network Security Assessment",
-        description:
-          "Discovers and identifies risks in network environments to prevent data leakage and intrusions.",
-        subPoints: [
-          "Network architecture review",
-          "Firewall and router configuration analysis",
-          "Intrusion detection system evaluation",
-          "Data leakage prevention assessment",
-        ],
-      },
-      {
-        icon: FiCode,
-        title: "Secure Code Review",
-        description:
-          "Manual and automatic review of application source code to uncover hidden vulnerabilities.",
-        subPoints: [
-          "Injection flaws detection",
-          "Cross-site scripting bug identification",
-          "Weak cryptography analysis",
-          "Insecure coding practices detection",
-        ],
-      },
-      {
-        icon: FiCloud,
-        title: "Cloud Security Assessment",
-        description:
-          "Comprehensive evaluation of cloud environment to identify and address security risks.",
-        subPoints: [
-          "Cloud infrastructure analysis",
-          "Multi-cloud security assessment",
-          "Data protection in cloud",
-          "Compliance with cloud security standards",
-        ],
-      },
-      {
-        icon: FiCpu,
-        title: "IoT Security",
-        description:
-          "Protects Internet of Things devices, networks, and data from cyber threats.",
-        subPoints: [
-          "IoT device vulnerability assessment",
-          "Network communication security",
-          "Firmware security analysis",
-          "IoT protocol security evaluation",
-        ],
-      },
-      {
-        icon: FiSettings,
-        title: "VMDR (Vulnerability Management, Detection, and Response)",
-        description:
-          "Integrated approach to identifying, managing, detecting, and responding to security vulnerabilities.",
-        subPoints: [
-          "Continuous vulnerability scanning",
-          "Real-time threat detection",
-          "Automated response mechanisms",
-          "Remediation workflow management",
-        ],
-      },
-      {
-        icon: FiTarget,
-        title: "Threat Modelling",
-        description:
-          "Structured approach to identify, assess, and prioritize potential threats and vulnerabilities.",
-        subPoints: [
-          "Attack surface analysis",
-          "Threat identification and categorization",
-          "Risk assessment and prioritization",
-          "Countermeasure design",
-        ],
-      },
-      {
-        icon: FiSettings,
-        title: "Secure Configuration Review",
-        description:
-          "Evaluates and manages system settings to ensure security, efficiency, and best practices alignment with standard frameworks.",
-        subPoints: [
-          "System configuration auditing",
-          "Security baseline compliance",
-          "Performance optimization",
-          "Patch management review",
-        ],
-      },
-      {
-        icon: FiWifi,
-        title: "Wireless Security",
-        description:
-          "Measures and protocols to protect wireless networks and transmitted data from unauthorized access.",
-        subPoints: [
-          "Wireless network penetration testing",
-          "Wi-Fi security configuration review",
-          "Wireless intrusion detection",
-          "Encryption protocol analysis",
-        ],
-      },
-    ],
-  },
-  "governance-risk-assessment": {
-    title: "Governance, Risk Compliance",
-    icon: FiBarChart2,
-    description:
-      "Align strategy, manage risks, and stay compliant with a structured Governance, Risk & Compliance approach.",
-    gradient: "from-[#FF5CA8] to-[#EC4899]",
-    features: [
-      "Comprehensive Risk Assessment",
-      "Regulatory Compliance Management",
-      "ISMS Policy and Procedure Development",
-      "Third-Party Risk Management",
-      "Continuous Monitoring & Reporting",
-      "Risk Treatment Planning",
-      "Security Control Implementation",
-      "Audit Preparation & Support",
-    ],
-    benefits: [
-      "Identify and prioritize security risks",
-      "Ensure regulatory compliance",
-      "Establish clear security policies",
-      "Manage third-party vendor risks",
-      "Improve overall security posture",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Risk Identification",
-        desc: "Identify potential security threats",
-      },
-      { step: 2, title: "Risk Analysis", desc: "Assess impact and likelihood" },
-      {
-        step: 3,
-        title: "Risk Evaluation",
-        desc: "Prioritize risks based on impact",
-      },
-      {
-        step: 4,
-        title: "Risk Treatment",
-        desc: "Implement risk mitigation strategies",
-      },
-      { step: 5, title: "Monitoring", desc: "Continuous risk assessment" },
-      {
-        step: 6,
-        title: "Reporting",
-        desc: "Regular risk reporting and updates",
-      },
-    ],
-    detailedContent: [
-      {
-        icon: FiShield,
-        title: "ISO 27001",
-        description:
-          "International standard for Information Security Management System (ISMS) implementation.",
-        subPoints: [
-          "Systematic approach to information security",
-          "Confidentiality, integrity, and availability assurance",
-          "Best practices framework implementation",
-          "ISMS development and maintenance",
-        ],
-      },
-      {
-        icon: FiCreditCard,
-        title: "PCI DSS",
-        description:
-          "Security standards for companies handling credit card information.",
-        subPoints: [
-          "Cardholder data protection",
-          "Secure payment processing environment",
-          "Regular security testing requirements",
-          "Access control measures implementation",
-        ],
-      },
-      {
-        icon: FiFileText,
-        title: "GDPR",
-        description:
-          "European Union data protection regulation for personal data privacy.",
-        subPoints: [
-          "Data protection impact assessments",
-          "Privacy by design implementation",
-          "Data breach notification compliance",
-          "Individual rights management",
-        ],
-      },
-      {
-        icon: FiSettings,
-        title: "IT General Controls (ITGC)",
-        description:
-          "Fundamental controls for IT infrastructure integrity, security, and reliability.",
-        subPoints: [
-          "Access control management",
-          "Change management processes",
-          "IT operations monitoring",
-          "Backup and recovery procedures",
-        ],
-      },
-      {
-        icon: FiAlertCircle,
-        title: "IT Risk Assessment",
-        description:
-          "Process of identifying, evaluating, and prioritizing IT infrastructure risks.",
-        subPoints: [
-          "Threat and vulnerability identification",
-          "Risk impact and likelihood evaluation",
-          "Mitigation strategy development",
-          "Continuous risk monitoring",
-        ],
-      },
-      {
-        icon: FiUsers,
-        title: "Third-Party Risk Assessment",
-        description:
-          "Evaluates risks associated with external vendors and service providers.",
-        subPoints: [
-          "Vendor security posture assessment",
-          "Contractual compliance verification",
-          "Data protection agreement review",
-          "Service level agreement monitoring",
-        ],
-      },
-      {
-        icon: FiShield,
-        title: "Digital Personal Data Protection 2023 (DPDP)",
-        description:
-          "Ensures organizational compliance with India’s Digital Personal Data Protection Act, 2023.",
-        subPoints: [
-          "Data processing activity assessment",
-          "Consent management framework setup",
-          "Data fiduciary & processor compliance review",
-          "Data breach response and reporting readiness",
-        ],
-      },
+type Props = { params: Promise<{ slug: string }> };
 
-      {
-        icon: FiLock,
-        title: "Personal Data Protection Act",
-        description: "Ensures compliance with data protection regulations.",
-        subPoints: [
-          "Gap analysis and compliance assessment",
-          "Privacy policy development",
-          "Data classification and protection",
-          "Employee training and awareness",
-        ],
-      },
-      {
-        icon: FiGlobe,
-        title: "Social Media Risk Assessment",
-        description: "Identifies risks associated with social media platforms.",
-        subPoints: [
-          "Brand reputation risk analysis",
-          "Account security review",
-          "Privacy compliance audit",
-          "Incident response planning",
-        ],
-      },
-      {
-        icon: FiClipboard,
-        title: "HIPAA",
-        description:
-          "US federal law for protecting sensitive patient health information.",
-        subPoints: [
-          "Patient data privacy protection",
-          "Electronic health transaction security",
-          "Healthcare compliance management",
-          "Data breach prevention measures",
-        ],
-      },
-    ],
-  },
-  "training-awareness": {
-    title: "Training and Awareness",
-    icon: FiBookOpen,
-    description:
-      "Empower your team with cybersecurity awareness training to prevent security breaches.",
-    gradient: "from-[#7C3AED] to-[#8B5CF6]",
-    features: [
-      "Security Awareness Workshops",
-      "Social Engineering Awareness",
-      "Executive Cybersecurity Training",
-      "Phishing Simulation & Testing",
-      "Incident Response Drills",
-      "Security Policy Training",
-      "Secure Coding Practices",
-    ],
-    benefits: [
-      "Reduce human error in security incidents",
-      "Create security-conscious culture",
-      "Meet compliance training requirements",
-      "Improve incident response readiness",
-      "Protect against social engineering",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Needs Assessment",
-        desc: "Identify training requirements",
-      },
-      {
-        step: 2,
-        title: "Program Design",
-        desc: "Create customized training modules",
-      },
-      { step: 3, title: "Implementation", desc: "Conduct training sessions" },
-      {
-        step: 4,
-        title: "Testing",
-        desc: "Phishing simulations and assessments",
-      },
-      {
-        step: 5,
-        title: "Execution",
-        desc: "Measure effectiveness and improve",
-      },
-    ],
-    detailedContent: [
-      {
-        icon: FiShield,
-        title: "Cyber Security Training",
-        description:
-          "Enhances team operational skills for preventing, detecting, and responding to cyber attacks.",
-        subPoints: [
-          "Email protection best practices",
-          "Web protection techniques",
-          "Social engineering awareness",
-          "Threat landscape overview",
-          "Password policy implementation",
-        ],
-      },
-      {
-        icon: FiMail,
-        title: "Phishing Simulation",
-        description:
-          "Comprehensive strategy to transform organizational culture through awareness and ownership.",
-        subPoints: [
-          "Realistic phishing campaign simulations",
-          "Behavioral change tracking",
-          "Risk reduction through awareness",
-          "Customized phishing scenarios",
-          "Detailed reporting and analytics",
-        ],
-      },
-      {
-        icon: FiUsers,
-        title: "Awareness Campaigns",
-        description:
-          "Tailored educational campaigns focusing on organization-specific threats.",
-        subPoints: [
-          "End-user security training",
-          "Phishing awareness programs",
-          "USB safety protocols",
-          "Social media security",
-          "Mobile device security",
-        ],
-      },
-    ],
-  },
-  "banking-security": {
-    title: "Banking Security",
-    icon: FiCreditCard,
-    description:
-      "Specialized security solutions for banking and financial institutions.",
-    gradient: "from-[#2B7BE4] to-[#FF5CA8]",
-    features: [
-      "Payment Gateway Security",
-      "Fraud Detection Systems",
-      "Customer Data Protection",
-      "Bank-Grade Encryption",
-      "Transaction Monitoring",
-      "Compliance with RBI Guidelines",
-      "Secure Banking Applications",
-      "ATM & Branch Security",
-    ],
-    benefits: [
-      "Protect financial transactions",
-      "Prevent fraud and financial crimes",
-      "Meet RBI compliance requirements",
-      "Secure customer banking data",
-      "Build customer trust and confidence",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Security Assessment",
-        desc: "Evaluate current security posture",
-      },
-      {
-        step: 2,
-        title: "Compliance Review",
-        desc: "Check RBI guideline compliance",
-      },
-      {
-        step: 3,
-        title: "Solution Design",
-        desc: "Design bank-specific security measures",
-      },
-      { step: 4, title: "Implementation", desc: "Deploy security solutions" },
-      {
-        step: 5,
-        title: "Continuous Audit",
-        desc: "Regular security audits and updates",
-      },
-    ],
-    detailedContent: [
-      {
-        icon: FiSearch,
-        title: "System Audits",
-        description:
-          "Comprehensive audit services to identify vulnerabilities and ensure regulatory compliance.",
-        subPoints: [
-          "Security and risk assessment",
-          "Regulatory compliance verification",
-          "IT infrastructure audit",
-          "Access control evaluation",
-          "Operational efficiency review",
-        ],
-      },
-      {
-        icon: FiClipboard,
-        title: "Compliance Assessment Services",
-        description:
-          "Helps businesses meet industry-specific regulatory requirements.",
-        subPoints: [
-          "Regulatory compliance audits",
-          "Gap analysis and risk assessment",
-          "Policy and procedure review",
-          "Security control implementation",
-          "Compliance documentation",
-        ],
-      },
-      {
-        icon: FiTrendingUp,
-        title: "Assurance & Strategy Services",
-        description:
-          "Provides confidence in processes and strategies through risk management.",
-        subPoints: [
-          "Risk assurance programs",
-          "Internal controls evaluation",
-          "Strategic planning support",
-          "Performance management",
-          "Governance and compliance",
-        ],
-      },
-      {
-        icon: FiShieldOff,
-        title: "Cyber Policy",
-        description:
-          "Procedures and guidelines for maintaining robust cybersecurity practices.",
-        subPoints: [
-          "Data protection policies",
-          "Access control guidelines",
-          "Incident response procedures",
-          "Compliance framework",
-          "Security awareness protocols",
-        ],
-      },
-    ],
-  },
-  "incident-response": {
-    title: "Incident Response",
-    icon: FiAlertTriangle,
-    description:
-      "24/7 incident response services to quickly mitigate and recover from security incidents.",
-    gradient: "from-[#FF5CA8] to-[#7C3AED]",
-    features: [
-      "Rapid Response Team",
-      "Forensic Investigation",
-      "Breach Containment",
-      "Data Recovery Services",
-      "Post-Incident Analysis",
-      "Incident Response Planning",
-      "Threat Intelligence",
-      "Business Continuity Support",
-    ],
-    benefits: [
-      "Minimize damage from security incidents",
-      "Quick recovery and restoration",
-      "Forensic evidence collection",
-      "Prevent future incidents",
-      "Maintain business operations",
-    ],
-    process: [
-      { step: 1, title: "Preparation", desc: "Incident response planning" },
-      { step: 2, title: "Detection", desc: "24/7 monitoring and alerting" },
-      { step: 3, title: "Containment", desc: "Immediate threat isolation" },
-      { step: 4, title: "Eradication", desc: "Remove threat from systems" },
-      { step: 5, title: "Recovery", desc: "Restore systems and operations" },
-      { step: 6, title: "Lessons Learned", desc: "Improve security measures" },
-    ],
-    detailedContent: [
-      {
-        icon: FiSearch,
-        title: "Incident Detection and Investigation",
-        description:
-          "Proactive threat identification using advanced monitoring tools and techniques.",
-        subPoints: [
-          "Real-time threat monitoring",
-          "Suspicious activity detection",
-          "Root cause investigation",
-          "Minimal disruption operations",
-          "Advanced analytics integration",
-        ],
-      },
-      {
-        icon: FiAlertTriangle,
-        title: "Incident Response and Malware Analysis",
-        description:
-          "Rapid containment and eradication of security threats with malware analysis.",
-        subPoints: [
-          "Immediate threat containment",
-          "Malware behavior analysis",
-          "Threat eradication strategies",
-          "Preventive measure development",
-          "Expert forensic analysis",
-        ],
-      },
-      {
-        icon: FiFileText,
-        title: "Post-Incident Analysis and Reporting",
-        description:
-          "Comprehensive review of security incidents to strengthen future defenses.",
-        subPoints: [
-          "Incident impact assessment",
-          "Weakness identification",
-          "Detailed reporting",
-          "Security measure enhancement",
-          "Recurrence prevention strategies",
-        ],
-      },
-    ],
-  },
-  "red-teaming": {
-    title: "Red Teaming",
-    icon: FiTarget,
-    description:
-      "We simulate live attack conditions to test your defense mechanisms, providing insights that help your team detect, respond to, and strengthen against actual cyber threats.",
-    gradient: "from-[#EF4444] to-[#B91C1C]",
-    features: [
-      "Real-World Attack Simulation",
-      "Advanced Persistent Threat (APT) Emulation",
-      "Social Engineering Attacks",
-      "Physical Security Breach Testing",
-      "Network Penetration Testing",
-      "Application Security Testing",
-      "Wireless Network Attacks",
-      "Cloud Infrastructure Attacks",
-    ],
-    benefits: [
-      "Test detection and response capabilities in real-world scenarios",
-      "Identify security gaps before attackers do",
-      "Improve incident response team effectiveness",
-      "Validate security controls and configurations",
-      "Enhance overall security posture",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Planning",
-        desc: "Define scope, rules of engagement, and objectives",
-      },
-      {
-        step: 2,
-        title: "Reconnaissance",
-        desc: "Gather intelligence about target environment",
-      },
-      {
-        step: 3,
-        title: "Initial Access",
-        desc: "Gain foothold using various attack vectors",
-      },
-      {
-        step: 4,
-        title: "Persistence",
-        desc: "Maintain access and avoid detection",
-      },
-      {
-        step: 5,
-        title: "Lateral Movement",
-        desc: "Expand access within the network",
-      },
-      {
-        step: 6,
-        title: "Data Exfiltration",
-        desc: "Simulate data theft scenarios",
-      },
-      {
-        step: 7,
-        title: "Reporting",
-        desc: "Detailed findings and recommendations",
-      },
-      {
-        step: 8,
-        title: "Remediation",
-        desc: "Assist with fixing identified vulnerabilities",
-      },
-    ],
-    detailedContent: [
-      {
-        icon: FiTarget,
-        title: "Advanced Persistent Threat (APT) Simulation",
-        description:
-          "Emulate sophisticated, long-term cyber attacks similar to nation-state actors.",
-        subPoints: [
-          "Multi-vector attack campaigns",
-          "Custom malware development",
-          "Command and control infrastructure",
-          "Data exfiltration simulation",
-          "Evasion technique testing",
-        ],
-      },
-      {
-        icon: FiUsers,
-        title: "Social Engineering Attacks",
-        description:
-          "Test human vulnerabilities through psychological manipulation techniques.",
-        subPoints: [
-          "Spear phishing campaigns",
-          "Vishing (voice phishing) attacks",
-          "Physical tailgating attempts",
-          "USB drop attacks",
-          "Impersonation scenarios",
-        ],
-      },
-      {
-        icon: FiShield,
-        title: "Physical Security Testing",
-        description:
-          "Assess physical security controls and access prevention mechanisms.",
-        subPoints: [
-          "Facility perimeter testing",
-          "Access control bypass attempts",
-          "Surveillance system evaluation",
-          "Social engineering at premises",
-          "Asset protection testing",
-        ],
-      },
-      {
-        icon: FiGlobe,
-        title: "External Network Assessment",
-        description:
-          "Simulate external attacker attempting to breach network defenses.",
-        subPoints: [
-          "External perimeter scanning",
-          "Vulnerability exploitation",
-          "Firewall rule testing",
-          "VPN and remote access attacks",
-          "DDoS simulation testing",
-        ],
-      },
-      {
-        icon: FiMonitor,
-        title: "Internal Network Penetration",
-        description:
-          "Simulate insider threats and compromised internal accounts.",
-        subPoints: [
-          "Privilege escalation attempts",
-          "Active Directory attacks",
-          "Internal lateral movement",
-          "Credential harvesting simulation",
-          "Data breach scenarios",
-        ],
-      },
-      {
-        icon: FiSmartphone,
-        title: "Mobile & Wireless Attacks",
-        description:
-          "Test mobile device security and wireless network vulnerabilities.",
-        subPoints: [
-          "Wi-Fi network penetration",
-          "Bluetooth security testing",
-          "Mobile application attacks",
-          "Rogue access point deployment",
-          "Mobile device management bypass",
-        ],
-      },
-      {
-        icon: FiCloud,
-        title: "Cloud Infrastructure Attacks",
-        description:
-          "Assess security of cloud environments and configurations.",
-        subPoints: [
-          "Cloud misconfiguration exploitation",
-          "Container security testing",
-          "Serverless function attacks",
-          "Cloud storage bucket testing",
-          "Identity and access management attacks",
-        ],
-      },
-      {
-        icon: FiCode,
-        title: "Web Application Attacks",
-        description:
-          "Simulate advanced web application attacks and API security testing.",
-        subPoints: [
-          "OWASP Top 10 exploitation",
-          "API security testing",
-          "Business logic flaws",
-          "Authentication bypass attempts",
-          "Session management attacks",
-        ],
-      },
-    ],
-  },
-} as const;
-
-type ServiceKey = keyof typeof serviceDetails;
-type ServiceDetail = (typeof serviceDetails)[ServiceKey];
-
-const validSlugs = Object.keys(serviceDetails) as ServiceKey[];
-
-function isValidSlug(slug: string | undefined): slug is ServiceKey {
-  return !!slug && validSlugs.includes(slug as ServiceKey);
-}
-
-export async function generateMetadata({
-  params,
-}: ServicePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-
-  if (!isValidSlug(slug)) {
-    return {
-      title: "Service Not Found",
-      description: "The requested service could not be found.",
-    };
-  }
-
-  const service = serviceDetails[slug];
+  const service = getServiceBySlug(slug);
+  if (!service) return { title: "Service Not Found" };
 
   return {
-    title: `${service.title} | Cybria Secure - Cybersecurity Services`,
-    description: service.description,
-    keywords: `${service.title.toLowerCase()}, cybersecurity services, ${slug} Kolhapur, Maharashtra security`,
+    title: `${service.title} | Cybria Secure — Cybersecurity Services India`,
+    description: service.shortDesc,
+    keywords: service.keywords,
+    alternates: { canonical: `https://www.cybriasecure.com/services/${slug}` },
     openGraph: {
       title: `${service.title} | Cybria Secure`,
-      description: service.description,
+      description: service.shortDesc,
       url: `https://www.cybriasecure.com/services/${slug}`,
-      type: 'website',
-    },
-    alternates: {
-      canonical: `https://www.cybriasecure.com/services/${slug}`,
+      type: "website",
     },
   };
 }
 
-export async function generateStaticParams() {
-  return validSlugs.map((slug) => ({
-    slug,
-  }));
+export function generateStaticParams() {
+  return services.map((s) => ({ slug: s.slug }));
 }
 
-export default async function ServiceDetailPage({ params }: ServicePageProps) {
+export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
+  const service = getServiceBySlug(slug);
+  if (!service) notFound();
 
-  if (!isValidSlug(slug)) {
-    notFound();
-  }
+  const Icon = iconMap[service.iconName] || FiShield;
+  const cat = categories.find((c) => c.id === service.category);
 
-  const service = serviceDetails[slug];
-
-  const Icon = service.icon;
+  // Related: same category, exclude current
+  const related = services.filter((s) => s.category === service.category && s.slug !== service.slug).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.title,
-    description: service.description,
+    description: service.shortDesc,
+    url: `https://www.cybriasecure.com/services/${service.slug}`,
     provider: {
       "@type": "Organization",
       name: "Cybria Secure",
+      url: "https://www.cybriasecure.com",
+      telephone: "+918080424274",
       address: {
         "@type": "PostalAddress",
-        streetAddress:
-          "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008",
+        streetAddress: "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex",
         addressLocality: "Kolhapur",
         addressRegion: "Maharashtra",
-        postalCode: "416110",
+        postalCode: "416008",
         addressCountry: "IN",
       },
-      telephone: "+918080424274",
-      areaServed: "India",
     },
+    areaServed: { "@type": "Country", name: "India" },
     serviceType: "Cybersecurity",
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: "16.6919",
-        longitude: "74.2314",
-      },
-      geoRadius: "100000",
-    },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <div className="min-h-screen py-20 bg-[#0b1220] px-4">
-        <div className="container mx-auto px-4">
-          {/* Back Button */}
-          <div className="mb-8">
-            <Link
-              href="/services"
-              className="inline-flex items-center text-gray-400 hover:text-white transition-colors group"
-            >
-              <FiArrowLeft className="mr-2 transform group-hover:-translate-x-1 transition-transform" />
-              Back to Services
-            </Link>
-          </div>
+      <div className="min-h-screen bg-[#0b1220]">
 
-          {/* Service Header */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-12">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 space-x-0 lg:space-x-4 mb-6 lg:mb-0">
-              <div
-                className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient} self-start`}
-              >
-                <Icon className="w-8 h-8 text-white" />
-              </div>
+        {/* ── HERO ─────────────────────────────────────────────────────────── */}
+        <section className="pt-28 pb-14 px-4 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.4) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="absolute top-20 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ background: `${service.glowColor}` }} />
+
+          <div className="container mx-auto max-w-6xl relative">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span>/</span>
+              <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+              <span>/</span>
+              {cat && <span className="hover:text-white transition-colors" style={{ color: cat.color }}>{cat.label}</span>}
+              <span>/</span>
+              <span className="text-gray-400">{service.title}</span>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left */}
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-white">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase border rounded-full px-4 py-2 mb-6"
+                  style={{ color: service.accentColor, borderColor: `${service.accentColor}30`, background: `${service.accentColor}08` }}>
+                  <Icon className="w-3.5 h-3.5" />
+                  {cat?.label}
+                </div>
+
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
                   {service.title}
                 </h1>
-                <p className="text-xl text-gray-400 mt-2">
-                  {service.description}
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                  {service.heroDesc}
                 </p>
+
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/contact" className="px-7 py-4 text-white font-semibold rounded-full transition-all hover:scale-105 hover:shadow-xl"
+                    style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
+                    Get Free Consultation
+                  </Link>
+                  <a href="tel:+918080424274" className="px-7 py-4 border border-gray-700 text-white font-semibold rounded-full hover:bg-white/5 transition-all flex items-center gap-2">
+                    <FiPhone className="w-4 h-4" /> Call Us
+                  </a>
+                </div>
+              </div>
+
+              {/* Right — Features card */}
+              <div className="bg-[#141d2e] rounded-2xl p-7 border border-gray-800">
+                <h3 className="text-white font-bold text-lg mb-5">What's Included</h3>
+                <ul className="space-y-3">
+                  {service.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3">
+                      <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br ${service.gradient} flex items-center justify-center`}>
+                        <FiCheck className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-gray-300 text-sm">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 pt-5 border-t border-gray-800">
+                  <p className="text-gray-500 text-xs mb-3">Trusted by 100+ Indian businesses</p>
+                  <Link href="/contact" className="block w-full text-center py-3 rounded-full text-white text-sm font-semibold transition-all hover:opacity-90"
+                    style={{ background: `linear-gradient(135deg, ${service.accentColor}, #7C3AED)` }}>
+                    Request Assessment
+                  </Link>
+                </div>
               </div>
             </div>
-            <Link
-              href="/contact"
-              className="px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300"
-            >
-              Get This Service
-            </Link>
           </div>
+        </section>
 
-          {/* Service Details */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {/* Features */}
-            <div className="lg:col-span-2">
-              <div className="bg-[#1a2236] rounded-2xl p-8 border border-gray-800">
-                <h2 className="text-2xl font-bold text-white mb-6">
-                  Service Features
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {service.features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-3 p-4 bg-[#0b1220]/50 rounded-lg border border-gray-800"
-                    >
-                      <FiCheckCircle className="w-5 h-5 text-[#2B7BE4] mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-300">{feature}</span>
+        {/* ── WHY IT MATTERS ───────────────────────────────────────────────── */}
+        <section className="py-16 px-4 bg-[#0d1628]">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+              Why {service.title} Matters
+            </h2>
+            <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+              The business and regulatory case for investing in this service.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {service.whyItMatters.map((item, i) => (
+                <div key={i} className="bg-[#141d2e] rounded-2xl p-6 border border-gray-800 relative overflow-hidden">
+                  <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${service.gradient}`} />
+                  <div className="text-3xl font-black mb-4 leading-none" style={{
+                    background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)",
+                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                  }}>
+                    0{i + 1}
+                  </div>
+                  <h3 className="text-white font-bold mb-3">{item.heading}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHAT WE ASSESS ───────────────────────────────────────────────── */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-6">What We Assess</h2>
+                <p className="text-gray-400 mb-8 leading-relaxed">
+                  Our {service.title} engagement covers all critical areas — nothing is left untested.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {service.whatWeAssess.map((item) => (
+                    <div key={item} className="flex items-start gap-3 bg-[#141d2e] rounded-xl p-4 border border-gray-800">
+                      <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                        style={{ background: `linear-gradient(135deg, ${service.accentColor}, #7C3AED)` }}>
+                        <FiCheck className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-gray-300 text-sm leading-snug">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Benefits */}
-            <div>
-              <div className="bg-[#1a2236] rounded-2xl p-8 border border-gray-800">
-                <h2 className="text-2xl font-bold text-white mb-6">
-                  Key Benefits
-                </h2>
-                <ul className="space-y-4">
-                  {service.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <div
-                        className={`w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0 ${
-                          index % 3 === 0
-                            ? "bg-[#2B7BE4]"
-                            : index % 3 === 1
-                              ? "bg-[#FF5CA8]"
-                              : "bg-[#7C3AED]"
-                        }`}
-                      />
-                      <span className="text-gray-300">{benefit}</span>
-                    </li>
+              {/* Benefits sidebar */}
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-6">Key Benefits</h2>
+                <div className="space-y-4">
+                  {service.benefits.map((b, i) => (
+                    <div key={i} className="flex items-start gap-4 bg-[#141d2e] rounded-xl p-5 border border-gray-800 hover:border-gray-700 transition-colors">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                        style={{ background: `linear-gradient(135deg, ${service.accentColor}, #7C3AED)` }}>
+                        {i + 1}
+                      </div>
+                      <span className="text-gray-300 leading-relaxed pt-1">{b}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
+
+                {/* Mid-page CTA */}
+                <div className="mt-8 rounded-2xl p-6 text-center"
+                  style={{ background: "linear-gradient(135deg,rgba(43,123,228,0.1),rgba(124,58,237,0.1))", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <p className="text-white font-semibold mb-4">Ready to get started?</p>
+                  <Link href="/contact" className="inline-block px-6 py-3 text-white font-semibold rounded-full text-sm transition-all hover:scale-105"
+                    style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
+                    Schedule Free Consultation
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Detailed Service Content */}
-          {service.detailedContent && (
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-white mb-8 text-center">
-                Comprehensive {service.title} Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {service.detailedContent.map((item, index) => {
-                  const ItemIcon = item.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="bg-[#1a2236] rounded-2xl p-6 border border-gray-800 hover:border-[#2B7BE4]/50 transition-all duration-300 group"
-                    >
-                      <div className="flex items-start space-x-4 mb-4">
-                        <div
-                          className={`p-3 rounded-xl bg-gradient-to-br ${
-                            index % 3 === 0
-                              ? "from-[#2B7BE4] to-[#3B82F6]"
-                              : index % 3 === 1
-                                ? "from-[#FF5CA8] to-[#EC4899]"
-                                : "from-[#7C3AED] to-[#8B5CF6]"
-                          }`}
-                        >
-                          <ItemIcon className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-2">
-                            {item.title}
-                          </h3>
-                          <p className="text-gray-400 text-sm">
-                            {item.description}
-                          </p>
-                        </div>
+        {/* ── METHODOLOGY ──────────────────────────────────────────────────── */}
+        <section className="py-16 px-4 bg-[#0d1628]">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+              Our Methodology
+            </h2>
+            <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+              A systematic, transparent process — you always know what we're doing and why.
+            </p>
+
+            {/* Desktop: horizontal stepped timeline */}
+            <div className="hidden md:block relative mb-6">
+              <div className="absolute left-0 right-0 top-7 h-0.5" style={{ background: `linear-gradient(90deg, ${service.accentColor}, #7C3AED)` }} />
+              <div className="relative grid gap-4" style={{ gridTemplateColumns: `repeat(${service.methodology.length}, 1fr)` }}>
+                {service.methodology.map((step) => (
+                  <div key={step.step} className="flex flex-col items-center">
+                    <div className="relative mb-4 z-10 bg-[#0d1628] rounded-full p-1">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                        style={{ background: `linear-gradient(135deg, ${service.accentColor}, #7C3AED)` }}>
+                        {String(step.step).padStart(2, "0")}
                       </div>
-
-                      {item.subPoints && (
-                        <div className="mt-4 space-y-2">
-                          {item.subPoints.map((point, pointIndex) => (
-                            <div
-                              key={pointIndex}
-                              className="flex items-start space-x-2 text-sm"
-                            >
-                              <div
-                                className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${
-                                  pointIndex % 3 === 0
-                                    ? "bg-[#2B7BE4]"
-                                    : pointIndex % 3 === 1
-                                      ? "bg-[#FF5CA8]"
-                                      : "bg-[#7C3AED]"
-                                }`}
-                              />
-                              <span className="text-gray-300">{point}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
                     </div>
+                    <div className="bg-[#141d2e] rounded-xl p-4 border border-gray-800 text-center w-full">
+                      <h3 className="text-white font-bold text-sm mb-2">{step.title}</h3>
+                      <p className="text-gray-400 text-xs leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile: vertical */}
+            <div className="md:hidden space-y-4">
+              {service.methodology.map((step, i) => (
+                <div key={step.step} className="flex gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+                      style={{ background: `linear-gradient(135deg, ${service.accentColor}, #7C3AED)` }}>
+                      {String(step.step).padStart(2, "0")}
+                    </div>
+                    {i < service.methodology.length - 1 && (
+                      <div className="w-px flex-1 mt-2" style={{ background: `${service.accentColor}40` }} />
+                    )}
+                  </div>
+                  <div className="bg-[#141d2e] rounded-xl p-4 border border-gray-800 flex-1 pb-6">
+                    <h3 className="text-white font-bold mb-2">{step.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── MID CTA BANNER ───────────────────────────────────────────────── */}
+        <section className="py-12 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
+              style={{ background: `linear-gradient(135deg, ${service.accentColor}18, rgba(124,58,237,0.12))`, border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-2">Ready to get {service.title}?</h3>
+                <p className="text-gray-400">Free scoping call. Transparent pricing. No obligation.</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+                <Link href="/contact" className="px-7 py-3.5 text-white font-semibold rounded-full text-sm transition-all hover:scale-105 whitespace-nowrap"
+                  style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
+                  Get Free Consultation
+                </Link>
+                <a href="tel:+918080424274" className="px-7 py-3.5 border border-gray-700 text-white font-semibold rounded-full text-sm hover:bg-white/5 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+                  <FiPhone className="w-4 h-4" /> +91 80804 24274
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+        <section className="py-16 px-4 bg-[#0d1628]">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-white mb-4 text-center">Frequently Asked Questions</h2>
+            <p className="text-gray-400 text-center mb-12 max-w-xl mx-auto">
+              Everything you need to know before engaging our {service.title} service.
+            </p>
+            <div className="space-y-4">
+              {service.faqs.map((faq, i) => (
+                <details key={i} className="group bg-[#141d2e] rounded-xl border border-gray-800 hover:border-gray-700 transition-colors overflow-hidden">
+                  <summary className="flex items-center justify-between px-6 py-5 cursor-pointer list-none">
+                    <span className="text-white font-semibold pr-4 leading-snug">{faq.q}</span>
+                    <FiChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-6 pb-5">
+                    <p className="text-gray-400 leading-relaxed text-sm">{faq.a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <p className="text-gray-500 mb-4">Still have questions?</p>
+              <Link href="/contact" className="inline-flex items-center gap-2 text-[#2B7BE4] font-medium hover:text-[#FF5CA8] transition-colors">
+                Talk to our team <FiArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── RELATED SERVICES ─────────────────────────────────────────────── */}
+        {related.length > 0 && (
+          <section className="py-16 px-4">
+            <div className="container mx-auto max-w-6xl">
+              <h2 className="text-2xl font-bold text-white mb-8 text-center">Related Services</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {related.map((s) => {
+                  const RelIcon = iconMap[s.iconName] || FiShield;
+                  return (
+                    <Link key={s.slug} href={`/services/${s.slug}`}
+                      className="group bg-[#141d2e] rounded-xl p-5 border border-gray-800 hover:border-[#2B7BE4]/40 transition-all duration-300 flex flex-col hover:shadow-[0_4px_24px_var(--glow)]"
+                      style={{ "--glow": s.glowColor } as React.CSSProperties}>
+                      <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center mb-3`}>
+                        <RelIcon className="w-4 h-4 text-white" />
+                      </div>
+                      <h3 className="text-white font-semibold mb-2 group-hover:text-[#2B7BE4] transition-colors">{s.title}</h3>
+                      <p className="text-gray-400 text-xs leading-relaxed flex-1">{s.shortDesc}</p>
+                      <div className="mt-3 flex items-center gap-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: s.accentColor }}>
+                        Explore <FiArrowRight className="w-3 h-3" />
+                      </div>
+                    </Link>
                   );
                 })}
               </div>
             </div>
-          )}
+          </section>
+        )}
 
-          {/* process */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white mb-12 text-center">
-              Our Implementation Process
-            </h2>
-
-            <div className="relative">
-              <div className="absolute left-0 right-0 top-[2.5rem] h-1 hidden lg:block z-0">
-                <div className="w-full h-full bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] rounded-full"></div>
+        {/* ── FINAL CTA ────────────────────────────────────────────────────── */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-4xl text-center">
+            <div className="rounded-2xl p-10 md:p-14"
+              style={{ background: "linear-gradient(135deg,rgba(43,123,228,0.12),rgba(255,92,168,0.08),rgba(124,58,237,0.12))", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Secure Your Business?
+              </h2>
+              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Our certified experts are available 24/7. Get a free consultation and discover exactly what {service.title} means for your specific situation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact" className="px-8 py-4 text-white font-semibold rounded-full transition-all hover:scale-105 hover:shadow-xl"
+                  style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
+                  Get Free Consultation
+                </Link>
+                <a href="tel:+918080424274" className="px-8 py-4 border border-gray-700 text-white font-semibold rounded-full hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                  <FiPhone className="w-4 h-4" /> +91 80804 24274
+                </a>
               </div>
-
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 lg:hidden z-0">
-                <div className="w-full h-full bg-gradient-to-b from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED]"></div>
-              </div>
-
-              <div className="relative z-10">
-                <div className="block lg:hidden space-y-6 ml-8">
-                  {service.process.map((item) => (
-                    <div key={item.step} className="relative flex gap-4">
-                      {/* Step Circle */}
-                      <div className="absolute -left-8 top-0">
-                        <div className="w-10 h-10 bg-[#1a2236] border-2 border-[#2B7BE4] rounded-full flex items-center justify-center shadow-lg">
-                          <span className="text-white font-bold text-sm">
-                            {item.step}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Content Card */}
-                      <div className="flex-1 bg-[#1a2236] rounded-lg p-4 border border-gray-800 ml-4">
-                        <h3 className="text-lg font-bold text-white mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-gray-400 text-sm">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="hidden lg:block relative">
-                  <div className="flex justify-between items-start gap-4">
-                    {service.process.map((item, index) => {
-                      const stepCount = service.process.length;
-                      const widthPercentage = `${100 / stepCount}%`;
-
-                      return (
-                        <div
-                          key={item.step}
-                          className="relative flex flex-col items-center"
-                          style={{ width: widthPercentage }}
-                        >
-                          {/* Step Circle */}
-                          <div className="relative mb-4">
-                            <div className="absolute inset-0 bg-[#0b1220] rounded-full -m-1"></div>
-                            <div className="relative w-14 h-14 bg-[#1a2236] border-2 border-[#2B7BE4] rounded-full flex items-center justify-center shadow-lg">
-                              <span className="text-white font-bold">
-                                {item.step}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Content */}
-                          <div className="text-center bg-[#1a2236]/30 p-3 rounded-lg border border-gray-800 w-full">
-                            <h3 className="text-sm font-bold text-white mb-1">
-                              {item.title}
-                            </h3>
-                            <p className="text-gray-400 text-xs">{item.desc}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+              <p className="mt-6 text-gray-500 text-sm">
+                Based in Kolhapur · Serving all of India · Remote & On-site
+              </p>
             </div>
           </div>
+        </section>
 
-          {/* CTA Section */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Implement {service.title}?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Speak with our cybersecurity specialists to evaluate your risks,
-              strengthen defenses, and future-proof your business.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300"
-              >
-                Schedule Consultation
-              </Link>
-              <a
-                href="tel:+918080424274"
-                className="px-8 py-4 border-2 border-gray-700 text-white font-semibold rounded-full hover:bg-white/5 transition-all duration-300"
-              >
-                Call +91 80804 24274
-              </a>
-            </div>
-          </div>
+        {/* Back link */}
+        <div className="pb-8 px-4 text-center">
+          <Link href="/services" className="inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors text-sm">
+            <FiArrowLeft className="w-4 h-4" /> Back to all Services
+          </Link>
         </div>
+
       </div>
     </>
   );

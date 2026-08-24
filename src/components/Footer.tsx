@@ -10,15 +10,14 @@ import {
 import { FaWhatsapp } from 'react-icons/fa';
 
 const services = [
-  { name: "Cyber Security", href: "/services/cyber-security" },
-  {
-    name: "Governance Risk Assessment",
-    href: "/services/governance-risk-assessment",
-  },
-  { name: "Training and Awareness", href: "/services/training-awareness" },
-  { name: "Banking Security", href: "/services/banking-security" },
+  { name: "Web Application VAPT", href: "/services/web-application-vapt" },
+  { name: "Network Security Audit", href: "/services/network-security-audit" },
+  { name: "Red Team Operations", href: "/services/red-teaming" },
   { name: "Incident Response", href: "/services/incident-response" },
-  { name: "Red Teaming", href: "/services/red-teaming" },
+  { name: "RBI Compliance", href: "/services/rbi-compliance" },
+  { name: "ISO 27001", href: "/services/iso-27001" },
+  { name: "Security Awareness Training", href: "/services/security-awareness-training" },
+  { name: "Virtual CISO", href: "/services/vciso" },
 ];
 
 

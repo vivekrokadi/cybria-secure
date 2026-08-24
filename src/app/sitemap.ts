@@ -3,38 +3,54 @@ import { getAllBlogPosts } from '@/lib/markdown'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cybriasecure.com'
 
+const serviceRoutes = [
+  // VAPT
+  'web-application-vapt',
+  'network-security-audit',
+  'mobile-app-security',
+  'cloud-security-assessment',
+  'api-security-testing',
+  'ot-scada-security',
+  // Advanced
+  'red-teaming',
+  'incident-response',
+  // Compliance
+  'rbi-compliance',
+  'iso-27001',
+  'governance-risk-assessment',
+  // Managed
+  'vciso',
+  // Training
+  'security-awareness-training',
+]
+
+const locationRoutes = [
+  'kolhapur', 'pune', 'sangli', 'ichalkaranji', 'solapur', 'mumbai',
+]
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts = getAllBlogPosts()
 
-  const staticRoutes = [
-    '',
-    '/about',
-    '/services',
-    '/services/cyber-security',
-    '/services/governance-risk-assessment',
-    '/services/training-awareness',
-    '/services/banking-security',
-    '/services/incident-response',
-    '/services/red-teaming',
-    '/blog',
-    '/contact',
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}`,         lastModified: new Date(), changeFrequency: 'daily',   priority: 1.0 },
+    { url: `${baseUrl}/about`,   lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/services`,lastModified: new Date(), changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${baseUrl}/resources`,lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
   ]
 
-  const routes: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
+  const serviceDetailRoutes: MetadataRoute.Sitemap = serviceRoutes.map((slug) => ({
+    url: `${baseUrl}/services/${slug}`,
     lastModified: new Date(),
-    changeFrequency:
-      route === ''
-        ? 'daily'
-        : route.startsWith('/blog')
-        ? 'weekly'
-        : 'monthly',
-    priority:
-      route === ''
-        ? 1
-        : route.startsWith('/blog')
-        ? 0.8
-        : 0.7,
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  }))
+
+  const locationPageRoutes: MetadataRoute.Sitemap = locationRoutes.map((city) => ({
+    url: `${baseUrl}/services/${city}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.85,
   }))
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
@@ -44,5 +60,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
-  return [...routes, ...blogRoutes]
+  return [...staticRoutes, ...serviceDetailRoutes, ...locationPageRoutes, ...blogRoutes]
 }
