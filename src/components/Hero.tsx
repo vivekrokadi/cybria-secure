@@ -2,59 +2,51 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import { FiArrowRight, FiShield, FiCalendar } from "react-icons/fi";
 
-const GSAPHero = dynamic(() => import("./GSAPHero"), { ssr: false });
-
-// Animated counter hook
-function useCountUp(target: number, duration: number = 2000, start: boolean = false) {
+function useCountUp(target: number, duration = 2000, start = false) {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (!start) return;
     let startTime: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease out
+    const step = (ts: number) => {
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * target));
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
   }, [target, duration, start]);
-
   return count;
 }
 
 const stats = [
-  { value: 50, suffix: "+", label: "CLIENTS" },
-  { value: 10,  suffix: "+", label: "CITIES" },
-  { value: 175, suffix: "+", label: "PROJECTS" },
-  { value: 4,   suffix: "+", label: "YEARS" },
+  { value: 640,  suffix: "+", label: "Clients" },
+  { value: 30,   suffix: "+", label: "Countries" },
+  { value: 5800, suffix: "+", label: "Projects" },
+  { value: 9,    suffix: "+", label: "Years" },
 ];
 
 function StatItem({ value, suffix, label, animate }: { value: number; suffix: string; label: string; animate: boolean }) {
   const count = useCountUp(value, 2000, animate);
   return (
-    <div className="flex-1 flex flex-col items-center justify-center py-6 px-4">
-      <span
-        className="text-4xl sm:text-5xl font-extrabold leading-none"
-        style={{
-          background: "linear-gradient(135deg, #3779E0 0%, #FA5BAB 60%, #964AE1 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        }}
-      >
+    <div className="flex-1 flex flex-col items-center justify-center py-5 px-2 sm:px-4">
+      <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-none"
+        style={{ background: "linear-gradient(135deg,#e53e3e,#fc4f4f,#ff6b6b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
         {animate ? count : 0}{suffix}
       </span>
-      <span className="mt-2 text-xs sm:text-sm font-semibold tracking-widest text-gray-400 uppercase">
-        {label}
-      </span>
+      <span className="mt-2 text-[10px] sm:text-xs font-semibold tracking-widest text-gray-400 uppercase">{label}</span>
     </div>
   );
 }
+
+const trustBadges = [
+  { label: "Certified Experts", sub: "CEH · OSCP · CISM" },
+  { label: "RBI Compliant", sub: "Empanelled Auditor" },
+  { label: "ISO 27001", sub: "Certified Operations" },
+  { label: "Pan-India + Global", sub: "Remote & On-site" },
+];
 
 export default function Hero() {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -70,74 +62,81 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-center overflow-hidden bg-[url('/cybriasecure-logo.png')] bg-no-repeat bg-center">
-      <div className="absolute inset-0 bg-[#0F1729]/60" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0b1220]">
 
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-[#2B7BE4]/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,var(--tw-gradient-stops))] from-[#FF5CA8]/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,var(--tw-gradient-stops))] from-[#7C3AED]/10 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#2B7BE4] rounded-full filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FF5CA8] rounded-full filter blur-3xl opacity-20 animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#7C3AED] rounded-full filter blur-3xl opacity-20 animate-pulse delay-500" />
+      {/* Animated orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-72 md:w-96 h-72 md:h-96 bg-[#2B7BE4] rounded-full filter blur-3xl opacity-[0.12] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 md:w-96 h-72 md:h-96 bg-[#FF5CA8] rounded-full filter blur-3xl opacity-[0.10] animate-pulse" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 md:w-96 h-72 md:h-96 bg-[#7C3AED] rounded-full filter blur-3xl opacity-[0.08] animate-pulse" style={{ animationDelay: "0.5s" }} />
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.6) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 py-16 text-center flex-1 flex flex-col items-center justify-center">
-        <h1 className="text-3xl sm:text-5xl text-gray-300 mb-2 leading-relaxed font-bold">
-          From Threats to Trust – We Secure It All
-        </h1>
+      <div className="relative z-10 container mx-auto px-4 pt-24 pb-10 text-center">
 
-        <div className="mt-10 max-w-3xl mx-auto">
-          <p className="text-[15px] sm:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-            Cybria Secure, a leading cyber security risk advisory firm that
-            helps organizations reduce risk & enhance competitive advantage.
-            With a core team of experienced domain experts and certified
-            professionals, we offer economically viable solutions to all our
-            valued clients.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="px-8 py-4 bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-[#2B7BE4]/30 transition-all duration-300 transform hover:-translate-y-1"
-            >
-              Get Free Consultation
-            </Link>
-            <Link
-              href="/services"
-              className="px-8 py-4 border-2 border-gray-700 text-white font-semibold rounded-full hover:bg-white/5 transition-all duration-300"
-            >
-              Our Services
-            </Link>
-          </div>
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-blue-400 border border-blue-400/20 rounded-full px-4 py-2 mb-8 bg-blue-400/5">
+          <FiShield className="w-3.5 h-3.5" />
+          Trusted Cybersecurity Risk Advisory
         </div>
 
-        {/* Stats Bar */}
-        <div ref={statsRef} className="mt-14 w-full max-w-3xl mx-auto">
-          <div
-            className="rounded-2xl overflow-hidden"
-            style={{
-              background: "rgba(15, 20, 40, 0.85)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              backdropFilter: "blur(12px)",
-              boxShadow: "0 8px 40px rgba(0,0,0,0.5)",
-            }}
-          >
+        {/* Main headline */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 max-w-5xl mx-auto">
+          <span className="text-white">Reduce Business Risk.</span>
+          <br />
+          <span style={{ background: "linear-gradient(135deg,#2B7BE4 0%,#FF5CA8 50%,#7C3AED 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            Not Just Fix Vulnerabilities.
+          </span>
+        </h1>
+
+        {/* Subheadline */}
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
+          Cybria Secure is a leading cybersecurity risk advisory firm serving 640+ organizations across 30+ countries.
+          Layered security across offensive testing, compliance, and continuous monitoring.
+        </p>
+        <p className="text-sm text-gray-500 mb-10">
+          Headquartered in Kolhapur, Maharashtra · Serving all of India & Global clients
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
+          <Link href="/contact"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#2B7BE4]/30"
+            style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
+            Book a Security Assessment
+            <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <a href="tel:+918080424274"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-700 text-white font-semibold rounded-full hover:bg-white/5 hover:border-gray-500 transition-all duration-300">
+            <FiCalendar className="w-4 h-4" />
+            Schedule a Meeting
+          </a>
+        </div>
+
+        {/* Stats bar */}
+        <div ref={statsRef} className="max-w-3xl mx-auto mb-10">
+          <div className="rounded-2xl overflow-hidden"
+            style={{ background: "rgba(15,20,40,0.85)", border: "1px solid rgba(255,255,255,0.07)", backdropFilter: "blur(12px)", boxShadow: "0 8px 40px rgba(0,0,0,0.5)" }}>
             <div className="flex divide-x divide-white/[0.07]">
               {stats.map((stat) => (
-                <StatItem
-                  key={stat.label}
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                  animate={animateStats}
-                />
+                <StatItem key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} animate={animateStats} />
               ))}
             </div>
           </div>
         </div>
+
+        {/* Trust badges */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {trustBadges.map((badge) => (
+            <div key={badge.label} className="flex items-center gap-2 bg-[#141d2e] border border-gray-800 rounded-full px-4 py-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+              <span className="text-xs text-white font-semibold">{badge.label}</span>
+              <span className="text-xs text-gray-500">{badge.sub}</span>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

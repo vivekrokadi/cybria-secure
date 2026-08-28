@@ -1,188 +1,330 @@
 import type { Metadata } from "next";
 import ContactForm from "../../components/ContactForm";
-import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
-import { FiInstagram, FiLinkedin } from "react-icons/fi";
+import Link from "next/link";
+import {
+  FiMapPin, FiPhone, FiMail, FiClock,
+  FiAlertCircle, FiMessageCircle, FiCalendar,
+  FiLinkedin, FiTwitter, FiInstagram,
+} from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "Contact Cybria Secure | Cybersecurity Services in Kolhapur",
+  title: "Contact Cybria Secure | Cybersecurity Advisory | +91 80804 24274",
   description:
-    "Get in touch with Cybria Secure for cybersecurity solutions in Kolhapur, Ichalkaranji, Miraj, Sangli, Solapur. Call +91 80804 24274",
-  keywords:
-    "contact cybersecurity, Kolhapur security services, cybersecurity consultation, incident response contact",
-  alternates: {
-    canonical: "https://www.cybriasecure.com/contact",
+    "Contact Cybria Secure for cybersecurity services across India. VAPT, RBI compliance, incident response and security consulting. Call +91 80804 24274 or email sales@cybriasecure.com.",
+  keywords: [
+    "contact Cybria Secure", "cybersecurity Kolhapur contact",
+    "cybersecurity consultation India", "incident response contact",
+    "VAPT inquiry India", "RBI compliance contact",
+  ],
+  alternates: { canonical: "https://www.cybriasecure.com/contact" },
+  openGraph: {
+    title: "Contact Cybria Secure | Cybersecurity Advisory",
+    description: "Get in touch with our cybersecurity experts. Free consultation — no commitment required.",
+    url: "https://www.cybriasecure.com/contact",
+    type: "website",
   },
 };
 
-const contactInfo = [
-  {
-    icon: FiMapPin,
-    title: "Our Office",
-    details:
-      "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008",
-  },
+const contactChannels = [
   {
     icon: FiPhone,
-    title: "Phone Numbers",
-    details: "+91 80804 24274\n+91 75591 35608",
+    label: "Call Us",
+    value: "+91 80804 24274",
+    sub: "Also: +91 75591 35608",
+    href: "tel:+918080424274",
+    gradient: "from-[#2B7BE4] to-[#3B82F6]",
+    badge: "24/7 for emergencies",
   },
   {
     icon: FiMail,
-    title: "Email Address",
-    details: "sales@cybriasecure.com",
-    link: "mailto:sales@cybriasecure.com",
+    label: "Email",
+    value: "sales@cybriasecure.com",
+    sub: "We respond within 4 hours",
+    href: "mailto:sales@cybriasecure.com",
+    gradient: "from-[#FF5CA8] to-[#EC4899]",
+    badge: "Quick response",
   },
   {
-    icon: FiClock,
-    title: "Working Hours",
-    details: "Monday - Friday: 9:30 AM - 6:30 PM",
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+    value: "Chat with us",
+    sub: "Instant messaging available",
+    href: "https://wa.me/918080424274?text=Hi%20Cybria%20Secure%2C%20I%27d%20like%20to%20discuss%20your%20cybersecurity%20services.",
+    gradient: "from-[#25D366] to-[#128C7E]",
+    badge: "Instant reply",
+  },
+  {
+    icon: FiCalendar,
+    label: "Book a Meeting",
+    value: "Schedule a call",
+    sub: "Mon–Fri, 9:30 AM – 6:30 PM IST",
+    href: "/contact#form",
+    gradient: "from-[#7C3AED] to-[#8B5CF6]",
+    badge: "Free consultation",
   },
 ];
 
-export default function ContactPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact Cybria Secure",
-    description: "Contact page for Cybria Secure cybersecurity services",
-    url: "https://www.cybriasecure.com/contact",
-    mainEntity: {
-      "@type": "Organization",
-      name: "Cybria Secure",
-      telephone: "+918080424274",
-      email: "sales@cybriasecure.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress:
-          "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex, Kolhapur, 416008",
-        addressLocality: "Kolhapur",
-        addressRegion: "Maharashtra",
-        postalCode: "416110",
-        addressCountry: "IN",
-      },
-    },
-  };
+const officeInfo = [
+  {
+    icon: FiMapPin,
+    title: "Head Office",
+    lines: [
+      "110, Mark 1034 Commercial Complex",
+      "E Ward, Rajaram Road,",
+      "Near Parvati Multiplex,",
+      "Kolhapur, Maharashtra — 416008",
+    ],
+  },
+  {
+    icon: FiClock,
+    title: "Business Hours",
+    lines: [
+      "Monday – Friday: 9:30 AM – 6:30 PM",
+      "Saturday: 10:00 AM – 2:00 PM",
+      "Sunday: Closed",
+      "Emergency response: 24/7",
+    ],
+  },
+  {
+    icon: FiPhone,
+    title: "Phone",
+    lines: ["+91 80804 24274 (Primary)", "+91 75591 35608 (Secondary)", "Emergency: +91 80804 24274"],
+  },
+  {
+    icon: FiMail,
+    title: "Email",
+    lines: ["sales@cybriasecure.com"],
+  },
+];
 
+const services = [
+  "Web Application VAPT",
+  "Network Security Audit",
+  "Mobile App Security",
+  "Cloud Security Assessment",
+  "Red Team Operations",
+  "Incident Response",
+  "RBI Compliance",
+  "ISO 27001 Implementation",
+  "Security Awareness Training",
+  "Virtual CISO (vCISO)",
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Cybria Secure",
+  url: "https://www.cybriasecure.com/contact",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Cybria Secure",
+    telephone: "+918080424274",
+    email: "sales@cybriasecure.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "110, Mark 1034 Commercial Complex, E Ward, Rajaram Road, Near Parvati Multiplex",
+      addressLocality: "Kolhapur",
+      addressRegion: "Maharashtra",
+      postalCode: "416008",
+      addressCountry: "IN",
+    },
+    openingHours: "Mo-Fr 09:30-18:30",
+  },
+};
+
+export default function ContactPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <div className="min-h-screen py-20">
-        <div className="container mx-auto px-4">
-          {/* Hero Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-white">Get in </span>
-              <span className="text-gradient">Touch</span>
+      <div className="min-h-screen bg-[#0b1220]">
+
+        {/* ── HERO ──────────────────────────────────────────────────────── */}
+        <section className="pt-28 pb-14 px-4 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.4) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute top-20 right-1/4 w-80 h-80 bg-violet-600/8 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="container mx-auto max-w-6xl relative text-center">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-blue-400 border border-blue-400/20 rounded-full px-4 py-2 mb-6 bg-blue-400/5">
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+              Get In Touch
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-white">Talk to Our </span>
+              <span style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                Security Experts
+              </span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Ready to secure your digital assets? Contact our cybersecurity
-              experts for a free consultation.
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+              Free consultation. Honest advice. No commitment required. Multiple ways to reach us.
             </p>
+
+            {/* Emergency strip */}
+            <div className="inline-flex items-center gap-3 bg-red-900/30 border border-red-700/40 rounded-full px-6 py-3 text-sm">
+              <FiAlertCircle className="w-4 h-4 text-red-400 animate-pulse flex-shrink-0" />
+              <span className="text-red-200 font-semibold">Security Incident?</span>
+              <span className="text-red-300">Call us immediately:</span>
+              <a href="tel:+918080424274" className="text-white font-bold hover:text-red-200 transition-colors">
+                +91 80804 24274
+              </a>
+              <span className="text-red-400 text-xs hidden sm:inline">24/7 Emergency Response</span>
+            </div>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Information */}
-            <div className="lg:col-span-1">
-              <div className="bg-[#1a2236] rounded-2xl p-8 border border-gray-800">
-                <h2 className="text-2xl font-bold text-white mb-8">
-                  Contact Information
-                </h2>
-
-                <div className="space-y-8">
-                  {contactInfo.map((item, index) => (
-                    <div key={index} className="flex items-start space-x-4">
-                      <div className="flex-shrink-0">
-                        <div className="p-3 bg-gradient-to-br from-[#2B7BE4]/20 to-[#7C3AED]/20 rounded-lg">
-                          <item.icon className="w-6 h-6 text-[#2B7BE4]" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white mb-1">
-                          {item.title}
-                        </h3>
-                        {item.link ? (
-                          <a
-                            href={item.link}
-                            className="text-gray-400 hover:text-[#2B7BE4] transition-colors whitespace-pre-line"
-                          >
-                            {item.details}
-                          </a>
-                        ) : (
-                          <p className="text-gray-400 whitespace-pre-line">
-                            {item.details}
-                          </p>
-                        )}
-                      </div>
+        {/* ── CONTACT CHANNELS ──────────────────────────────────────────── */}
+        <section className="pb-14 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {contactChannels.map((ch) => {
+                const Icon = ch.icon;
+                return (
+                  <a key={ch.label} href={ch.href}
+                    target={ch.href.startsWith("http") ? "_blank" : undefined}
+                    rel={ch.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="group bg-[#141d2e] rounded-2xl p-6 border border-gray-800 hover:border-transparent transition-all duration-300 flex flex-col relative overflow-hidden hover:shadow-[0_8px_40px_rgba(43,123,228,0.2)]">
+                    <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${ch.gradient}`} />
+                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${ch.gradient} flex items-center justify-center mb-4`}>
+                      <Icon className="w-5 h-5 text-white" />
                     </div>
-                  ))}
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">{ch.label}</span>
+                    <p className="text-white font-bold mb-1 group-hover:text-[#2B7BE4] transition-colors">{ch.value}</p>
+                    <p className="text-gray-500 text-xs mb-3">{ch.sub}</p>
+                    <div className="mt-auto">
+                      <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-[#0b1220] border border-gray-800 text-gray-400">
+                        {ch.badge}
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ── FORM + INFO ───────────────────────────────────────────────── */}
+        <section id="form" className="py-14 px-4 bg-[#0d1628]">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+              {/* Form — takes 3/5 */}
+              <div className="lg:col-span-3">
+                <div className="bg-[#141d2e] rounded-2xl p-8 border border-gray-800">
+                  <div className="flex items-center gap-3 mb-2">
+                    <FiMessageCircle className="w-5 h-5 text-[#2B7BE4]" />
+                    <h2 className="text-2xl font-bold text-white">Send Us a Message</h2>
+                  </div>
+                  <p className="text-gray-400 text-sm mb-8">
+                    Fill in the form below and our team will respond within 4 business hours.
+                  </p>
+                  <ContactForm />
+                </div>
+              </div>
+
+              {/* Info sidebar — takes 2/5 */}
+              <div className="lg:col-span-2 space-y-5">
+
+                {/* Office info */}
+                <div className="bg-[#141d2e] rounded-2xl p-6 border border-gray-800">
+                  <h3 className="text-white font-bold text-lg mb-5">Contact Information</h3>
+                  <div className="space-y-5">
+                    {officeInfo.map((info) => {
+                      const Icon = info.icon;
+                      return (
+                        <div key={info.title} className="flex items-start gap-3">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-[#2B7BE4]/20 to-[#7C3AED]/20 border border-[#2B7BE4]/20 flex items-center justify-center mt-0.5">
+                            <Icon className="w-4 h-4 text-[#2B7BE4]" />
+                          </div>
+                          <div>
+                            <p className="text-gray-500 text-xs uppercase tracking-wider font-bold mb-1">{info.title}</p>
+                            {info.lines.map((line, i) => (
+                              <p key={i} className="text-gray-300 text-sm">{line}</p>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Social links */}
+                  <div className="mt-6 pt-5 border-t border-gray-800">
+                    <p className="text-gray-500 text-xs uppercase tracking-wider font-bold mb-3">Follow Us</p>
+                    <div className="flex gap-3">
+                      {[
+                        { href: "https://linkedin.com", icon: FiLinkedin, label: "LinkedIn" },
+                        { href: "https://twitter.com", icon: FiTwitter, label: "Twitter" },
+                        { href: "https://instagram.com", icon: FiInstagram, label: "Instagram" },
+                      ].map(({ href, icon: Icon, label }) => (
+                        <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                          className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-[#2B7BE4]/20 border border-gray-700 hover:border-[#2B7BE4]/40 flex items-center justify-center text-gray-400 hover:text-[#2B7BE4] transition-all"
+                          aria-label={label}>
+                          <Icon className="w-4 h-4" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Social Links */}
-                <div className="mt-12 pt-8 border-t border-gray-800">
-                  <h3 className="text-lg font-semibold text-white mb-4 text-center">
-                    Follow Us
-                  </h3>
-                  <div className="flex space-x-6 justify-center">
-                    <a
-                      href="https://www.linkedin.com/company/cybria-secure"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-[#1a2236] rounded-lg hover:bg-[#2B7BE4] transition-colors"
-                      aria-label="LinkedIn"
-                    >
-                      <FiLinkedin className="w-6 h-6" />
-                    </a>
-                    <a
-                      href="https://instagram.com/cybria_secure"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-[#1a2236] rounded-lg hover:bg-gradient-to-r hover:from-[#2B7BE4] hover:via-[#FF5CA8] hover:to-[#7C3AED] transition-all duration-300"
-                      aria-label="Instagram"
-                    >
-                      <FiInstagram className="w-6 h-6" />
-                    </a>
-                    <a
-                      href="https://wa.me/918080424274?text=Hello%20Cybria%20Secure%2C%20I%20need%20cybersecurity%20assistance."
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className="p-3 bg-gradient-to-r from-[#1a2236] to-[#2B7BE4]/10 rounded-lg hover:bg-gradient-to-r hover:from-[#25D366] hover:to-[#128C7E] transition-all duration-300 group relative overflow-hidden"
-                      aria-label="Start WhatsApp chat with Cybria Secure"
-                      title="Message us on WhatsApp for immediate help"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#25D366]/0 via-[#25D366]/10 to-[#128C7E]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Services quick links */}
+                <div className="bg-[#141d2e] rounded-2xl p-6 border border-gray-800">
+                  <h3 className="text-white font-bold mb-4">Enquire About</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {services.map((svc) => (
+                      <Link key={svc}
+                        href={`/services/${svc.toLowerCase().replace(/\s+/g, "-").replace(/[()]/g, "")}`}
+                        className="text-xs bg-[#0b1220] border border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 rounded-full px-3 py-1.5 transition-all">
+                        {svc}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
 
-                      <FaWhatsapp className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform" />
-
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                        Chat on WhatsApp
-                      </div>
-                    </a>
+                {/* Locations */}
+                <div className="bg-[#141d2e] rounded-2xl p-6 border border-gray-800">
+                  <h3 className="text-white font-bold mb-4">We Serve</h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { city: "Kolhapur (HQ)", href: "/services/kolhapur" },
+                      { city: "Pune",           href: "/services/pune" },
+                      { city: "Mumbai",          href: "/services/mumbai" },
+                      { city: "Sangli",          href: "/services/sangli" },
+                      { city: "Ichalkaranji",    href: "/services/ichalkaranji" },
+                      { city: "Pan-India",       href: "/services" },
+                    ].map(({ city, href }) => (
+                      <Link key={city} href={href}
+                        className="text-xs text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-[#2B7BE4] flex-shrink-0" />
+                        {city}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <div className="bg-[#1a2236] rounded-2xl p-8 border border-gray-800">
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  Send us a Message
-                </h2>
-                <p className="text-gray-400 mb-8">
-                  Fill out the form below and our cybersecurity experts will get
-                  back to you within 24 hours.
-                </p>
-
-                <ContactForm />
+        {/* ── MAP PLACEHOLDER ───────────────────────────────────────────── */}
+        <section className="py-14 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">Our Location</h2>
+            <div className="rounded-2xl overflow-hidden border border-gray-800 h-72 bg-[#141d2e] flex items-center justify-center">
+              <div className="text-center">
+                <FiMapPin className="w-10 h-10 text-[#2B7BE4] mx-auto mb-3" />
+                <p className="text-white font-bold mb-1">Cybria Secure</p>
+                <p className="text-gray-400 text-sm">110, Mark 1034 Commercial Complex, Kolhapur 416008</p>
+                <a href="https://maps.google.com/?q=Cybria+Secure+Kolhapur"
+                  target="_blank" rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 text-[#2B7BE4] text-sm font-medium hover:text-[#FF5CA8] transition-colors">
+                  View on Google Maps →
+                </a>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
       </div>
     </>
   );
