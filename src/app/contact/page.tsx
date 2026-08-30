@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import ContactForm from "../../components/ContactForm";
+import ContactChannels from "../../components/ContactChannels";
 import Link from "next/link";
 import {
   FiMapPin, FiPhone, FiMail, FiClock,
-  FiAlertCircle, FiMessageCircle, FiCalendar,
+  FiAlertCircle, FiMessageCircle,
   FiLinkedin, FiTwitter, FiInstagram,
 } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata: Metadata = {
   title: "Contact Cybria Secure | Cybersecurity Advisory | +91 80804 24274",
@@ -25,45 +25,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-const contactChannels = [
-  {
-    icon: FiPhone,
-    label: "Call Us",
-    value: "+91 80804 24274",
-    sub: "Also: +91 75591 35608",
-    href: "tel:+918080424274",
-    gradient: "from-[#2B7BE4] to-[#3B82F6]",
-    badge: "24/7 for emergencies",
-  },
-  {
-    icon: FiMail,
-    label: "Email",
-    value: "sales@cybriasecure.com",
-    sub: "We respond within 4 hours",
-    href: "mailto:sales@cybriasecure.com",
-    gradient: "from-[#FF5CA8] to-[#EC4899]",
-    badge: "Quick response",
-  },
-  {
-    icon: FaWhatsapp,
-    label: "WhatsApp",
-    value: "Chat with us",
-    sub: "Instant messaging available",
-    href: "https://wa.me/918080424274?text=Hi%20Cybria%20Secure%2C%20I%27d%20like%20to%20discuss%20your%20cybersecurity%20services.",
-    gradient: "from-[#25D366] to-[#128C7E]",
-    badge: "Instant reply",
-  },
-  {
-    icon: FiCalendar,
-    label: "Book a Meeting",
-    value: "Schedule a call",
-    sub: "Mon–Fri, 9:30 AM – 6:30 PM IST",
-    href: "/contact#form",
-    gradient: "from-[#7C3AED] to-[#8B5CF6]",
-    badge: "Free consultation",
-  },
-];
 
 const officeInfo = [
   {
@@ -89,7 +50,7 @@ const officeInfo = [
   {
     icon: FiPhone,
     title: "Phone",
-    lines: ["+91 80804 24274 (Primary)", "+91 75591 35608 (Secondary)", "Emergency: +91 80804 24274"],
+    lines: ["+91 80804 24274 (Primary)", "+91 75591 35608 (Secondary)"],
   },
   {
     icon: FiMail,
@@ -99,15 +60,9 @@ const officeInfo = [
 ];
 
 const services = [
-  "Web Application VAPT",
-  "Network Security Audit",
-  "Mobile App Security",
-  "Cloud Security Assessment",
-  "Red Team Operations",
-  "Incident Response",
-  "RBI Compliance",
-  "ISO 27001 Implementation",
-  "Security Awareness Training",
+  "Web Application VAPT", "Network Security Audit", "Mobile App Security",
+  "Cloud Security Assessment", "Red Team Operations", "Incident Response",
+  "RBI Compliance", "ISO 27001 Implementation", "Security Awareness Training",
   "Virtual CISO (vCISO)",
 ];
 
@@ -140,7 +95,7 @@ export default function ContactPage() {
 
       <div className="min-h-screen bg-[#0b1220]">
 
-        {/* ── HERO ──────────────────────────────────────────────────────── */}
+        {/* Hero */}
         <section className="pt-28 pb-14 px-4 relative overflow-hidden">
           <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.4) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
@@ -158,58 +113,35 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Free consultation. Honest advice. No commitment required. Multiple ways to reach us.
+              Free consultation. Honest advice. No commitment required.
             </p>
 
             {/* Emergency strip */}
             <div className="inline-flex items-center gap-3 bg-red-900/30 border border-red-700/40 rounded-full px-6 py-3 text-sm">
               <FiAlertCircle className="w-4 h-4 text-red-400 animate-pulse flex-shrink-0" />
               <span className="text-red-200 font-semibold">Security Incident?</span>
-              <span className="text-red-300">Call us immediately:</span>
+              <span className="text-red-300 hidden sm:inline">Call immediately:</span>
               <a href="tel:+918080424274" className="text-white font-bold hover:text-red-200 transition-colors">
                 +91 80804 24274
               </a>
-              <span className="text-red-400 text-xs hidden sm:inline">24/7 Emergency Response</span>
+              <span className="text-red-400 text-xs hidden md:inline">· 24/7 Emergency Response</span>
             </div>
           </div>
         </section>
 
-        {/* ── CONTACT CHANNELS ──────────────────────────────────────────── */}
+        {/* Contact Channels — client component handles hover events */}
         <section className="pb-14 px-4">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {contactChannels.map((ch) => {
-                const Icon = ch.icon;
-                return (
-                  <a key={ch.label} href={ch.href}
-                    target={ch.href.startsWith("http") ? "_blank" : undefined}
-                    rel={ch.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="group bg-[#141d2e] rounded-2xl p-6 border border-gray-800 hover:border-transparent transition-all duration-300 flex flex-col relative overflow-hidden hover:shadow-[0_8px_40px_rgba(43,123,228,0.2)]">
-                    <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${ch.gradient}`} />
-                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${ch.gradient} flex items-center justify-center mb-4`}>
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">{ch.label}</span>
-                    <p className="text-white font-bold mb-1 group-hover:text-[#2B7BE4] transition-colors">{ch.value}</p>
-                    <p className="text-gray-500 text-xs mb-3">{ch.sub}</p>
-                    <div className="mt-auto">
-                      <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-[#0b1220] border border-gray-800 text-gray-400">
-                        {ch.badge}
-                      </span>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
+            <ContactChannels />
           </div>
         </section>
 
-        {/* ── FORM + INFO ───────────────────────────────────────────────── */}
+        {/* Form + Info */}
         <section id="form" className="py-14 px-4 bg-[#0d1628]">
           <div className="container mx-auto max-w-6xl">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
-              {/* Form — takes 3/5 */}
+              {/* Form — 3/5 */}
               <div className="lg:col-span-3">
                 <div className="bg-[#141d2e] rounded-2xl p-8 border border-gray-800">
                   <div className="flex items-center gap-3 mb-2">
@@ -217,13 +149,13 @@ export default function ContactPage() {
                     <h2 className="text-2xl font-bold text-white">Send Us a Message</h2>
                   </div>
                   <p className="text-gray-400 text-sm mb-8">
-                    Fill in the form below and our team will respond within 4 business hours.
+                    Our team responds within 4 business hours.
                   </p>
                   <ContactForm />
                 </div>
               </div>
 
-              {/* Info sidebar — takes 2/5 */}
+              {/* Info sidebar — 2/5 */}
               <div className="lg:col-span-2 space-y-5">
 
                 {/* Office info */}
@@ -247,7 +179,6 @@ export default function ContactPage() {
                       );
                     })}
                   </div>
-
                   {/* Social links */}
                   <div className="mt-6 pt-5 border-t border-gray-800">
                     <p className="text-gray-500 text-xs uppercase tracking-wider font-bold mb-3">Follow Us</p>
@@ -273,7 +204,7 @@ export default function ContactPage() {
                   <div className="flex flex-wrap gap-2">
                     {services.map((svc) => (
                       <Link key={svc}
-                        href={`/services/${svc.toLowerCase().replace(/\s+/g, "-").replace(/[()]/g, "")}`}
+                        href={`/services/${svc.toLowerCase().replace(/[\s()]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "")}`}
                         className="text-xs bg-[#0b1220] border border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 rounded-full px-3 py-1.5 transition-all">
                         {svc}
                       </Link>
@@ -287,11 +218,11 @@ export default function ContactPage() {
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { city: "Kolhapur (HQ)", href: "/services/kolhapur" },
-                      { city: "Pune",           href: "/services/pune" },
-                      { city: "Mumbai",          href: "/services/mumbai" },
-                      { city: "Sangli",          href: "/services/sangli" },
-                      { city: "Ichalkaranji",    href: "/services/ichalkaranji" },
-                      { city: "Pan-India",       href: "/services" },
+                      { city: "Pune", href: "/services/pune" },
+                      { city: "Mumbai", href: "/services/mumbai" },
+                      { city: "Sangli", href: "/services/sangli" },
+                      { city: "Ichalkaranji", href: "/services/ichalkaranji" },
+                      { city: "Pan-India", href: "/services" },
                     ].map(({ city, href }) => (
                       <Link key={city} href={href}
                         className="text-xs text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
@@ -306,18 +237,18 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* ── MAP PLACEHOLDER ───────────────────────────────────────────── */}
+        {/* Map placeholder */}
         <section className="py-14 px-4">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl font-bold text-white mb-6 text-center">Our Location</h2>
-            <div className="rounded-2xl overflow-hidden border border-gray-800 h-72 bg-[#141d2e] flex items-center justify-center">
+            <div className="rounded-2xl overflow-hidden border border-gray-800 h-64 bg-[#141d2e] flex items-center justify-center">
               <div className="text-center">
                 <FiMapPin className="w-10 h-10 text-[#2B7BE4] mx-auto mb-3" />
                 <p className="text-white font-bold mb-1">Cybria Secure</p>
-                <p className="text-gray-400 text-sm">110, Mark 1034 Commercial Complex, Kolhapur 416008</p>
-                <a href="https://maps.google.com/?q=Cybria+Secure+Kolhapur"
+                <p className="text-gray-400 text-sm mb-4">110, Mark 1034 Commercial Complex, Kolhapur 416008</p>
+                <a href="https://maps.google.com/?q=110+Mark+1034+Commercial+Complex+Kolhapur"
                   target="_blank" rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 text-[#2B7BE4] text-sm font-medium hover:text-[#FF5CA8] transition-colors">
+                  className="inline-flex items-center gap-1.5 text-[#2B7BE4] text-sm font-medium hover:text-[#FF5CA8] transition-colors">
                   View on Google Maps →
                 </a>
               </div>
