@@ -3,17 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  FiBookOpen, FiFileText, FiDownload, FiArrowRight,
-  FiCalendar, FiUser, FiClock, FiTag, FiFilter,
-  FiSearch, FiExternalLink, FiShield, FiAlertTriangle,
+  FiBookOpen, FiFileText, FiArrowRight,
+  FiCalendar, FiUser, FiClock,
+  FiSearch, FiShield, FiAlertTriangle,
 } from "react-icons/fi";
 import { getAllBlogPosts } from "../../../lib/markdown";
-import documentsData from "../../content/documents/index.json";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
-type Tab = "blog" | "case-studies" | "documents";
+type Tab = "blog" | "case-studies";
 
-// ─── Static case study data (until you add a CMS) ────────────────────────────
+// ─── Static case study data ───────────────────────────────────────────────────
 const caseStudies = [
   {
     slug: "cooperative-bank-kolhapur",
@@ -47,15 +46,7 @@ const caseStudies = [
   },
 ];
 
-// ─── Category colours ─────────────────────────────────────────────────────────
-const categoryColor: Record<string, string> = {
-  Compliance: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  Guide: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-  Template: "bg-pink-500/10 text-pink-400 border-pink-500/20",
-  Awareness: "bg-green-500/10 text-green-400 border-green-500/20",
-};
-
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// ─── Blog Grid ────────────────────────────────────────────────────────────────
 function BlogGrid({ posts }: { posts: ReturnType<typeof getAllBlogPosts> }) {
   if (posts.length === 0) {
     return (
@@ -117,6 +108,7 @@ function BlogGrid({ posts }: { posts: ReturnType<typeof getAllBlogPosts> }) {
   );
 }
 
+// ─── Case Studies Grid ────────────────────────────────────────────────────────
 function CaseStudiesGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -126,12 +118,11 @@ function CaseStudiesGrid() {
           <Link
             key={cs.slug}
             href={`/resources/case-studies/${cs.slug}`}
-            className="group bg-[#141d2e] rounded-2xl p-7 border border-gray-800 hover:border-transparent transition-all duration-300 relative overflow-hidden cursor-pointer block"
-            style={{ boxShadow: "none", textDecoration: "none" }}
+            className="group bg-[#141d2e] rounded-2xl p-7 border border-gray-800 hover:border-transparent transition-all duration-300 relative overflow-hidden block"
+            style={{ boxShadow: "none" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 8px 40px ${cs.glowColor}`; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; }}
           >
-            {/* top accent */}
             <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${cs.gradient}`} />
 
             <div className="flex items-start gap-4 mb-4">
@@ -150,7 +141,6 @@ function CaseStudiesGrid() {
 
             <p className="text-gray-400 text-sm leading-relaxed mb-4">{cs.excerpt}</p>
 
-            {/* Outcome badge */}
             <div className="flex items-center gap-2 bg-green-500/8 border border-green-500/20 rounded-lg px-3 py-2 mb-5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
               <span className="text-green-400 text-xs font-semibold">{cs.outcome}</span>
@@ -181,13 +171,13 @@ function CaseStudiesGrid() {
         );
       })}
 
-      {/* Placeholder — invite more */}
+      {/* Placeholder card */}
       <div className="bg-[#141d2e] rounded-2xl p-7 border border-dashed border-gray-700 flex flex-col items-center justify-center text-center col-span-full md:col-span-1">
         <div className="w-12 h-12 rounded-xl bg-[#0b1220] border border-gray-800 flex items-center justify-center mb-4">
           <FiFileText className="w-5 h-5 text-gray-600" />
         </div>
         <h3 className="text-gray-400 font-semibold mb-2">More Coming Soon</h3>
-        <p className="text-gray-600 text-sm mb-4">New case studies are published quarterly. Want your success story featured?</p>
+        <p className="text-gray-600 text-sm mb-4">New case studies published quarterly. Want your success story featured?</p>
         <Link href="/contact" className="text-[#2B7BE4] text-sm font-medium hover:text-[#FF5CA8] transition-colors flex items-center gap-1">
           Contact Us <FiArrowRight className="w-3.5 h-3.5" />
         </Link>
@@ -196,103 +186,25 @@ function CaseStudiesGrid() {
   );
 }
 
-function DocumentsGrid({ search, filter }: { search: string; filter: string }) {
-  const filtered = documentsData.filter((doc) => {
-    const matchSearch =
-      !search ||
-      doc.title.toLowerCase().includes(search.toLowerCase()) ||
-      doc.description.toLowerCase().includes(search.toLowerCase()) ||
-      doc.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
-    const matchFilter = !filter || filter === "All" || doc.category === filter;
-    return matchSearch && matchFilter;
-  });
-
-  const categories = ["All", ...Array.from(new Set(documentsData.map((d) => d.category)))];
-
-  return (
-    <div>
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => filter !== cat && void 0}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 ${
-              filter === cat
-                ? "bg-gradient-to-r from-[#2B7BE4] to-[#7C3AED] text-white border-transparent"
-                : "border-gray-700 text-gray-400 hover:border-gray-600 hover:text-white"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {filtered.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">No documents match your search.</div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((doc) => (
-            <div key={doc.id} className="group bg-[#141d2e] rounded-xl p-6 border border-gray-800 hover:border-[#2B7BE4]/40 transition-all duration-300 flex flex-col">
-              {/* File type badge + icon */}
-              <div className="flex items-center justify-between mb-4">
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${categoryColor[doc.category] || "bg-gray-800 text-gray-400 border-gray-700"}`}>
-                  {doc.category}
-                </span>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-bold text-gray-500 uppercase">{doc.fileType}</span>
-                  <div className="w-6 h-6 rounded bg-gradient-to-br from-[#2B7BE4] to-[#7C3AED] flex items-center justify-center">
-                    <FiFileText className="w-3 h-3 text-white" />
-                  </div>
-                </div>
-              </div>
-
-              <h3 className="text-white font-bold mb-2 leading-snug group-hover:text-[#2B7BE4] transition-colors flex-1">
-                {doc.title}
-              </h3>
-
-              <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">{doc.description}</p>
-
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {doc.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-xs bg-[#0b1220] border border-gray-800 text-gray-500 rounded-full px-2 py-0.5">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between mt-auto">
-                <span className="text-xs text-gray-600">{doc.fileSize}</span>
-                <a
-                  href={doc.downloadUrl}
-                  download
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-[#2B7BE4] to-[#7C3AED] text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-[#2B7BE4]/20 transition-all duration-200"
-                >
-                  <FiDownload className="w-3.5 h-3.5" /> Download
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function ResourcesPage() {
   const [activeTab, setActiveTab] = useState<Tab>("blog");
   const [search, setSearch] = useState("");
-  const [docFilter, setDocFilter] = useState("All");
 
   const blogPosts = getAllBlogPosts();
-  const categories = ["All", ...Array.from(new Set(documentsData.map((d) => d.category)))];
 
   const tabs: { id: Tab; label: string; icon: React.ElementType; count: number | null }[] = [
-    { id: "blog", label: "Blog", icon: FiBookOpen, count: blogPosts.length || null },
-    { id: "case-studies", label: "Case Studies", icon: FiShield, count: caseStudies.length },
-    { id: "documents", label: "Documents & PDFs", icon: FiDownload, count: documentsData.length },
+    { id: "blog",         label: "Blog",         icon: FiBookOpen, count: blogPosts.length || null },
+    { id: "case-studies", label: "Case Studies",  icon: FiShield,   count: caseStudies.length },
   ];
+
+  const filteredPosts = search
+    ? blogPosts.filter((p) =>
+        p.title.toLowerCase().includes(search.toLowerCase()) ||
+        p.excerpt.toLowerCase().includes(search.toLowerCase()) ||
+        p.category.toLowerCase().includes(search.toLowerCase())
+      )
+    : blogPosts;
 
   return (
     <div className="min-h-screen bg-[#0b1220]">
@@ -317,7 +229,7 @@ export default function ResourcesPage() {
           </h1>
 
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Expert articles, real-world case studies, and downloadable guides to help Indian businesses stay ahead of cyber threats.
+            Expert articles and real-world case studies to help Indian businesses stay ahead of cyber threats.
           </p>
         </div>
       </section>
@@ -325,13 +237,13 @@ export default function ResourcesPage() {
       {/* Tabs */}
       <div className="sticky top-[68px] z-30 bg-[#0b1220]/95 backdrop-blur-md border-b border-gray-800/60">
         <div className="container mx-auto max-w-5xl px-4">
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-1">
+          <div className="flex items-center gap-1 overflow-x-auto py-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => { setActiveTab(tab.id); setSearch(""); }}
                   className={`flex items-center gap-2 px-5 py-3.5 text-sm font-medium whitespace-nowrap border-b-2 transition-all duration-200 ${
                     activeTab === tab.id
                       ? "border-[#2B7BE4] text-white"
@@ -355,49 +267,24 @@ export default function ResourcesPage() {
       {/* Content */}
       <div className="container mx-auto max-w-5xl px-4 py-12">
 
-        {/* Search bar — shown for blog + documents */}
-        {(activeTab === "blog" || activeTab === "documents") && (
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            <div className="relative flex-1">
+        {/* Search — blog only */}
+        {activeTab === "blog" && (
+          <div className="mb-8">
+            <div className="relative max-w-md">
               <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
               <input
                 type="text"
-                placeholder={activeTab === "blog" ? "Search articles..." : "Search documents..."}
+                placeholder="Search articles..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 bg-[#141d2e] border border-gray-800 rounded-full text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#2B7BE4]/50 transition-colors"
               />
             </div>
-
-            {activeTab === "documents" && (
-              <div className="flex items-center gap-2">
-                <FiFilter className="w-4 h-4 text-gray-500" />
-                <select
-                  value={docFilter}
-                  onChange={(e) => setDocFilter(e.target.value)}
-                  className="bg-[#141d2e] border border-gray-800 rounded-full text-sm text-gray-300 px-4 py-2.5 focus:outline-none focus:border-[#2B7BE4]/50"
-                >
-                  {categories.map((c) => <option key={c}>{c}</option>)}
-                </select>
-              </div>
-            )}
           </div>
         )}
 
-        {/* Tab Panels */}
-        {activeTab === "blog" && (
-          <BlogGrid
-            posts={search ? blogPosts.filter((p) =>
-              p.title.toLowerCase().includes(search.toLowerCase()) ||
-              p.excerpt.toLowerCase().includes(search.toLowerCase()) ||
-              p.category.toLowerCase().includes(search.toLowerCase())
-            ) : blogPosts}
-          />
-        )}
-
+        {activeTab === "blog"         && <BlogGrid posts={filteredPosts} />}
         {activeTab === "case-studies" && <CaseStudiesGrid />}
-
-        {activeTab === "documents" && <DocumentsGrid search={search} filter={docFilter} />}
       </div>
 
       {/* CTA */}

@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Cybria Secure | Cybersecurity Risk Advisory | VAPT & Compliance India",
   description:
-    "Reduce Business Risk. Not Just Fix Vulnerabilities. Leading cybersecurity risk advisory firm — VAPT, RBI Compliance, ISO 27001, Incident Response, Red Teaming. 640+ clients across 30+ countries.",
+    "Reduce Business Risk. Not Just Fix Vulnerabilities. Leading cybersecurity risk advisory firm — VAPT, RBI Compliance, ISO 27001, Incident Response, Red Teaming. 100+ clients across india and global.",
   keywords: [
     "cybersecurity company India",
     "VAPT India",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.cybriasecure.com" },
   openGraph: {
     title: "Cybria Secure | Cybersecurity Risk Advisory India",
-    description: "Reduce Business Risk. Not Just Fix Vulnerabilities. 640+ organizations secured across 30+ countries.",
+    description: "Reduce Business Risk. Not Just Fix Vulnerabilities. 100+ organizations secured across india and global.",
     url: "https://www.cybriasecure.com",
     type: "website",
   },
@@ -52,7 +52,7 @@ const whyUs = [
   {
     icon: FiGlobe,
     title: "Pan-India & Global Reach",
-    desc: "Headquartered in Kolhapur, serving 640+ organizations across 30+ countries. Remote-first delivery; on-site available anywhere in India.",
+    desc: "Headquartered in Kolhapur, serving 100+ organizations across india and global. Remote-first delivery; on-site available anywhere in India.",
   },
   {
     icon: FiClock,
@@ -246,7 +246,7 @@ export default function HomePage() {
                 </h2>
 
                 <p className="text-gray-300 text-xl mb-10 max-w-2xl mx-auto">
-                  Join 640+ organizations who trust Cybria Secure to protect their business. Free consultation — no commitment required.
+                  Join 100+ organizations who trust Cybria Secure to protect their business. Free consultation — no commitment required.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

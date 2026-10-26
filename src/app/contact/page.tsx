@@ -184,9 +184,9 @@ export default function ContactPage() {
                     <p className="text-gray-500 text-xs uppercase tracking-wider font-bold mb-3">Follow Us</p>
                     <div className="flex gap-3">
                       {[
-                        { href: "https://linkedin.com", icon: FiLinkedin, label: "LinkedIn" },
-                        { href: "https://twitter.com", icon: FiTwitter, label: "Twitter" },
-                        { href: "https://instagram.com", icon: FiInstagram, label: "Instagram" },
+                        { href: "https://www.linkedin.com/company/cybria-secure/posts/", icon: FiLinkedin, label: "LinkedIn" },
+                        
+                        { href: "https://www.instagram.com/cybria_secure/?hl=en", icon: FiInstagram, label: "Instagram" },
                       ].map(({ href, icon: Icon, label }) => (
                         <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                           className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-[#2B7BE4]/20 border border-gray-700 hover:border-[#2B7BE4]/40 flex items-center justify-center text-gray-400 hover:text-[#2B7BE4] transition-all"
@@ -213,7 +213,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Locations */}
-                <div className="bg-[#141d2e] rounded-2xl p-6 border border-gray-800">
+                {/* <div className="bg-[#141d2e] rounded-2xl p-6 border border-gray-800">
                   <h3 className="text-white font-bold mb-4">We Serve</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {[
@@ -231,7 +231,7 @@ export default function ContactPage() {
                       </Link>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   FiShield, FiUsers, FiTarget, FiAward, FiGlobe,
-  FiArrowRight, FiPhone, FiCheckCircle, FiTrendingUp,
+  FiArrowRight, FiPhone, FiCheckCircle, FiTrendingUp, FiLock
 } from "react-icons/fi";
 import TeamSection from "../../components/TeamSection";
 
 export const metadata: Metadata = {
   title: "About Cybria Secure | Cybersecurity Risk Advisory | Kolhapur, India",
   description:
-    "Cybria Secure is a leading cybersecurity risk advisory firm headquartered in Kolhapur, Maharashtra. Founded by Sameer Nejkar and Tanvi Dhatrak. Serving 640+ clients across 30+ countries.",
+    "Cybria Secure is a leading cybersecurity risk advisory firm headquartered in Kolhapur, Maharashtra. Founded by Sameer Nejkar and Tanvi Dhatrak. Serving 100+ clients across india and global.",
   keywords: [
     "about Cybria Secure", "cybersecurity company Kolhapur",
     "cybersecurity experts Maharashtra", "Sameer Nejkar", "Tanvi Dhatrak",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.cybriasecure.com/about" },
   openGraph: {
     title: "About Cybria Secure | Cybersecurity Risk Advisory",
-    description: "Reduce Business Risk. Not Just Fix Vulnerabilities. Learn about Cybria Secure — founded in Kolhapur, serving 640+ organizations globally.",
+    description: "Reduce Business Risk. Not Just Fix Vulnerabilities. Learn about Cybria Secure — founded in Kolhapur, serving 100+ organizations globally.",
     url: "https://www.cybriasecure.com/about",
     type: "website",
   },
@@ -53,10 +53,10 @@ const jsonLd = {
 };
 
 const stats = [
-  { value: "640+",  label: "Clients Served",     icon: FiUsers },
-  { value: "30+",   label: "Countries",           icon: FiGlobe },
-  { value: "5800+", label: "Projects Completed",  icon: FiTarget },
-  { value: "9+",    label: "Years of Experience", icon: FiAward },
+  { value: "100+", label: "Clients Served",     icon: FiUsers },
+  { value: "200+", label: "Projects Completed", icon: FiTarget },
+  { value: "24/7",  label: "Security Support",   icon: FiShield },
+  { value: "360°",  label: "Security Coverage", icon: FiLock },
 ];
 
 const values = [
@@ -286,35 +286,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── LOCATIONS ─────────────────────────────────────────────────── */}
-        <section className="py-16 px-4 bg-[#0d1628]">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Where We Operate</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                Headquartered in Kolhapur — serving clients across India and globally with remote-first delivery and on-site support.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-4xl mx-auto mb-10">
-              {[
-                { city: "Kolhapur", tag: "HQ", href: "/services/kolhapur" },
-                { city: "Pune",     tag: "",   href: "/services/pune" },
-                { city: "Mumbai",   tag: "",   href: "/services/mumbai" },
-                { city: "Sangli",   tag: "",   href: "/services/sangli" },
-                { city: "Solapur",  tag: "",   href: "/services/solapur" },
-                { city: "Ichalkaranji", tag: "", href: "/services/ichalkaranji" },
-              ].map(({ city, tag, href }) => (
-                <Link key={city} href={href}
-                  className="group flex flex-col items-center text-center p-4 bg-[#141d2e] rounded-xl border border-gray-800 hover:border-[#2B7BE4]/40 hover:bg-[#1a2440] transition-all duration-300">
-                  <div className="w-2 h-2 rounded-full bg-[#2B7BE4] mb-2 group-hover:animate-pulse" />
-                  <span className="text-white text-sm font-semibold group-hover:text-[#2B7BE4] transition-colors">{city}</span>
-                  {tag && <span className="text-[10px] text-[#FF5CA8] font-bold mt-0.5">{tag}</span>}
-                </Link>
-              ))}
-            </div>
-            <p className="text-center text-gray-500 text-sm">+ Pan-India & 30+ countries globally</p>
-          </div>
-        </section>
+       
 
         {/* ── CTA ───────────────────────────────────────────────────────── */}
         <section className="py-16 px-4">
@@ -323,7 +295,7 @@ export default function AboutPage() {
               style={{ background: "linear-gradient(135deg,rgba(43,123,228,0.12),rgba(255,92,168,0.08),rgba(124,58,237,0.12))", border: "1px solid rgba(255,255,255,0.06)" }}>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Partner with Cybersecurity Experts</h2>
               <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                640+ organizations trust Cybria Secure. Free consultation — no commitment required.
+                100+ organizations trust Cybria Secure. Free consultation — no commitment required.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact" className="px-8 py-4 text-white font-semibold rounded-full transition-all hover:scale-105"

@@ -22,10 +22,10 @@ function useCountUp(target: number, duration = 2000, start = false) {
 }
 
 const stats = [
-  { value: 640,  suffix: "+", label: "Clients" },
-  { value: 30,   suffix: "+", label: "Countries" },
-  { value: 5800, suffix: "+", label: "Projects" },
-  { value: 9,    suffix: "+", label: "Years" },
+  { value: 100,  suffix: "+", label: "Clients" },
+  // { value: 30,   suffix: "+", label: "Countries" },
+  { value: 200, suffix: "+", label: "Projects" },
+  // { value: 9,    suffix: "+", label: "Years" },
 ];
 
 function StatItem({ value, suffix, label, animate }: { value: number; suffix: string; label: string; animate: boolean }) {
@@ -92,7 +92,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
-          Cybria Secure is a leading cybersecurity risk advisory firm serving 640+ organizations across 30+ countries.
+          Cybria Secure is a leading cybersecurity risk advisory firm serving 100+ organizations across pan india and global.
           Layered security across offensive testing, compliance, and continuous monitoring.
         </p>
         <p className="text-sm text-gray-500 mb-10">

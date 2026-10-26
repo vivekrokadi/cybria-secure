@@ -17,7 +17,6 @@ const compliance = [
   { name: "SOC 2",           href: "/compliance/soc2" },
   { name: "PCI-DSS 4.0",    href: "/compliance/pci-dss" },
   { name: "HIPAA",           href: "/compliance/hipaa" },
-  { name: "GDPR",            href: "/compliance/gdpr" },
   { name: "DPDPA (India)",   href: "/compliance/dpdpa" },
   { name: "NIST CSF",        href: "/compliance/nist-csf" },
   { name: "RBI Framework",   href: "/services/rbi-compliance" },
@@ -86,10 +85,10 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               {[
-                { href: "https://linkedin.com", icon: FiLinkedin },
-                { href: "https://twitter.com",  icon: FiTwitter },
-                { href: "https://youtube.com",  icon: FiYoutube },
-                { href: "https://instagram.com",icon: FiInstagram },
+                { href: "https://www.linkedin.com/company/cybria-secure/posts/", icon: FiLinkedin },
+                // { href: "https://twitter.com",  icon: FiTwitter },
+                // { href: "https://youtube.com",  icon: FiYoutube },
+                { href: "https://www.instagram.com/cybria_secure/?hl=en",icon: FiInstagram },
               ].map(({ href, icon: Icon }) => (
                 <a key={href} href={href} target="_blank" rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-gray-800 hover:bg-[#2B7BE4]/20 border border-gray-700 hover:border-[#2B7BE4]/40 flex items-center justify-center text-gray-400 hover:text-[#2B7BE4] transition-all">
@@ -163,11 +162,11 @@ export default function Footer() {
               </a>
               <div className="flex items-start gap-2.5 text-gray-500">
                 <FiMapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-[#2B7BE4]" />
-                <span className="text-xs leading-relaxed">
+                <a href="https://maps.google.com/?q=110+Mark+1034+Commercial+Complex+Kolhapur" className="flex items-start gap-2.5 text-gray-400 hover:text-white transition-colors">
                   110, Mark 1034 Commercial Complex,<br />
                   E Ward, Rajaram Road,<br />
                   Kolhapur, MH — 416008
-                </span>
+                </a>
               </div>
             </div>
 
@@ -192,11 +191,11 @@ export default function Footer() {
       <div className="border-t border-gray-800/60 py-5 px-4">
         <div className="container mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-gray-500 text-xs text-center sm:text-left">
-            © {new Date().getFullYear()} Cybria Secure. All rights reserved. · Kolhapur, Maharashtra, India
+            © {new Date().getFullYear()} Cybria Secure. All rights reserved.
           </p>
           <div className="flex gap-4 text-xs text-gray-600">
             <Link href="/privacy-policy" className="hover:text-gray-400 transition-colors">Privacy Policy</Link>
-            <Link href="/contact" className="hover:text-gray-400 transition-colors">Terms</Link>
+            {/* <Link href="/contact" className="hover:text-gray-400 transition-colors">Terms</Link> */}
           </div>
         </div>
       </div>

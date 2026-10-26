@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Where is Cybria Secure headquartered and which areas do you serve?",
-    a: "We are headquartered in Kolhapur, Maharashtra. We serve clients pan-India — Mumbai, Pune, Delhi, Bengaluru, Hyderabad, Chennai, Sangli, Ichalkaranji, Solapur and beyond — as well as global clients across 30+ countries. Most services are delivered remotely; on-site support is available.",
+    a: "We are headquartered in Kolhapur, Maharashtra. We serve clients pan-India — Mumbai, Pune, Delhi, Bengaluru, Hyderabad, Chennai, Sangli, Ichalkaranji and beyond — as well as global. Most services are delivered remotely; on-site support is available.",
   },
   {
     q: "Is Cybria Secure RBI empanelled for cooperative bank audits?",

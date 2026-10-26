@@ -17,7 +17,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.cybriasecure.com'),
   title: 'Cybria Secure | Cybersecurity Risk Advisory | VAPT & Compliance India',
-  description: 'Reduce Business Risk. Not Just Fix Vulnerabilities. Leading cybersecurity risk advisory firm serving 640+ organizations across 30+ countries. VAPT, RBI Compliance, ISO 27001, Incident Response.',
+  description: 'Reduce Business Risk. Not Just Fix Vulnerabilities. Leading cybersecurity risk advisory firm serving 100+ organizations across india and global. VAPT, RBI Compliance, ISO 27001, Incident Response.',
   keywords: 'cybersecurity India, VAPT India, RBI compliance, ISO 27001, incident response, cybersecurity Kolhapur, penetration testing India',
   authors: [{ name: 'Cybria Secure' }],
   robots: 'index, follow',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://www.cybriasecure.com',
     title: 'Cybria Secure | Cybersecurity Risk Advisory India',
-    description: 'Reduce Business Risk. Not Just Fix Vulnerabilities. 640+ organizations secured across 30+ countries.',
+    description: 'Reduce Business Risk. Not Just Fix Vulnerabilities. 100+ organizations secured across india and global.',
     siteName: 'Cybria Secure',
     images: [{ url: '/cybriasecure-logo.png', width: 512, height: 512, alt: 'Cybria Secure' }],
   },

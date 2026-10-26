@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { FiMenu, FiX, FiChevronDown, FiPhone } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
+import EmergencyBanner from './EmergencyBanner'
 
 // ─── Mega-nav data ────────────────────────────────────────────────────────────
 const assuranceGroups = [
@@ -58,19 +59,11 @@ const governanceGroups = [
 
 const resourcesGroups = [
   {
-    label: "Learn",
+    label: "Resources",
     items: [
-      { name: "Blog",          href: "/resources" },
-      { name: "Case Studies",  href: "/resources?tab=case-studies" },
+      { name: "Blog",             href: "/resources" },
+      { name: "Case Studies",     href: "/resources?tab=case-studies" },
       { name: "Documents & PDFs", href: "/resources?tab=documents" },
-    ],
-  },
-  {
-    label: "Company",
-    items: [
-      { name: "About Us",    href: "/about" },
-      { name: "Industries",  href: "/industries" },
-      { name: "Contact Us",  href: "/contact" },
     ],
   },
 ]
@@ -87,17 +80,17 @@ function MegaPanel({
   footer?: { label: string; href: string }
 }) {
   return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-[#0b1220] border border-gray-800 rounded-2xl shadow-2xl shadow-black/60 p-6 z-50 min-w-[560px]">
-      <div className={`grid gap-6 ${groups.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+    <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 ${groups.length === 1 ? 'w-[min(90vw,320px)]' : 'w-[min(90vw,600px)]'} max-w-[calc(100vw-1.5rem)] bg-[#0b1220] border border-gray-800 rounded-2xl shadow-2xl shadow-black/60 p-4 sm:p-6 z-50`}>
+      <div className={`grid gap-6 ${groups.length === 1 ? "grid-cols-1" : groups.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
         {groups.map((group) => (
           <div key={group.label}>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">{group.label}</p>
+            <p className="text-[8px] font-bold uppercase tracking-widest text-gray-500 mb-3">{group.label}</p>
             <ul className="space-y-1">
               {group.items.map((item) => (
                 <li key={item.name + item.href}>
                   <Link
                     href={item.href}
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-3 py-2 transition-all"
+                    className="flex items-center gap-2 text-xs text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-3 py-2 transition-all"
                   >
                     {item.name}
                     {item.isNew && (
@@ -149,6 +142,18 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  // Close the mobile menu and dropdowns with Escape.
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileOpen(false)
+        setActiveDropdown(null)
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [])
+
   // Close on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -167,221 +172,251 @@ export default function Header() {
   const showBg = scrolled || mobileOpen || pathname !== '/'
 
   return (
-    <header
-      ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        showBg ? 'bg-[#0b1220]/95 backdrop-blur-lg border-b border-gray-800/80' : 'bg-transparent'
-      }`}
-    >
-      {/* Thin top accent */}
-      <div className="h-[2px] bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED]" />
+    <div className="fixed top-0 left-0 right-0 z-50 flex flex-col">
+      <div className="hidden sm:block"><EmergencyBanner /></div>
 
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <header
+        ref={headerRef}
+        className={`relative w-full z-50 transition-all duration-300 ${
+          showBg ? 'bg-[#0b1220]/95 backdrop-blur-lg border-b border-gray-800/80' : 'bg-transparent'
+        }`}
+      >
+        {/* Thin top accent */}
+        <div className="h-[2px] bg-gradient-to-r from-[#2B7BE4] via-[#FF5CA8] to-[#7C3AED]" />
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <img src="/cybriasecure-logo.png" className="w-12 h-12 object-contain" alt="Cybria Secure" />
-            <div className="hidden sm:block">
-              <p className="text-white font-bold text-sm leading-tight">Cybria Secure</p>
-              <p className="text-gray-500 text-[10px] uppercase tracking-widest">Cybersecurity Advisory</p>
-            </div>
-          </Link>
+        <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="flex items-center justify-between sm:justify-around gap-2 sm:gap-4 min-h-16 py-2">
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-
-            {/* Assurance dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => toggle('assurance')}
-                className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                  activeDropdown === 'assurance' || pathname.startsWith('/services')
-                    ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                Assurance
-                <FiChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'assurance' ? 'rotate-180' : ''}`} />
-              </button>
-              {activeDropdown === 'assurance' && (
-                <MegaPanel groups={assuranceGroups} footer={{ label: "View all assurance services", href: "/services" }} />
-              )}
-            </div>
-
-            {/* Governance dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => toggle('governance')}
-                className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                  activeDropdown === 'governance' || pathname.startsWith('/compliance')
-                    ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                Governance
-                <FiChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'governance' ? 'rotate-180' : ''}`} />
-              </button>
-              {activeDropdown === 'governance' && (
-                <MegaPanel groups={governanceGroups} footer={{ label: "View all compliance services", href: "/compliance" }} />
-              )}
-            </div>
-
-            {/* Industries */}
-            <Link
-              href="/industries"
-              className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                pathname.startsWith('/industries')
-                  ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
-                  : 'text-gray-300 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              Industries
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+              <img src="/cybriasecure-logo.png" className="w-12 h-12 object-contain" alt="Cybria Secure" />
+              <div className="hidden sm:block">
+                <p className="text-white font-bold text-sm leading-tight">Cybria Secure Pvt. Ltd.</p>
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest">Cybersecurity Advisory</p>
+              </div>
             </Link>
 
-            {/* Resources dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => toggle('resources')}
-                className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                  activeDropdown === 'resources' || pathname.startsWith('/resources') || pathname === '/about'
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-0 2xl:gap-1 whitespace-nowrap shrink-0">
+
+              {/* About Us */}
+              <Link
+                href="/about"
+                className={`px-1.5 2xl:px-3 py-2.5 text-[13px] 2xl:text-sm font-medium rounded-lg transition-colors ${
+                  pathname.startsWith('/about')
                     ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
                     : 'text-gray-300 hover:text-white hover:bg-white/5'
                 }`}
               >
-                Resources
-                <FiChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180' : ''}`} />
-              </button>
-              {activeDropdown === 'resources' && (
-                <MegaPanel groups={resourcesGroups} />
-              )}
-            </div>
-
-          </nav>
-
-          {/* Desktop right CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+918080424274"
-              className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors">
-              <FiPhone className="w-3.5 h-3.5" />
-              <span className="hidden xl:inline">+91 80804 24274</span>
-            </a>
-            <Link
-              href="/contact"
-              className="px-5 py-2.5 text-white text-sm font-semibold rounded-full transition-all hover:scale-105 hover:shadow-lg"
-              style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}
-            >
-              Get Assessment
-            </Link>
-          </div>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen((p) => !p)}
-            className="lg:hidden p-2 text-white rounded-lg hover:bg-white/5 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <>
-          <div className="fixed inset-0 top-[66px] bg-black/60 backdrop-blur-sm z-40" onClick={() => setMobileOpen(false)} />
-          <div className="fixed top-[66px] left-0 right-0 z-50 bg-[#0b1220] border-t border-gray-800 max-h-[80vh] overflow-y-auto">
-            <div className="p-4 space-y-1">
-
-              {/* Assurance accordion */}
-              <div>
-                <button
-                  onClick={() => setMobileExpanded((p) => (p === 'assurance' ? null : 'assurance'))}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-300 hover:text-white rounded-xl hover:bg-white/5 transition-all"
-                >
-                  <span className="font-medium">Assurance</span>
-                  <FiChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === 'assurance' ? 'rotate-180' : ''}`} />
-                </button>
-                {mobileExpanded === 'assurance' && (
-                  <div className="pl-4 mt-1 space-y-3 pb-2">
-                    {assuranceGroups.map((group) => (
-                      <div key={group.label}>
-                        <p className="text-[10px] uppercase tracking-widest text-gray-600 px-4 py-1 font-bold">{group.label}</p>
-                        {group.items.map((item) => (
-                          <Link key={item.name} href={item.href} onClick={() => setMobileOpen(false)}
-                            className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">
-                            {item.name}
-                            {item.isNew && <span className="text-[9px] font-bold uppercase bg-green-500/10 text-green-400 border border-green-500/20 rounded-full px-1.5 py-0.5">NEW</span>}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                    <Link href="/services" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm text-[#2B7BE4] font-medium">
-                      View all services →
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Governance accordion */}
-              <div>
-                <button
-                  onClick={() => setMobileExpanded((p) => (p === 'governance' ? null : 'governance'))}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-300 hover:text-white rounded-xl hover:bg-white/5 transition-all"
-                >
-                  <span className="font-medium">Governance</span>
-                  <FiChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === 'governance' ? 'rotate-180' : ''}`} />
-                </button>
-                {mobileExpanded === 'governance' && (
-                  <div className="pl-4 mt-1 space-y-3 pb-2">
-                    {governanceGroups.map((group) => (
-                      <div key={group.label}>
-                        <p className="text-[10px] uppercase tracking-widest text-gray-600 px-4 py-1 font-bold">{group.label}</p>
-                        {group.items.map((item) => (
-                          <Link key={item.name} href={item.href} onClick={() => setMobileOpen(false)}
-                            className="block px-4 py-2.5 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                    <Link href="/compliance" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm text-[#2B7BE4] font-medium">
-                      View all compliance →
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Simple links */}
-              {[
-                { name: 'Industries', href: '/industries' },
-                { name: 'Resources', href: '/resources' },
-                { name: 'About Us',  href: '/about' },
-                { name: 'Contact',   href: '/contact' },
-              ].map((item) => (
-                <Link key={item.name} href={item.href} onClick={() => setMobileOpen(false)}
-                  className={`block px-4 py-3 text-sm font-medium rounded-xl transition-all ${
-                    pathname === item.href ? 'text-[#2B7BE4] bg-[#2B7BE4]/5' : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}>
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-
-            <div className="p-4 border-t border-gray-800 space-y-3">
-              <Link href="/contact" onClick={() => setMobileOpen(false)}
-                className="block w-full text-center py-3 text-white font-semibold rounded-xl transition-all"
-                style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
-                Book a Security Assessment
+                About Us
               </Link>
+
+              {/* Assurance dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => toggle('assurance')}
+                  className={`flex items-center gap-1.5 px-1.5 2xl:px-3 py-2.5 text-[13px] 2xl:text-sm font-medium rounded-lg transition-colors ${
+                    activeDropdown === 'assurance' || pathname.startsWith('/services')
+                      ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  Assurance
+                  <FiChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'assurance' ? 'rotate-180' : ''}`} />
+                </button>
+                {activeDropdown === 'assurance' && (
+                  <MegaPanel groups={assuranceGroups} footer={{ label: "View all assurance services", href: "/services" }} />
+                )}
+              </div>
+
+              {/* Governance dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => toggle('governance')}
+                  className={`flex items-center gap-1.5 px-1.5 2xl:px-3 py-2.5 text-[13px] 2xl:text-sm font-medium rounded-lg transition-colors ${
+                    activeDropdown === 'governance' || pathname.startsWith('/compliance')
+                      ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  Governance
+                  <FiChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'governance' ? 'rotate-180' : ''}`} />
+                </button>
+                {activeDropdown === 'governance' && (
+                  <MegaPanel groups={governanceGroups} footer={{ label: "View all compliance services", href: "/compliance" }} />
+                )}
+              </div>
+
+              {/* Industries */}
+              <Link
+                href="/industries"
+                className={`px-1.5 2xl:px-3 py-2.5 text-[13px] 2xl:text-sm font-medium rounded-lg transition-colors ${
+                  pathname.startsWith('/industries')
+                    ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                Industries
+              </Link>
+
+              {/* Resources dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => toggle('resources')}
+                  className={`flex items-center gap-1.5 px-1.5 2xl:px-3 py-2.5 text-[13px] 2xl:text-sm font-medium rounded-lg transition-colors ${
+                    activeDropdown === 'resources' || pathname.startsWith('/resources')
+                      ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  Resources
+                  <FiChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180' : ''}`} />
+                </button>
+                {activeDropdown === 'resources' && (
+                  <MegaPanel groups={resourcesGroups} />
+                )}
+              </div>
+
+              {/* Contact Us */}
+              <Link
+                href="/contact"
+                className={`px-1.5 2xl:px-3 py-2.5 text-[13px] 2xl:text-sm font-medium rounded-lg transition-colors ${
+                  pathname.startsWith('/contact')
+                    ? 'text-[#2B7BE4] bg-[#2B7BE4]/5'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                Contact Us
+              </Link>
+
+            </nav>
+
+            {/* Desktop right CTAs */}
+            <div className="hidden lg:flex items-center gap-2 2xl:gap-3 shrink-0">
               <a href="tel:+918080424274"
-                className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
-                <FiPhone className="w-4 h-4" /> +91 80804 24274 (24/7 Emergency)
+                className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors">
+                <FiPhone className="w-3.5 h-3.5" />
+                <span className="hidden xl:inline">+91 80804 24274</span>
               </a>
+              <Link
+                href="/contact"
+                className="px-3 2xl:px-5 py-2.5 text-white text-sm font-semibold rounded-full transition-all hover:shadow-lg whitespace-nowrap"
+                style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}
+              >
+                Get Assessment
+              </Link>
             </div>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileOpen((p) => !p)}
+              className="lg:hidden p-2.5 text-white rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2B7BE4]"
+              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
+            >
+              {mobileOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            </button>
           </div>
-        </>
-      )}
-    </header>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <>
+            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40" onClick={() => setMobileOpen(false)} aria-hidden="true" />
+            <div id="mobile-navigation" className="absolute top-full left-0 right-0 z-50 bg-[#0b1220] border-t border-gray-800 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain shadow-xl">
+              <div className="p-3 sm:p-4 space-y-1">
+
+                {/* Assurance accordion */}
+                <div>
+                  <button
+                    onClick={() => setMobileExpanded((p) => (p === 'assurance' ? null : 'assurance'))}
+                    className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-300 hover:text-white rounded-xl hover:bg-white/5 transition-all"
+                  >
+                    <span className="font-medium">Assurance</span>
+                    <FiChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === 'assurance' ? 'rotate-180' : ''}`} />
+                  </button>
+                  {mobileExpanded === 'assurance' && (
+                    <div className="pl-4 mt-1 space-y-3 pb-2">
+                      {assuranceGroups.map((group) => (
+                        <div key={group.label}>
+                          <p className="text-[10px] uppercase tracking-widest text-gray-600 px-4 py-1 font-bold">{group.label}</p>
+                          {group.items.map((item) => (
+                            <Link key={item.name} href={item.href} onClick={() => setMobileOpen(false)}
+                              className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">
+                              {item.name}
+                              {item.isNew && <span className="text-[9px] font-bold uppercase bg-green-500/10 text-green-400 border border-green-500/20 rounded-full px-1.5 py-0.5">NEW</span>}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                      <Link href="/services" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm text-[#2B7BE4] font-medium">
+                        View all services →
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Governance accordion */}
+                <div>
+                  <button
+                    onClick={() => setMobileExpanded((p) => (p === 'governance' ? null : 'governance'))}
+                    className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-300 hover:text-white rounded-xl hover:bg-white/5 transition-all"
+                  >
+                    <span className="font-medium">Governance</span>
+                    <FiChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === 'governance' ? 'rotate-180' : ''}`} />
+                  </button>
+                  {mobileExpanded === 'governance' && (
+                    <div className="pl-4 mt-1 space-y-3 pb-2">
+                      {governanceGroups.map((group) => (
+                        <div key={group.label}>
+                          <p className="text-[10px] uppercase tracking-widest text-gray-600 px-4 py-1 font-bold">{group.label}</p>
+                          {group.items.map((item) => (
+                            <Link key={item.name} href={item.href} onClick={() => setMobileOpen(false)}
+                              className="block px-4 py-2.5 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                      <Link href="/compliance" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm text-[#2B7BE4] font-medium">
+                        View all compliance →
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Simple links */}
+                {[
+                  { name: 'About Us',  href: '/about' },
+                  { name: 'Industries', href: '/industries' },
+                  { name: 'Resources', href: '/resources' },
+                  { name: 'Contact',   href: '/contact' },
+                ].map((item) => (
+                  <Link key={item.name} href={item.href} onClick={() => setMobileOpen(false)}
+                    className={`block px-4 py-3 text-sm font-medium rounded-xl transition-all ${
+                      pathname === item.href ? 'text-[#2B7BE4] bg-[#2B7BE4]/5' : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    }`}>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="p-3 sm:p-4 border-t border-gray-800 space-y-3">
+                <Link href="/contact" onClick={() => setMobileOpen(false)}
+                  className="block w-full text-center py-3 text-white font-semibold rounded-xl transition-all"
+                  style={{ background: "linear-gradient(135deg,#2B7BE4,#FF5CA8,#7C3AED)" }}>
+                  Book a Security Assessment
+                </Link>
+                <a href="tel:+918080424274"
+                  className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                  <FiPhone className="w-4 h-4" /> +91 80804 24274 (24/7 Emergency)
+                </a>
+              </div>
+            </div>
+          </>
+        )}
+      </header>
+    </div>
   )
 }
