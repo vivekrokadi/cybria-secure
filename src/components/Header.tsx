@@ -63,7 +63,7 @@ const resourcesGroups = [
     items: [
       { name: "Blog",             href: "/resources" },
       { name: "Case Studies",     href: "/resources?tab=case-studies" },
-      { name: "Documents & PDFs", href: "/resources?tab=documents" },
+      // { name: "Documents & PDFs", href: "/resources?tab=documents" },
     ],
   },
 ]

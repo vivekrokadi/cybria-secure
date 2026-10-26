@@ -25,7 +25,7 @@ const compliance = [
 const resources = [
   { name: "Blog",           href: "/resources" },
   { name: "Case Studies",   href: "/resources" },
-  { name: "Documents",      href: "/resources" },
+  // { name: "Documents",      href: "/resources" },
   { name: "About Us",       href: "/about" },
   { name: "Contact Us",     href: "/contact" },
   { name: "Privacy Policy", href: "/privacy-policy" },
