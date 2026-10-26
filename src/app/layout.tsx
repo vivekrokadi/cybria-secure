@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         style={{ fontFamily: 'var(--font-outfit), system-ui, sans-serif' }}
         suppressHydrationWarning
       >
-        <EmergencyBanner />
+        
         <Header />
         <main className="pt-16">{children}</main>
         <Footer />
