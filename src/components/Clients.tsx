@@ -4,16 +4,22 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const clients = [
-  { id: 1,  name: "Client 1",  logo: "/images/client9.webp" },
-  { id: 2,  name: "Client 2",  logo: "/images/client5.webp" },
-  { id: 3,  name: "Client 3",  logo: "/images/client3.jpeg" },
-  { id: 4,  name: "Client 4",  logo: "/images/client1.png" },
-  { id: 5,  name: "Client 5",  logo: "/images/client2.webp" },
-  { id: 6,  name: "Client 6",  logo: "/images/client6.png" },
-  { id: 7,  name: "Client 7",  logo: "/images/client7.jpg" },
-  { id: 8,  name: "Client 8",  logo: "/images/client8.png" },
-  // FIXED: was duplicate id:8 — changed to id:9
-  { id: 9,  name: "Client 9",  logo: "/images/client10.jpg" },
+  { id: 1,  name: "Suntel Global",  logo: "/images/suntel_global.webp" },
+  { id: 2,  name: "Synergy Green Industries",  logo: "/images/synergy_green_industries_ltd.png" },
+  { id: 3,  name: "shivaji university kolhapur",  logo: "/images/shivaji_university_kolhapur.jpeg" },
+  { id: 4,  name: "nashik zilla bank",  logo: "/images/nashik_zilla_bank.webp" },
+  { id: 5,  name: "latur urban bank",  logo: "/images/latur_urban_bank.png" },
+  { id: 6,  name: "Deendayal_Bank",  logo: "/images/Deendayal_Bank.webp" },
+  { id: 7,  name: "talk2_site",  logo: "/images/talk2_site.webp" },
+  { id: 8,  name: "rags_bank",  logo: "/images/rags_bank.png" },
+  { id: 9,  name: "pratap_industries",  logo: "/images/pratap_industries.jpg" },
+  { id: 10,  name: "pdp bank",  logo: "/images/pdp_bank.jpg" },
+  { id: 11,  name: "koyana bank",  logo: "/images/koyana_bank.jpg" },
+  { id: 12,  name: "neelkanth_bank",  logo: "/images/neelkanth_bank.png" },
+  { id: 13,  name: "vikas_sahakari_bank",  logo: "/images/vikas_sahakari_bank.jpg" },
+  { id: 14,  name: "lokavikas_bank",  logo: "/images/lokavikas_bank.png" },
+  { id: 15,  name: "shivdaulat_bank",  logo: "/images/shivdaulat_bank.png" },
+  { id: 15,  name: "the_jalna_co_op_bank",  logo: "/images/the_jalna_co_op_bank.jpg" },
 ];
 
 export default function Clients() {

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 // Rate limiting configuration
-const RATE_LIMIT_WINDOW = 60 * 60 * 1000; 
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 5;
 const ipRequestCounts = new Map<string, { count: number; resetTime: number }>();
 
@@ -21,9 +21,9 @@ function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
   }
 
   if (userData.count >= MAX_REQUESTS_PER_WINDOW) {
-    return { 
-      allowed: false, 
-      message: 'Too many requests. Please try again later.' 
+    return {
+      allowed: false,
+      message: 'Too many requests. Please try again later.'
     };
   }
 
@@ -33,26 +33,24 @@ function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
 
 export async function POST(request: NextRequest) {
   try {
-  
-    const ip = request.headers.get('x-forwarded-for') || 
-               request.headers.get('x-real-ip') || 
-               'unknown';
 
+    const ip = request.headers.get('x-forwarded-for') ||
+               request.headers.get('x-real-ip') ||
+               'unknown';
 
     const rateLimit = checkRateLimit(ip);
     if (!rateLimit.allowed) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: rateLimit.message || 'Rate limit exceeded' 
+        {
+          success: false,
+          message: rateLimit.message || 'Rate limit exceeded'
         },
         { status: 429 }
       );
     }
 
     const body = await request.json();
-    
- 
+
     const { name, email, phone, message, _honeypot, _timestamp } = body;
 
     if (_honeypot && _honeypot.trim() !== '') {
@@ -87,13 +85,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // GoDaddy Professional Email SMTP
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false, 
+      host: 'smtpout.secureserver.net',
+      port: 465,
+      secure: true, // SSL
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.SMTP_USER, // sales@cybriasecure.com
+        pass: process.env.SMTP_PASS, // GoDaddy mailbox password
       },
     });
 
@@ -170,23 +169,21 @@ This email was sent from the contact form on Cybria Secure website.
       `.trim(),
     };
 
-    // Send email
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent:', info.messageId);
 
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'Message sent successfully! We\'ll get back to you within 24 hours.',
-        messageId: info.messageId 
+        messageId: info.messageId
       },
       { status: 200 }
     );
 
   } catch (error) {
     console.error('Error sending email:', error);
-    
-    // Specific error handling
+
     let errorMessage = 'Failed to send message. Please try again later.';
     let statusCode = 500;
 
