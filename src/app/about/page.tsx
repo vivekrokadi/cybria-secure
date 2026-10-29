@@ -54,7 +54,7 @@ const jsonLd = {
 
 const stats = [
   { value: "100+", label: "Clients Served",     icon: FiUsers },
-  { value: "200+", label: "Projects Completed", icon: FiTarget },
+  { value: "280+", label: "Projects Completed", icon: FiTarget },
   { value: "24/7",  label: "Security Support",   icon: FiShield },
   { value: "360°",  label: "Security Coverage", icon: FiLock },
 ];

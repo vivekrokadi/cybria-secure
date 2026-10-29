@@ -24,7 +24,7 @@ function useCountUp(target: number, duration = 2000, start = false) {
 const stats = [
   { value: 100,  suffix: "+", label: "Clients" },
   // { value: 30,   suffix: "+", label: "Countries" },
-  { value: 200, suffix: "+", label: "Projects" },
+  { value: 280, suffix: "+", label: "Projects" },
   // { value: 9,    suffix: "+", label: "Years" },
 ];
 
