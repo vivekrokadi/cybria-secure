@@ -87,9 +87,9 @@ export async function POST(request: NextRequest) {
 
     // GoDaddy Professional Email SMTP
     const transporter = nodemailer.createTransport({
-      host: 'smtpout.secureserver.net',
+      host: 'smtp.titan.email',
       port: 465,
-      secure: true, // SSL
+      secure: true,
       auth: {
         user: process.env.SMTP_USER, // sales@cybriasecure.com
         pass: process.env.SMTP_PASS, // GoDaddy mailbox password
