@@ -4,11 +4,12 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const clients = [
-  { id: 1,  name: "Suntel Global",  logo: "/images/suntel_global.webp" },
-  { id: 2,  name: "Synergy Green Industries",  logo: "/images/synergy_green_industries_ltd.png" },
-  { id: 3,  name: "shivaji university kolhapur",  logo: "/images/shivaji_university_kolhapur.jpeg" },
-  { id: 4,  name: "nashik zilla bank",  logo: "/images/nashik_zilla_bank.webp" },
-  { id: 5,  name: "latur urban bank",  logo: "/images/latur_urban_bank.png" },
+  { id: 1,  name: "nashik zilla bank",  logo: "/images/nashik_zilla_bank.webp" },
+  { id: 2,  name: "latur urban bank",  logo: "/images/latur_urban_bank.png" },
+  { id: 3,  name: "Suntel Global",  logo: "/images/suntel_global.webp" },
+  { id: 4,  name: "Synergy Green Industries",  logo: "/images/synergy_green_industries_ltd.png" },
+  { id: 5,  name: "shivaji university kolhapur",  logo: "/images/shivaji_university_kolhapur.jpeg" },
+  
   { id: 6,  name: "Deendayal_Bank",  logo: "/images/Deendayal_Bank.webp" },
   { id: 7,  name: "talk2_site",  logo: "/images/talk2_site.webp" },
   { id: 8,  name: "rags_bank",  logo: "/images/rags_bank.png" },
