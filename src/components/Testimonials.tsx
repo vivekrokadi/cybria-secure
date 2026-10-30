@@ -6,23 +6,23 @@ import { FiStar } from 'react-icons/fi'
 const testimonials = [
   {
     id: 1,
-    name: 'Ashok Patil',
-    role: 'CEO, Manufacturing Company',
-    content: 'I was always interested in cybersecurity but didn’t know where to start. The beginner-friendly courses at Cybria Secure gave me hands-on experience with real-world security scenarios. Now, I’ve landed my first job in the cybersecurity field!',
+    name: 'Pratap Patil',
+    role: 'Founder & CEO, Corporate Sector',
+    content: "Identifying Critical Security Risks Before They Could Be Exploited, Cybria Secure Pvt. Ltd. conducted a comprehensive Web Application Vulnerability Assessment and Penetration Testing exercise for our application. During the assessment, their technical team identified critical security vulnerabilities, including weaknesses that could potentially allow unauthorized access to administrative functionalities. Their detailed technical findings, risk explanations and practical remediation recommendations helped us understand the severity of the issues and take appropriate corrective measures. We appreciate their technical expertise and professional approach.",
     rating: 5,
   },
   {
     id: 2,
-    name: 'Harshad More',
-    role: 'IT Manager, Banking Sector',
-    content: 'As a developer, I always struggled with secure coding practices. The cybersecurity training provided by Cybria Secure helped me understand secure coding techniques and prevent vulnerabilities like SQL injection and XSS. Now, I feel more confident in writing secure applications',
+    name: 'Sunit Deshpande',
+    role: 'CEO, Banking Sector',
+    content: "A Trusted Partner for Our IT Security and Compliance Requirements Cybria Secure Pvt. Ltd. has been a valuable partner in strengthening our bank's information security framework. Their team provided professional support for Network VAPT, Information Systems Audit, ISO 27001 implementation guidance, SAR Audit and DPDP compliance requirements. We particularly appreciate their cooperative approach, timely assistance, clear communication and willingness to guide our team throughout the engagement. Their practical recommendations have helped us improve our security controls and compliance readiness.",
     rating: 5,
   },
   {
     id: 3,
-    name: 'Asmita Khamkar',
-    role: 'Director, Healthcare Facility',
-    content: 'Our company was constantly under cyber threats, but thanks to Cybria Secure, our security posture has significantly improved. Their team identified vulnerabilities we weren’t even aware of and implemented strong defenses. Highly recommended!',
+    name: 'Shubham Yadav ',
+    role: 'IT Manager, Manufacturing Industry',
+    content: "We had a positive experience working with Cybria Secure for Vulnerability Assessment and Penetration Testing (VAPT) and ISO 27001 consulting services. Their team demonstrated strong technical expertise, a structured approach to identifying security vulnerabilities, and a clear understanding of information security requirements. Their recommendations provided valuable direction for strengthening our cybersecurity posture and improving our information security management practices. We appreciate their professionalism, responsiveness, and commitment throughout the engagement.",
     rating: 5,
   },
 ]
